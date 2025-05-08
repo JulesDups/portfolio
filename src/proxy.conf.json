@@ -1,7 +1,0 @@
-{
-  "/api": {
-    "target": "https://pelote-club-manager.koyeb.app",
-    "pathRewrite": { "^/api": "/" },
-    "changeOrigin": true
-  }
-}

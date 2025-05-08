@@ -1,15 +1,11 @@
-<section class="parallax-section min-h-screen" id="contact-section-wrapper">
-  <div
-    class="parallax-layer-bg"
-    [style.backgroundImage]="'url(https://picsum.photos/seed/contactProFond/1920/1080)'"
-  >
+<section
+  class="text-brand-dark relative flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-slate-100 via-white to-slate-100 py-16 md:py-24"
+  id="contact"
+>
+  <div class="relative z-10 w-full max-w-3xl px-4">
     <div
-      class="absolute inset-0 bg-gradient-to-br from-slate-100/80 via-slate-50/70 to-white/80"
-    ></div>
-  </div>
-
-  <div class="parallax-layer-content text-brand-dark w-full max-w-3xl px-4 py-16 md:py-20">
-    <div class="rounded-xl bg-white/60 p-8 text-center shadow-2xl backdrop-blur-lg md:p-12">
+      class="animate-on-scroll rounded-xl bg-white/80 p-8 text-center shadow-2xl backdrop-blur-lg md:p-12"
+    >
       <h2 class="text-brand-primary mb-6 text-4xl font-bold md:text-5xl">
         Parlons de Votre Projet
       </h2>
@@ -17,16 +13,15 @@
         Je suis toujours ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me
         contacter directement via les moyens ci-dessous.
       </p>
-
       <div class="space-y-6 md:space-y-8">
         <a
-          href="mailto:VOTRE_EMAIL_ICI@example.com"
+          href="mailto:julesdupspro@gmail.com"
           aria-label="Envoyer un email"
-          class="contact-method-button group"
+          class="text-brand-primary hover:text-brand-accent group animate-on-scroll flex transform flex-col items-center justify-center rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform duration-300 group-hover:scale-110 hover:bg-yellow-50/90 hover:shadow-xl"
         >
           <svg
+            class="text-brand-accent mb-3 h-8 w-8 transition-transform duration-300 group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
-            class="mr-4 h-8 w-8"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -39,19 +34,21 @@
             />
           </svg>
           <span class="text-lg">Envoyez-moi un Email</span>
-          <span class="contact-method-detail">VOTRE_EMAIL_ICIple.com</span>
+          <span
+            class="group-hover:text-brand-primary mt-1 text-xs text-gray-600 transition-colors duration-300"
+            >julesdupspro&#64;gmail.com</span
+          >
         </a>
-
         <a
-          href="https://www.linkedin.com/in/VOTREPROFILLINKEDIN"
+          href="https://www.linkedin.com/in/jules-dupuis/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Voir mon profil LinkedIn"
-          class="contact-method-button group"
+          class="text-brand-primary hover:text-brand-accent group animate-on-scroll flex transform flex-col items-center justify-center rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform duration-300 group-hover:scale-110 hover:bg-blue-50/90 hover:shadow-xl"
         >
           <svg
+            class="text-brand-accent mb-3 h-8 w-8 transition-transform duration-300 group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
-            class="mr-4 h-8 w-8"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
@@ -60,19 +57,21 @@
             />
           </svg>
           <span class="text-lg">Mon Profil LinkedIn</span>
-          <span class="contact-method-detail">linkedin.com/in/VOTREPROFILLINKEDIN</span>
+          <span
+            class="group-hover:text-brand-primary mt-1 text-xs text-gray-600 transition-colors duration-300"
+            >linkedin/in/jules-dupuis</span
+          >
         </a>
-
         <a
-          href="https://github.com/VOTREPSEUDOGITHUB"
+          href="https://github.com/JulesDups"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Voir mon profil GitHub"
-          class="contact-method-button group"
+          class="text-brand-primary hover:text-brand-accent group animate-on-scroll flex transform flex-col items-center justify-center rounded-lg border border-gray-200 bg-white p-6 shadow-lg transition-transform duration-300 group-hover:scale-110 hover:bg-green-50/90 hover:shadow-xl"
         >
           <svg
+            class="text-brand-accent mb-3 h-8 w-8 transition-transform duration-300 group-hover:scale-110"
             xmlns="http://www.w3.org/2000/svg"
-            class="mr-4 h-8 w-8"
             viewBox="0 0 24 24"
             fill="currentColor"
           >
@@ -81,13 +80,13 @@
             />
           </svg>
           <span class="text-lg">Mon Profil GitHub</span>
-          <span class="contact-method-detail">github.com/VOTREPSEUDOGITHUB</span>
+          <span
+            class="group-hover:text-brand-primary mt-1 text-xs text-gray-600 transition-colors duration-300"
+            >github.com/JulesDups</span
+          >
         </a>
       </div>
-
-      <p class="mt-12 text-sm text-gray-600">
-        Je m'efforce de répondre rapidement. Au plaisir d'échanger !
-      </p>
+      <p class="mt-12 text-sm text-gray-600">Au plaisir d'échanger avec vous !</p>
     </div>
   </div>
 </section>

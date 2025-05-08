@@ -1,65 +1,66 @@
-/* MODIFIÉ: Syntaxe d'import pour Tailwind v4 */
-@import 'tailwindcss';
+/* Importations Tailwind (doivent être au début) */
+@import 'tailwindcss'; /* Correct pour v4 */
+/* @plugin "tailwindcss-primeui"; */ /* Je laisse commenté, vérifier compatibilité v4 si besoin */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  @apply text-brand-dark bg-brand-light font-sans;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Définitions des composants personnalisés */
+/* Définitions des composants personnalisés - MISES EN COMMENTAIRE POUR TEST */
+/*
 @layer components {
   .skill-category-card {
-    @apply text-brand-dark rounded-lg bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl md:p-8;
+    @apply bg-white text-brand-dark p-6 md:p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl;
   }
 
   .skill-category-title {
-    @apply text-brand-primary mb-6 flex items-center text-2xl font-semibold md:text-3xl;
+    @apply text-2xl md:text-3xl font-semibold text-brand-primary mb-6 flex items-center;
     svg {
-      @apply text-brand-accent mr-3 h-7 w-7 shrink-0; /* Ajout de shrink-0 */
+      @apply h-7 w-7 mr-3 text-brand-accent shrink-0;
     }
   }
 
   .skill-badge-accessible {
-    @apply bg-brand-accent hover:bg-opacity-80 mr-2 mb-2 inline-block rounded-md px-4 py-1.5 text-sm font-medium text-white shadow transition-all duration-200 ease-in-out hover:shadow-md;
+    @apply inline-block bg-brand-accent text-white text-sm font-medium px-4 py-1.5 rounded-md mr-2 mb-2 shadow hover:bg-opacity-80 hover:shadow-md transition-all duration-200 ease-in-out;
   }
 
   .contact-method-button {
-    @apply text-brand-primary hover:text-brand-accent group flex transform flex-col items-center justify-center rounded-lg border border-gray-200 bg-white/80 p-6 shadow-lg transition-all duration-300 ease-in-out hover:-translate-y-1 hover:bg-white hover:shadow-xl; /* Ajout de group ici aussi */
+    @apply flex flex-col items-center justify-center p-6 bg-white/80 hover:bg-white border border-gray-200 rounded-lg shadow-lg hover:shadow-xl text-brand-primary hover:text-brand-accent transition-all duration-300 ease-in-out transform hover:-translate-y-1 group;
     svg {
-      @apply text-brand-accent mb-3 transition-transform duration-300 group-hover:scale-110;
+      @apply mb-3 text-brand-accent group-hover:scale-110 transition-transform duration-300;
     }
     .contact-method-detail {
-      @apply group-hover:text-brand-primary mt-1 text-xs text-gray-600 transition-colors duration-300;
+      @apply text-xs text-gray-600 group-hover:text-brand-primary mt-1 transition-colors duration-300;
     }
   }
 }
+*/
 
-/* MODIFIÉ: Styles pour l'animation d'apparition */
-/* Éléments initialement cachés */
+/* Styles pour l'animation d'apparition - Simplifiés */
 .animate-on-scroll {
   opacity: 0;
+  transform: translateY(20px); /* État initial */
   transition:
-    opacity 0.7s ease-out,
-    transform 0.7s ease-out; /* Ajout de transition ici */
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out; /* Transition douce */
 }
 
-/* Éléments devenus visibles */
 .section-visible {
-  /* Utilise l'animation définie dans tailwind.config.js */
-  /* Si vous préférez une simple transition d'opacité/translation sans keyframes: */
   opacity: 1;
-  transform: translateY(0);
-  /* Ou si vous utilisez l'animation keyframe: */
-  /* animation: fadeInUp 0.7s ease-out forwards; */ /* Assurez-vous que le nom correspond */
+  transform: translateY(0); /* État final */
 }
 
-/* MODIFIÉ: Style pour le lien de navigation actif */
+/* Style pour le lien de navigation actif */
 app-header nav a.active-link {
   /* Applique le style du lien actif défini dans le header */
-  @apply text-brand-accent border-brand-accent border-b-2;
+  /* @apply text-brand-accent border-b-2 border-brand-accent; */ /* @apply commenté ici aussi pour test */
+  /* Remplacement temporaire sans @apply: */
+  color: #dd6b20; /* Utilisez votre couleur brand-accent */
+  border-bottom-width: 2px;
+  border-color: #dd6b20; /* Utilisez votre couleur brand-accent */
 }

@@ -39,12 +39,19 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/pelote-club-manager",
+            "outputPath": "dist/portfolio",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/assets"],
+            "assets": [
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "src/assets/",
+                "output": "/assets/"
+              }
+            ],
             "styles": ["src/styles.css"],
             "scripts": []
           },
@@ -74,7 +81,6 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": { "proxyConfig": "src/proxy.conf.json" },
           "configurations": {
             "production": {
               "buildTarget": "portfolio:build:production"
