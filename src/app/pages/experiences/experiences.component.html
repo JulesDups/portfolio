@@ -1,99 +1,88 @@
-<section class="parallax-section min-h-screen" id="experiences-section-wrapper">
-  <div
-    class="parallax-layer-bg"
-    [style.backgroundImage]="'url(https://picsum.photos/seed/experiencesProBG/1920/1080)'"
-  >
-    <div
-      class="from-brand-dark/80 via-brand-dark/70 to-brand-dark/80 absolute inset-0 bg-gradient-to-br"
-    ></div>
-  </div>
+<section
+  class="relative flex min-h-screen flex-col items-center justify-center bg-cover bg-fixed bg-center py-16 text-white md:py-24"
+  [style.backgroundImage]="'url(https://picsum.photos/seed/experiencesProBG/1920/1080)'"
+  id="experiences"
+>
+  <div class="bg-brand-dark absolute inset-0 z-0 opacity-80"></div>
 
-  <div class="parallax-layer-content w-full max-w-4xl px-4 py-16 md:py-20">
-    <div class="text-brand-light rounded-xl bg-transparent p-0 md:p-0">
-      <h2 class="mb-12 text-center text-4xl font-bold text-white md:mb-16 md:text-5xl">
-        Mon Parcours Professionnel
-      </h2>
+  <div class="relative z-10 w-full max-w-4xl px-4">
+    <h2 class="mb-12 text-center text-4xl font-bold text-white md:mb-16 md:text-5xl">
+      Mon Parcours Professionnel
+    </h2>
 
-      <div class="relative space-y-12">
-        <div
-          class="hover:border-brand-accent/50 group flex flex-col items-start gap-x-6 rounded-xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-lg transition-all duration-300 ease-in-out md:flex-row md:p-8"
-        >
-          <div class="mb-4 w-full flex-shrink-0 text-center md:mb-0 md:w-1/4 md:text-left">
-            <h3
-              class="text-brand-accent mb-1 text-xl font-semibold group-hover:text-white md:text-2xl"
-            >
-              Analyste Programmeur Full-stack
-            </h3>
-            <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">
-              SEI Groupe LKS
-            </p>
-            <p class="text-sm text-gray-400 group-hover:text-gray-300">Bidart, 64</p>
-            <p class="mt-1 text-xs text-gray-500 group-hover:text-gray-400">
-              Août 2021 - Aujourd'hui
-            </p>
-          </div>
-          <div class="flex-grow">
-            <ul
-              class="marker:text-brand-accent ml-5 list-outside list-disc space-y-2 text-sm text-gray-300 group-hover:text-gray-100 md:text-base"
-            >
-              <li>
-                Migration technique d'applications (Angular, Spring Boot) et optimisation de leur
-                taille (-60%).
-              </li>
-              <li>
-                Optimisation de requêtes SQL complexes (Oracle), divisant le temps d'exécution par
-                4.
-              </li>
-              <li>
-                Développement d'une application web d'administration (Angular/Spring Boot) pour
-                l'ERP Akolade.
-              </li>
-              <li>
-                Amélioration continue de la qualité via tests unitaires, Code Review et Pair
-                Programming.
-              </li>
-              <li>Mise en place et gestion de CI/CD (Maven, Jenkins) et des versions (SemVer).</li>
-              <li>
-                Conception et intégration d'API REST événementielles et développement mobile
-                (Ionic).
-              </li>
-              <li>
-                Veille technologique, animation de démos SCRUM, et traduction de spécifications
-                UI/UX (Adobe XD).
-              </li>
-            </ul>
-          </div>
+    <div class="space-y-12">
+      <div
+        class="animate-on-scroll hover:border-brand-accent/50 group flex flex-col gap-x-6 rounded-xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-lg transition-all duration-300 ease-in-out md:flex-row md:items-start md:p-8"
+      >
+        <div class="mb-4 w-full flex-shrink-0 text-center md:mb-0 md:w-1/4 md:text-left">
+          <h3
+            class="text-brand-accent mb-1 text-xl font-semibold group-hover:text-white md:text-2xl"
+          >
+            Analyste Programmeur Full-stack
+          </h3>
+          <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">SEI Groupe LKS</p>
+          <p class="text-sm text-gray-400 group-hover:text-gray-300">Bidart, 64</p>
+          <p class="mt-1 text-xs text-gray-500 group-hover:text-gray-400">
+            Août 2021 - Aujourd'hui
+          </p>
         </div>
+        <div class="flex-grow">
+          <ul
+            class="marker:text-brand-accent ml-5 list-outside list-disc space-y-2 text-sm text-gray-300 group-hover:text-gray-100 md:text-base"
+          >
+            <li>
+              Migration technique d'applications (Angular, Spring Boot) et optimisation de leur
+              taille (-60%).
+            </li>
+            <li>
+              Optimisation de requêtes SQL complexes (Oracle), divisant le temps d'exécution par 4.
+            </li>
+            <li>
+              Développement d'une application web d'administration (Angular/Spring Boot) pour l'ERP
+              Akolade.
+            </li>
+            <li>
+              Amélioration continue de la qualité via tests unitaires, Code Review et Pair
+              Programming.
+            </li>
+            <li>Mise en place et gestion de CI/CD (Maven, Jenkins) et des versions (SemVer).</li>
+            <li>
+              Conception et intégration d'API REST événementielles et développement mobile (Ionic).
+            </li>
+            <li>
+              Veille technologique, animation de démos SCRUM, et traduction de spécifications UI/UX
+              (Adobe XD).
+            </li>
+          </ul>
+        </div>
+      </div>
 
-        <div
-          class="hover:border-brand-accent/50 group flex flex-col items-start gap-x-6 rounded-xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-lg transition-all duration-300 ease-in-out md:flex-row md:p-8"
-        >
-          <div class="mb-4 w-full flex-shrink-0 text-center md:mb-0 md:w-1/4 md:text-left">
-            <h3
-              class="text-brand-accent mb-1 text-xl font-semibold group-hover:text-white md:text-2xl"
-            >
-              Développeur Front-end
-            </h3>
-            <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">(Stage)</p>
-            <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">
-              Espace Missionnaire de Brive
-            </p>
-            <p class="text-sm text-gray-400 group-hover:text-gray-300">Brive-la-Gaillarde, 19</p>
-            <p class="mt-1 text-xs text-gray-500 group-hover:text-gray-400">
-              Février 2018 - Mars 2018 (2 mois)
-            </p>
-          </div>
-          <div class="flex-grow">
-            <ul
-              class="marker:text-brand-accent ml-5 list-outside list-disc space-y-2 text-sm text-gray-300 group-hover:text-gray-100 md:text-base"
-            >
-              <li>Analyse des besoins et conception d'un site WordPress sur mesure.</li>
-              <li>
-                Personnalisation du design, intégration de fonctionnalités et optimisation SEO.
-              </li>
-              <li>Formation du client à l'administration de la plateforme WordPress.</li>
-            </ul>
-          </div>
+      <div
+        class="animate-on-scroll hover:border-brand-accent/50 group flex flex-col gap-x-6 rounded-xl border border-white/20 bg-white/10 p-6 shadow-2xl backdrop-blur-lg transition-all duration-300 ease-in-out md:flex-row md:items-start md:p-8"
+      >
+        <div class="mb-4 w-full flex-shrink-0 text-center md:mb-0 md:w-1/4 md:text-left">
+          <h3
+            class="text-brand-accent mb-1 text-xl font-semibold group-hover:text-white md:text-2xl"
+          >
+            Développeur Front-end
+          </h3>
+          <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">(Stage)</p>
+          <p class="text-md font-medium text-gray-200 group-hover:text-gray-100">
+            Espace Missionnaire de Brive
+          </p>
+          <p class="text-sm text-gray-400 group-hover:text-gray-300">Brive-la-Gaillarde, 19</p>
+          <p class="mt-1 text-xs text-gray-500 group-hover:text-gray-400">
+            Février 2018 - Mars 2018 (2 mois)
+          </p>
+        </div>
+        <div class="flex-grow">
+          <ul
+            class="marker:text-brand-accent ml-5 list-outside list-disc space-y-2 text-sm text-gray-300 group-hover:text-gray-100 md:text-base"
+          >
+            <li>Analyse des besoins et conception d'un site WordPress sur mesure.</li>
+            <li>Personnalisation du design, intégration de fonctionnalités et optimisation SEO.</li>
+            <li>Formation du client à l'administration de la plateforme WordPress.</li>
+          </ul>
         </div>
       </div>
     </div>
