@@ -1,0 +1,131 @@
+<header class="bg-brand-primary text-brand-light sticky top-0 z-50 shadow-md">
+  <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <div class="flex items-center">
+        <a
+          (click)="scrollTo('accueil')"
+          href="#accueil"
+          class="hover:text-brand-accent cursor-pointer text-2xl font-bold transition-colors duration-300"
+        >
+          Votre Nom / Logo
+        </a>
+      </div>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-4">
+          <a
+            (click)="scrollTo('accueil')"
+            href="#accueil"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >Accueil</a
+          >
+          <a
+            (click)="scrollTo('a-propos')"
+            href="#a-propos"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >À Propos</a
+          >
+          <a
+            (click)="scrollTo('experiences')"
+            href="#experiences"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >Compétences</a
+          >
+          <a
+            (click)="scrollTo('projets')"
+            href="#projets"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >Projets</a
+          >
+          <a
+            (click)="scrollTo('competences')"
+            href="#competences"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >Compétences</a
+          >
+          <a
+            (click)="scrollTo('contact')"
+            href="#contact"
+            class="hover:text-brand-accent cursor-pointer rounded-md px-3 py-2 text-sm font-medium transition-colors duration-300"
+            >Contact</a
+          >
+        </div>
+      </div>
+      <div class="-mr-2 flex md:hidden">
+        <button
+          (click)="toggleMobileMenu()"
+          type="button"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-none focus:ring-inset"
+          aria-controls="mobile-menu"
+          [attr.aria-expanded]="isMobileMenuOpen"
+        >
+          <span class="sr-only">Ouvrir le menu principal</span>
+          <svg
+            *ngIf="!isMobileMenuOpen"
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg
+            *ngIf="isMobileMenuOpen"
+            class="block h-6 w-6"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="md:hidden" id="mobile-menu" *ngIf="isMobileMenuOpen">
+    <div class="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+      <a
+        (click)="scrollTo('accueil')"
+        href="#accueil"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >Accueil</a
+      >
+      <a
+        (click)="scrollTo('a-propos')"
+        href="#a-propos"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >À Propos</a
+      >
+      <a
+        (click)="scrollTo('experiences')"
+        href="#experiences"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >Compétences</a
+      >
+      <a
+        (click)="scrollTo('projets')"
+        href="#projets"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >Projets</a
+      >
+      <a
+        (click)="scrollTo('competences')"
+        href="#competences"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >Compétences</a
+      >
+      <a
+        (click)="scrollTo('contact')"
+        href="#contact"
+        class="block cursor-pointer rounded-md px-3 py-2 text-base font-medium hover:bg-gray-700 hover:text-white"
+        >Contact</a
+      >
+    </div>
+  </div>
+</header>
