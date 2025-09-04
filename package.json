@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@angular/build": "19.2.11",
-    "@angular/cli": "19.2.11",
+    "@angular/cli": "20.2.2",
     "@angular/compiler-cli": "19.2.10",
     "@types/node": "22.15.16",
     "prettier": "3.5.3",
