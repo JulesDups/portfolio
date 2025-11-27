@@ -1,64 +1,1075 @@
-import Image from "next/image";
+"use client";
+import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  AlertTriangle,
+  ArrowRight,
+  Calendar,
+  ChevronDown,
+  ClipboardCopy,
+  Clock,
+  Code2,
+  Github,
+  Hammer,
+  Layers,
+  Linkedin,
+  Mail,
+  MapPin,
+  MessageSquare,
+  PenTool,
+  Server,
+  Sparkles,
+  Terminal,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
-export default function Home() {
+// --- DATA & CONFIGURATION ---
+
+const DATA = {
+  profile: {
+    name: "Jules Dupuis",
+    role: "Architecte Numérique Indépendant",
+    subRole: "Freelance | Expert Java Spring & Angular",
+    location: "Anglet, Pays Basque",
+    stats: [
+      { label: "Années Angular", value: "04" },
+      { label: "Années Java", value: "03" },
+      { label: "Mode", value: "100% Freelance" },
+    ],
+  },
+  stack: [
+    {
+      category: "Gros Œuvre (Backend)",
+      icon: <Server size={20} />,
+      desc: "Fondations solides & scalables, posées loin du bruit.",
+      techs: [
+        "Java 17/21",
+        "Spring Boot 3",
+        "PostgreSQL",
+        "Hibernate",
+        "Microservices",
+      ],
+    },
+    {
+      category: "Façade (Frontend)",
+      icon: <Layers size={20} />,
+      desc: "Interfaces réactives, assemblées avec précision.",
+      techs: ["Angular 16+", "TypeScript", "RxJS", "Tailwind CSS", "NgRx"],
+    },
+    {
+      category: "L'Établi (DevOps & Outils)",
+      icon: <Terminal size={20} />,
+      desc: "Mon environnement de travail optimisé.",
+      techs: ["Docker", "GitLab CI", "IntelliJ IDEA", "Maven/Gradle", "Linux"],
+    },
+  ],
+  project: {
+    title: "Pelote Manager",
+    context:
+      "Digitalisation complète de championnats de Pelote Basque (Gomme pleine).",
+    challenge:
+      "Complexité algorithmique pour la gestion des créneaux et règles de tournois.",
+    stack: ["Angular 16", "Spring Boot 3", "PostgreSQL"],
+  },
+};
+
+// --- API CLIENT (Le lien vers gemini.ts) ---
+// C'est ici que la connexion se fait. '/api/gemini' correspond au fichier api/gemini.ts
+const callAIProxy = async (action: string, input: string) => {
+  try {
+    const response = await fetch("/api/gemini", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action, input }),
+    });
+
+    if (!response.ok)
+      throw new Error("Erreur réseau ou clé API manquante côté serveur");
+    return await response.json();
+  } catch (error) {
+    console.error("Erreur appel proxy:", error);
+    return null;
+  }
+};
+
+// --- PIXEL ART SVG COMPONENTS ---
+
+const FloatingPixel = ({
+  children,
+  delay = 0,
+  duration = 4,
+  className = "",
+}: any) => (
+  <motion.div
+    animate={{ y: [0, -15, 0] }}
+    transition={{
+      duration: duration,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay: delay,
+    }}
+    className={`absolute pointer-events-none z-0 opacity-80 ${className}`}
+  >
+    {children}
+  </motion.div>
+);
+
+const PixelPala = ({ size = 64 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="7" y="11" width="2" height="4" fill="#d4a373" />
+    <rect x="5" y="3" width="6" height="8" fill="#d4a373" />
+    <rect x="6" y="2" width="4" height="1" fill="#d4a373" />
+    <rect
+      x="12"
+      y="5"
+      width="2"
+      height="2"
+      fill="#fcfbf7"
+      stroke="#1f4045"
+      strokeWidth="0.5"
+    />
+    <rect x="11" y="3" width="1" height="8" fill="#1f4045" opacity="0.2" />
+  </svg>
+);
+
+const PixelEtxe = ({ size = 100 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M10 2L2 9H18L10 2Z" fill="#bf2c23" />
+    <rect x="3" y="9" width="14" height="9" fill="#fcfbf7" />
+    <rect x="3" y="9" width="1" height="9" fill="#bf2c23" />
+    <rect x="16" y="9" width="1" height="9" fill="#bf2c23" />
+    <rect x="3" y="13" width="14" height="1" fill="#bf2c23" />
+    <rect x="9" y="9" width="2" height="9" fill="#bf2c23" />
+    <rect x="9" y="15" width="2" height="3" fill="#1f4045" />
+  </svg>
+);
+
+const PixelCathedral = ({ size = 120 }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect x="4" y="14" width="16" height="10" fill="#1f4045" opacity="0.8" />
+    <path
+      d="M10 24V18C10 16.8954 10.8954 16 12 16C13.1046 16 14 16.8954 14 18V24H10Z"
+      fill="#fcfbf7"
+    />
+    <rect x="5" y="6" width="4" height="8" fill="#1f4045" />
+    <rect x="15" y="6" width="4" height="8" fill="#1f4045" />
+    <path d="M7 2L5 6H9L7 2Z" fill="#1f4045" />
+    <path d="M17 2L15 6H19L17 2Z" fill="#1f4045" />
+    <rect x="11" y="10" width="2" height="2" fill="#fcfbf7" />
+  </svg>
+);
+
+const PixelDots = () => (
+  <div className="flex gap-1 absolute top-4 right-4 opacity-50">
+    <div className="w-2 h-2 bg-[#1f4045]"></div>
+    <div className="w-2 h-2 bg-[#bf2c23]"></div>
+    <div className="w-2 h-2 bg-[#d4a373]"></div>
+  </div>
+);
+
+const PixelBrackets = ({ className = "" }) => (
+  <div
+    className={`font-mono font-bold text-[#bf2c23] tracking-tighter select-none ${className}`}
+    style={{ imageRendering: "pixelated", fontSize: "1.5rem" }}
+  >
+    {`{ }`}
+  </div>
+);
+
+const PixelLauburu = () => (
+  <div
+    className="w-8 h-8 opacity-40 mx-auto mb-4"
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(8, 1fr)",
+      gridTemplateRows: "repeat(8, 1fr)",
+      gap: "1px",
+    }}
+  >
+    <div className="col-span-2 row-span-2 col-start-3 row-start-1 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-5 row-start-2 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-7 row-start-3 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-6 row-start-5 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-5 row-start-7 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-3 row-start-6 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-1 row-start-5 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-2 row-start-3 bg-[#1f4045]"></div>
+    <div className="col-span-2 row-span-2 col-start-4 row-start-4 bg-[#bf2c23]"></div>
+  </div>
+);
+
+const GrainOverlay = () => (
+  <div
+    className="fixed inset-0 pointer-events-none opacity-[0.03] z-50 mix-blend-multiply"
+    style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+    }}
+  ></div>
+);
+
+// --- SECTIONS ---
+
+const Hero = () => {
+  const { scrollY } = useScroll();
+  const yText = useTransform(scrollY, [0, 500], [0, -150]);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#fcfbf7]">
+      <div
+        className="absolute inset-0 z-0 opacity-5"
+        style={{
+          backgroundImage:
+            "linear-gradient(#1f4045 1px, transparent 1px), linear-gradient(90deg, #1f4045 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      ></div>
+      <PixelDots />
+
+      <FloatingPixel
+        className="absolute left-[-20px] md:left-20 bottom-32 opacity-20 hidden md:block"
+        duration={6}
+      >
+        <PixelCathedral size={200} />
+      </FloatingPixel>
+
+      <motion.div
+        style={{ y: yText }}
+        className="z-10 text-center px-4 max-w-5xl mt-[-5vh] relative"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="flex items-center justify-center gap-3 text-[#d4a373] font-mono text-sm tracking-widest mb-4"
+        >
+          <MapPin size={14} /> {DATA.profile.location.toUpperCase()}
+          <span className="text-[#bf2c23]">//</span>
+          <span>MODE: FREELANCE_ACTIF</span>
+        </motion.div>
+
+        <div className="relative inline-block">
+          <PixelBrackets className="absolute -left-8 top-2 md:-left-12 md:top-4 opacity-50 hidden md:block" />
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-serif text-6xl md:text-8xl font-bold text-[#1f4045] mb-6 leading-[0.9]"
+          >
+            {DATA.profile.name}
+          </motion.h1>
+          <PixelBrackets className="absolute -right-8 bottom-2 md:-right-12 md:bottom-4 opacity-50 hidden md:block" />
+        </div>
+
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "120px" }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="h-2 bg-[#bf2c23] mx-auto mb-8"
+          style={{ clipPath: "polygon(0 0, 100% 0, 95% 100%, 5% 100%)" }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+
+        <motion.h2
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="font-sans text-xl md:text-3xl text-[#1f4045] font-light"
+        >
+          Architecte Numérique{" "}
+          <span className="font-bold text-[#bf2c23]">Indépendant</span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="font-mono text-sm text-[#1f4045]/60 mt-4"
+        >
+          {DATA.profile.subRole}
+        </motion.p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 z-20"
+      >
+        <ChevronDown className="text-[#bf2c23] animate-bounce" size={32} />
+      </motion.div>
+    </section>
+  );
+};
+
+const About = () => {
+  return (
+    <section className="py-24 bg-[#fcfbf7] text-[#1f4045] overflow-hidden relative">
+      <div className="absolute left-0 top-1/4 w-2 h-8 bg-[#bf2c23] opacity-20"></div>
+      <div
+        className="absolute left-3 top-1/4 w-2 h-4 bg-[#1f4045] opacity-20"
+        style={{ marginTop: "32px" }}
+      ></div>
+
+      <div className="container mx-auto px-6 max-w-6xl relative">
+        <FloatingPixel
+          className="absolute top-0 right-10 md:right-32 opacity-100 md:opacity-100 z-10"
+          duration={5}
+          delay={1}
+        >
+          <div className="bg-[#fcfbf7] p-2 rounded-full border border-[#bf2c23]/20 shadow-lg">
+            <PixelEtxe size={80} />
+          </div>
+        </FloatingPixel>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8 order-2 md:order-1 relative z-20">
+            <div className="flex items-center gap-4">
+              <span className="font-mono text-[#bf2c23] text-sm">{`> 01. LE MANIFESTE`}</span>
+              <div
+                className="h-[2px] flex-grow bg-[#1f4045]/10"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(90deg, #1f4045 50%, transparent 50%)",
+                  backgroundSize: "4px 1px",
+                }}
+              ></div>
+            </div>
+
+            <motion.h3
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-4xl md:text-5xl leading-tight"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              L'expertise ne se dilue pas dans{" "}
+              <span className="italic text-[#bf2c23] relative">
+                l'open-space.
+                <span className="absolute bottom-1 left-0 w-full h-1 bg-[#bf2c23]/20 -z-10"></span>
+              </span>
+            </motion.h3>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-sans text-lg text-[#1f4045]/80 leading-relaxed text-justify space-y-4 border-l-4 border-[#d4a373] pl-6"
             >
-              Learning
-            </a>{" "}
-            center.
+              <p>
+                J'ai quitté le monde du salariat classique pour une raison
+                simple : la qualité exige de la concentration.
+              </p>
+              <p>
+                En tant qu'<strong>Architecte Numérique Indépendant</strong>, je
+                ne suis pas un "paquet de ressources" interchangeable. Je suis
+                un artisan qui choisit ses outils (Java Spring, Angular) et qui
+                s'engage sur le résultat. Je travaille en direct avec vous, sans
+                intermédiaires superflus, pour bâtir des applications qui
+                durent.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-3 gap-6 pt-8">
+              {DATA.profile.stats.map((stat, idx) => (
+                <div
+                  key={idx}
+                  className="text-center md:text-left p-4 bg-[#f4f1ea] border border-[#1f4045]/10 relative overflow-hidden group"
+                >
+                  <div className="absolute top-0 left-0 w-1 h-1 bg-[#bf2c23] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute bottom-0 right-0 w-1 h-1 bg-[#1f4045] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div
+                    className={`font-serif text-3xl font-bold ${
+                      stat.label === "Mode"
+                        ? "text-[#bf2c23]"
+                        : "text-[#d4a373]"
+                    }`}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="font-mono text-xs uppercase tracking-wider text-[#1f4045]/70 mt-2">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[500px] w-full order-1 md:order-2 bg-[#f4f1ea] border-2 border-[#1f4045]/20 overflow-hidden flex flex-col shadow-xl"
+            style={{
+              clipPath:
+                "polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)",
+            }}
+          >
+            <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(31,64,69,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(31,64,69,0.5)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+
+            <div className="flex-grow flex items-center justify-center relative p-12">
+              <div className="w-full h-full border-4 border-[#d4a373]/50 relative">
+                <div className="absolute top-0 left-1/4 w-1/2 h-full border-x-2 border-dashed border-[#1f4045]/30"></div>
+                <div className="absolute top-1/3 left-0 w-full h-1/3 border-y-2 border-dashed border-[#1f4045]/30"></div>
+                <Code2
+                  size={64}
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#bf2c23] opacity-80"
+                />
+              </div>
+            </div>
+
+            <div className="absolute bottom-8 right-[-2rem] bg-[#bf2c23] text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
+              <Terminal size={14} /> FREELANCE_STUDIO
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Workshop = () => {
+  return (
+    <section className="py-24 bg-[#f4f1ea] relative">
+      <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#bf2c23,#bf2c23_4px,transparent_4px,transparent_8px)] opacity-30"></div>
+
+      <div className="container mx-auto px-6 max-w-6xl">
+        <div className="mb-16 text-center">
+          <span className="font-mono text-[#bf2c23] text-sm block mb-2">{`> 02. L'ATELIER PRIVÉ`}</span>
+          <h2 className="font-serif text-4xl text-[#1f4045]">
+            Mes Outils de Prédilection
+          </h2>
+          <p className="font-sans text-[#1f4045]/70 mt-4 max-w-lg mx-auto">
+            En freelance, je choisis les technologies les plus fiables pour
+            garantir pérennité et performance à vos projets.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {DATA.stack.map((group, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.2 }}
+              className="bg-[#fcfbf7] p-8 border border-[#1f4045]/20 shadow-sm hover:shadow-[4px_4px_0px_0px_#bf2c23] transition-all duration-300 group relative overflow-hidden"
+            >
+              <PixelDots />
+              <div
+                className="text-[#1f4045] mb-4 bg-[#d4a373]/20 w-12 h-12 flex items-center justify-center border border-[#1f4045]/40"
+                style={{ borderRadius: "4px" }}
+              >
+                {group.icon}
+              </div>
+              <h3 className="font-serif text-xl font-bold text-[#1f4045] mb-2">
+                {group.category}
+              </h3>
+              <p className="font-sans text-sm text-[#1f4045]/70 mb-6 italic border-b-2 border-dashed border-[#1f4045]/10 pb-4">
+                {group.desc}
+              </p>
+              <ul className="space-y-3">
+                {group.techs.map((tech, tIdx) => (
+                  <li
+                    key={tIdx}
+                    className="flex items-center font-mono text-sm text-[#1f4045] group/item"
+                  >
+                    <span className="w-2 h-2 mr-3 bg-[#1f4045] opacity-0 group-hover/item:opacity-100 transition-opacity"></span>
+                    <span className="opacity-80 group-hover/item:opacity-100 group-hover/item:font-bold transition-all">
+                      {tech}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Project = () => {
+  return (
+    <section className="py-32 bg-[#1f4045] text-[#fcfbf7] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(#fcfbf7_1px,transparent_1px),linear-gradient(90deg,#fcfbf7_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+
+      <FloatingPixel
+        className="absolute top-10 right-10 z-0 opacity-40 rotate-12"
+        duration={4}
+      >
+        <PixelPala size={160} />
+      </FloatingPixel>
+
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="lg:col-span-5 space-y-8">
+            <span className="font-mono text-[#bf2c23] bg-[#bf2c23]/20 text-sm border border-[#bf2c23] px-3 py-1">
+              PROJET SUR-MESURE
+            </span>
+            <h2 className="font-serif text-5xl font-bold leading-none text-[#fcfbf7]">
+              {DATA.project.title}
+            </h2>
+
+            <p className="font-sans text-lg text-[#fcfbf7]/80 leading-relaxed border-l-2 border-[#d4a373] pl-4">
+              {DATA.project.context}
+            </p>
+
+            <div className="bg-[#fcfbf7]/5 p-6 border border-[#fcfbf7]/10 relative">
+              <PixelDots />
+              <h4 className="font-serif text-[#d4a373] mb-2 flex items-center gap-2">
+                <PenTool size={16} /> Le Défi Technique
+              </h4>
+              <p className="text-sm font-sans font-mono text-[#fcfbf7]/70">
+                {`> ${DATA.project.challenge}`}
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3 pt-4">
+              {DATA.project.stack.map((t, i) => (
+                <span
+                  key={i}
+                  className="font-mono text-xs text-[#1f4045] bg-[#d4a373] px-3 py-1 border-b-2 border-[#bf2c23] font-bold"
+                >
+                  {t.toUpperCase()}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ y: 50, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="relative p-2 bg-[#1f4045]"
+              style={{ boxShadow: "6px 6px 0px 0px #bf2c23" }}
+            >
+              <div className="bg-[#fcfbf7] h-8 flex items-center px-4 gap-2 border-b-2 border-[#1f4045]">
+                <div className="w-3 h-3 bg-[#bf2c23]"></div>
+                <div className="w-3 h-3 bg-[#d4a373]"></div>
+                <div className="flex-grow text-right text-xs font-mono text-[#1f4045] opacity-50">
+                  pelote-manager.exe
+                </div>
+              </div>
+
+              <div className="aspect-video bg-[#f4f1ea] p-6 relative overflow-hidden group border-2 border-[#fcfbf7]">
+                <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-[#1f4045]/20 pb-4">
+                  <div className="w-32 h-6 bg-[#1f4045]/20 rounded-none"></div>
+                  <div className="w-20 h-8 bg-[#bf2c23] rounded-none text-white font-mono text-xs flex items-center justify-center">
+                    TOURNOI+
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-4 gap-4 mb-8">
+                  {[...Array(4)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="h-20 bg-[#fcfbf7] border-2 border-[#1f4045]/10 p-2 relative"
+                    >
+                      <div className="w-4 h-4 bg-[#d4a373] absolute top-2 right-2"></div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="absolute inset-0 bg-[#1f4045]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button className="bg-[#bf2c23] text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-[#fcfbf7] hover:text-[#bf2c23] transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]">
+                    <Terminal size={16} /> VOIR LE CODE
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- AI ARCHITECT FEATURE ---
+
+const AIArchitect = () => {
+  const [idea, setIdea] = useState("");
+  const [activeTool, setActiveTool] = useState("blueprint"); // blueprint | roadmap
+
+  const [blueprint, setBlueprint] = useState<any>(null);
+  const [roadmap, setRoadmap] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const handleGenerate = async () => {
+    if (!idea.trim()) return;
+    setLoading(true);
+    setBlueprint(null);
+    setRoadmap(null);
+    setError(false);
+
+    // Appel au Proxy Vercel
+    const result = await callAIProxy(activeTool, idea);
+
+    setLoading(false);
+    if (result) {
+      if (activeTool === "blueprint") setBlueprint(result);
+      if (activeTool === "roadmap") setRoadmap(result);
+    } else {
+      setError(true);
+    }
+  };
+
+  return (
+    <section className="py-24 bg-[#fcfbf7] relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+
+      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+        <div className="text-center mb-12">
+          <span className="font-mono text-[#bf2c23] bg-[#bf2c23]/10 px-2 py-1 text-sm border border-[#bf2c23]/20 mb-4 inline-block">
+            <Sparkles size={12} className="inline mr-2 fill-[#bf2c23]" />
+            BETA: BUREAU D'ÉTUDES VIRTUEL
+          </span>
+          <h2 className="font-serif text-4xl text-[#1f4045]">
+            L'Avant-Projet (IA)
+          </h2>
+          <p className="text-[#1f4045]/70 mt-4 max-w-lg mx-auto">
+            Décrivez votre idée. Mon assistant IA générera instantanément une
+            ébauche depuis mon serveur sécurisé.
+          </p>
+          {/* ALERTE POUR PREVIEW MODE */}
+          <div className="bg-[#d4a373]/10 border border-[#d4a373] p-3 rounded mt-4 text-xs font-mono text-[#1f4045] inline-block">
+            <AlertTriangle
+              size={14}
+              className="inline mr-2 mb-1 text-[#d4a373]"
             />
-            Deploy Now
+            NOTE: Cette fonctionnalité nécessite que le serveur Vercel soit
+            déployé.
+          </div>
+        </div>
+
+        {/* Tools Switcher */}
+        <div className="flex justify-center mb-8 gap-4">
+          <button
+            onClick={() => setActiveTool("blueprint")}
+            className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
+              activeTool === "blueprint"
+                ? "bg-[#1f4045] text-[#fcfbf7] border-[#1f4045]"
+                : "bg-transparent text-[#1f4045] border-[#1f4045]/20 hover:border-[#bf2c23]"
+            }`}
+          >
+            1. PLAN TECHNIQUE
+          </button>
+          <button
+            onClick={() => setActiveTool("roadmap")}
+            className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
+              activeTool === "roadmap"
+                ? "bg-[#1f4045] text-[#fcfbf7] border-[#1f4045]"
+                : "bg-transparent text-[#1f4045] border-[#1f4045]/20 hover:border-[#bf2c23]"
+            }`}
+          >
+            2. PLANNING CHANTIER
+          </button>
+        </div>
+
+        {/* Input Area */}
+        <div className="bg-[#f4f1ea] p-8 shadow-xl border-2 border-[#1f4045] relative max-w-2xl mx-auto transform -rotate-1 transition-transform hover:rotate-0">
+          <div className="absolute top-0 left-0 w-full h-2 bg-[#1f4045]"></div>
+          <PixelDots />
+
+          <label className="block font-mono text-xs font-bold text-[#1f4045] mb-2 uppercase flex items-center gap-2">
+            {activeTool === "blueprint" ? (
+              <Layers size={14} />
+            ) : (
+              <Calendar size={14} />
+            )}
+            {activeTool === "blueprint"
+              ? "Description du système"
+              : "Périmètre du projet"}
+          </label>
+          <textarea
+            className="w-full bg-[#fcfbf7] border-2 border-[#1f4045]/20 p-4 font-mono text-sm text-[#1f4045] focus:outline-none focus:border-[#bf2c23] min-h-[100px] mb-4 resize-none"
+            placeholder={
+              activeTool === "blueprint"
+                ? "Ex: Une marketplace pour artisans locaux..."
+                : "Ex: Une application SaaS de gestion de stock..."
+            }
+            value={idea}
+            onChange={(e) => setIdea(e.target.value)}
+          />
+
+          <div className="flex justify-end">
+            <button
+              onClick={handleGenerate}
+              disabled={loading || !idea.trim()}
+              className="bg-[#1f4045] text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 hover:bg-[#bf2c23] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_#d4a373]"
+            >
+              {loading ? (
+                <span className="animate-pulse">Connexion au serveur...</span>
+              ) : (
+                <>
+                  <Sparkles size={16} />{" "}
+                  {activeTool === "blueprint"
+                    ? "GÉNÉRER LE PLAN"
+                    : "CALCULER LE PLANNING"}
+                </>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Result: BLUEPRINT */}
+        {blueprint && activeTool === "blueprint" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-12 bg-[#1f4045] text-[#fcfbf7] p-8 border-4 border-[#d4a373] relative max-w-3xl mx-auto shadow-2xl"
+          >
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#d4a373] text-[#1f4045] font-bold font-mono px-4 py-1 text-xs border border-[#1f4045]">
+              DOCUMENT TECHNIQUE
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="border-b md:border-b-0 md:border-r border-[#fcfbf7]/20 pb-8 md:pb-0 md:pr-8">
+                <h4 className="font-serif text-[#d4a373] mb-4 flex items-center gap-2 text-xl">
+                  <Hammer size={18} /> Fondations (Backend)
+                </h4>
+                <p className="font-sans text-sm leading-relaxed opacity-90">
+                  {blueprint.foundations}
+                </p>
+              </div>
+              <div className="pl-0 md:pl-2">
+                <h4 className="font-serif text-[#d4a373] mb-4 flex items-center gap-2 text-xl">
+                  <Layers size={18} /> Façade (Frontend)
+                </h4>
+                <p className="font-sans text-sm leading-relaxed opacity-90">
+                  {blueprint.facade}
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-[#bf2c23]/20 p-4 border border-[#bf2c23]/50 mb-6 flex gap-4 items-start">
+              <div className="bg-[#bf2c23] p-1 mt-1">
+                <Sparkles size={12} className="text-white" />
+              </div>
+              <div>
+                <h5 className="font-mono text-[#bf2c23] text-xs font-bold mb-1 uppercase">
+                  Point de Vigilance
+                </h5>
+                <p className="font-sans text-sm italic opacity-90">
+                  {blueprint.risk}
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center border-t border-[#fcfbf7]/10 pt-6">
+              <p className="font-serif text-lg text-[#d4a373]">
+                "{blueprint.analogy}"
+              </p>
+            </div>
+          </motion.div>
+        )}
+
+        {/* Result: ROADMAP */}
+        {roadmap && activeTool === "roadmap" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-12 bg-[#f4f1ea] border-4 border-[#1f4045] relative max-w-3xl mx-auto shadow-[8px_8px_0px_0px_#1f4045]"
+          >
+            <div className="bg-[#1f4045] text-[#fcfbf7] px-4 py-2 font-mono text-sm flex justify-between items-center">
+              <span>PLANNING_PREVISIONNEL.GAN</span>
+              <Clock size={14} />
+            </div>
+
+            <div className="p-8 space-y-6">
+              {roadmap.map((phase: any, idx: number) => (
+                <div
+                  key={idx}
+                  className="relative pl-8 border-l-2 border-[#1f4045]/20 last:border-0 pb-2"
+                >
+                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-[#bf2c23] border-2 border-[#f4f1ea] rounded-full"></div>
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-serif text-[#1f4045] text-xl font-bold">
+                      {phase.phase}
+                    </h4>
+                    <span className="font-mono text-xs bg-[#1f4045]/10 px-2 py-1 text-[#1f4045]">
+                      {phase.duration}
+                    </span>
+                  </div>
+                  <ul className="space-y-2">
+                    {phase.tasks.map((task: any, tIdx: number) => (
+                      <li
+                        key={tIdx}
+                        className="flex items-center gap-2 font-sans text-sm text-[#1f4045]/80"
+                      >
+                        <ArrowRight size={12} className="text-[#d4a373]" />{" "}
+                        {task}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-[#1f4045]/5 p-4 text-center font-mono text-xs text-[#1f4045]/60 border-t border-[#1f4045]/10">
+              * Estimation purement indicative générée par IA.
+            </div>
+          </motion.div>
+        )}
+
+        {error && (
+          <div className="mt-8 text-center text-[#bf2c23] font-mono text-sm bg-[#bf2c23]/10 p-4 border border-[#bf2c23]">
+            <strong>Erreur Backend :</strong> Impossible de joindre le bureau
+            d'études (Route /api/gemini introuvable).
+            <br />
+            Si vous êtes sur la Preview, c'est normal. Veuillez déployer le
+            projet sur Vercel.
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+const Philosophy = () => {
+  return (
+    <section className="py-24 bg-[#fcfbf7] text-center overflow-hidden">
+      <div className="container mx-auto px-6 max-w-4xl relative">
+        <PixelBrackets className="absolute top-0 left-0 opacity-20 text-6xl hidden md:block" />
+        <PixelBrackets className="absolute bottom-0 right-0 opacity-20 text-6xl hidden md:block" />
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          className="border-4 border-[#d4a373]/30 p-12 relative bg-[#f4f1ea]"
+        >
+          <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#1f4045]"></div>
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#1f4045]"></div>
+          <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-[#1f4045]"></div>
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#1f4045]"></div>
+
+          <Code2 size={48} className="mx-auto text-[#bf2c23] mb-6 opacity-80" />
+
+          <h3 className="font-serif text-3xl text-[#1f4045] mb-6">
+            "Du code propre pour des projets qui durent."
+          </h3>
+          <p className="font-sans text-lg text-[#1f4045]/80 italic leading-loose font-medium">
+            Mon engagement de freelance : vous livrer une architecture
+            logicielle aussi solide qu'une charpente en chêne et aussi
+            fonctionnelle qu'une interface bien pensée. Sans les coûts cachés
+            d'une agence.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+// CONTACT + EMAIL DRAFTER
+const Contact = () => {
+  const [emailInputs, setEmailInputs] = useState("");
+  const [draft, setDraft] = useState<any>(null);
+  const [loadingEmail, setLoadingEmail] = useState(false);
+
+  const handleDraftEmail = async () => {
+    if (!emailInputs.trim()) return;
+    setLoadingEmail(true);
+    // Appel proxy Vercel pour l'email
+    const result = await callAIProxy("email", emailInputs);
+
+    if (result) {
+      setDraft(result);
+    } else {
+      alert("Erreur de connexion au serveur IA.");
+    }
+    setLoadingEmail(false);
+  };
+
+  return (
+    <section className="pt-24 pb-12 bg-[#1f4045] text-[#fcfbf7] border-t-8 border-[#bf2c23] relative">
+      <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#fcfbf7,#fcfbf7_8px,transparent_8px,transparent_16px)] opacity-20"></div>
+
+      <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
+        <h2 className="font-serif text-4xl mb-8">
+          Engagez votre <br />
+          Architecte Indépendant
+        </h2>
+        <p className="font-sans text-[#fcfbf7]/80 mb-12 text-lg max-w-2xl mx-auto">
+          Vous avez un projet complexe ? Vous cherchez une expertise directe,
+          sans filtre ?<br />
+          Discutons de votre vision, d'artisan à porteur de projet.
+        </p>
+
+        {/* EMAIL DRAFTER WIDGET */}
+        <div className="bg-[#fcfbf7]/5 border border-[#fcfbf7]/10 p-6 rounded-lg mb-12 text-left max-w-2xl mx-auto backdrop-blur-sm">
+          <div className="flex items-center gap-2 mb-4 text-[#d4a373]">
+            <MessageSquare size={18} />
+            <span className="font-mono text-sm font-bold uppercase">
+              Assistant de Correspondance (IA)
+            </span>
+          </div>
+
+          {!draft ? (
+            <>
+              <p className="text-sm text-[#fcfbf7]/60 mb-4">
+                Vous ne savez pas par où commencer ? Listez vos besoins (ex:
+                "Refonte site e-commerce, budget 5k, délai 2 mois"), je rédige
+                l'email pour vous.
+              </p>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={emailInputs}
+                  onChange={(e) => setEmailInputs(e.target.value)}
+                  className="flex-grow bg-[#1f4045] border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-[#fcfbf7] focus:border-[#bf2c23] outline-none"
+                  placeholder="Mots-clés du projet..."
+                />
+                <button
+                  onClick={handleDraftEmail}
+                  disabled={loadingEmail}
+                  className="bg-[#d4a373] text-[#1f4045] px-4 py-2 font-mono text-sm hover:bg-[#fcfbf7] transition-colors"
+                >
+                  {loadingEmail ? "..." : "Rédiger"}
+                </button>
+              </div>
+            </>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="bg-[#fcfbf7] text-[#1f4045] p-4 rounded font-mono text-xs relative"
+            >
+              <button
+                onClick={() => setDraft(null)}
+                className="absolute top-2 right-2 text-[#bf2c23] hover:underline"
+              >
+                Fermer
+              </button>
+              <div className="mb-2 font-bold border-b border-[#1f4045]/10 pb-2">
+                Objet : {draft.subject}
+              </div>
+              <div className="whitespace-pre-wrap leading-relaxed">
+                {draft.body}
+              </div>
+              <div className="mt-4 pt-2 border-t border-[#1f4045]/10 flex justify-end">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `Objet: ${draft.subject}\n\n${draft.body}`
+                    );
+                    alert("Copié !");
+                  }}
+                  className="flex items-center gap-2 text-[#bf2c23] hover:text-[#1f4045]"
+                >
+                  <ClipboardCopy size={14} /> Copier le texte
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </div>
+
+        <a
+          href="mailto:contact@julesdupuis.fr"
+          className="group inline-flex items-center gap-3 bg-[#bf2c23] text-[#fcfbf7] px-8 py-4 font-mono text-sm border-2 border-[#fcfbf7] transition-all shadow-[6px_6px_0px_0px_#d4a373] hover:shadow-[2px_2px_0px_0px_#d4a373] hover:translate-y-[4px] hover:translate-x-[4px] duration-200"
+        >
+          <Mail size={18} className="group-hover:animate-pulse" />{" "}
+          contact@julesdupuis.fr
+        </a>
+
+        <div className="flex justify-center gap-8 mt-16 mb-16">
+          <a
+            href="#"
+            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-colors p-2 border-2 border-transparent hover:border-[#bf2c23]"
+          >
+            <Github />
           </a>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
+            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-colors p-2 border-2 border-transparent hover:border-[#bf2c23]"
           >
-            Documentation
+            <Linkedin />
           </a>
         </div>
+
+        <div className="border-t-2 border-dashed border-[#fcfbf7]/20 pt-12 flex flex-col items-center">
+          <PixelLauburu />
+
+          <p className="font-mono text-xs text-[#fcfbf7]/60">
+            © 2025 Jules Dupuis • Architecte Numérique Indépendant • Fait au
+            Pays Basque
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- MAIN APP ---
+
+export default function PortfolioApp() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-[#fcfbf7] text-[#1f4045] font-sans selection:bg-[#bf2c23] selection:text-white cursor-crosshair">
+      <GrainOverlay />
+
+      {/* Custom Cursor Follower Pixelisé */}
+      <div
+        className="fixed w-3 h-3 bg-[#bf2c23] pointer-events-none z-[100] mix-blend-multiply opacity-0 md:opacity-80 transition-transform duration-75 ease-out shadow-[2px_2px_0px_0px_#1f4045]"
+        style={{
+          left: mousePosition.x,
+          top: mousePosition.y,
+          transform: `translate(-50%, -50%)`,
+        }}
+      ></div>
+
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full z-40 bg-[#fcfbf7]/90 backdrop-blur-md border-b-2 border-[#1f4045] px-6 py-4 flex justify-between items-center shadow-sm">
+        <span className="font-serif font-bold text-xl tracking-tighter flex items-center gap-2">
+          <span className="text-[#bf2c23] font-mono">{`{`}</span>JD.
+          <span className="text-[#bf2c23] font-mono">{`}`}</span>
+        </span>
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-xs text-[#bf2c23] hidden md:inline-block animate-pulse">
+            ● STATUS: DISPONIBLE
+          </span>
+          <a
+            href="mailto:contact@julesdupuis.fr"
+            className="font-mono text-xs bg-[#1f4045] text-[#fcfbf7] px-4 py-2 hover:bg-[#bf2c23] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
+          >
+            ENGAGER
+          </a>
+        </div>
+      </nav>
+
+      <main>
+        <Hero />
+        <About />
+        <Workshop />
+        <Project />
+        <AIArchitect />
+        <Philosophy />
+        <Contact />
       </main>
     </div>
   );
