@@ -1,7 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  AlertTriangle,
   ArrowRight,
   Calendar,
   ChevronDown,
@@ -28,7 +27,7 @@ const DATA = {
   profile: {
     name: "Jules Dupuis",
     role: "Architecte Numérique Indépendant",
-    subRole: "Freelance | Expert Java Spring & Angular",
+    subRole: "Freelance | Développeur Web",
     location: "Anglet, Pays Basque",
     stats: [
       { label: "Années Angular", value: "04" },
@@ -42,10 +41,10 @@ const DATA = {
       icon: <Server size={20} />,
       desc: "Fondations solides & scalables, posées loin du bruit.",
       techs: [
-        "Java 17/21",
-        "Spring Boot 3",
-        "PostgreSQL",
-        "Hibernate",
+        "Architecture Hexagonale",
+        "API REST",
+        "Base de Données SQL",
+        "Sécurité & Auth",
         "Microservices",
       ],
     },
@@ -53,13 +52,19 @@ const DATA = {
       category: "Façade (Frontend)",
       icon: <Layers size={20} />,
       desc: "Interfaces réactives, assemblées avec précision.",
-      techs: ["Angular 16+", "TypeScript", "RxJS", "Tailwind CSS", "NgRx"],
+      techs: [
+        "Composants Réactifs",
+        "TypeScript",
+        "Animations",
+        "Responsive Design",
+        "Gestion d'État",
+      ],
     },
     {
       category: "L'Établi (DevOps & Outils)",
       icon: <Terminal size={20} />,
       desc: "Mon environnement de travail optimisé.",
-      techs: ["Docker", "GitLab CI", "IntelliJ IDEA", "Maven/Gradle", "Linux"],
+      techs: ["CI/CD", "Conteneurisation", "Tests Automatisés", "Versioning"],
     },
   ],
   project: {
@@ -68,7 +73,7 @@ const DATA = {
       "Digitalisation complète de championnats de Pelote Basque (Gomme pleine).",
     challenge:
       "Complexité algorithmique pour la gestion des créneaux et règles de tournois.",
-    stack: ["Angular 16", "Spring Boot 3", "PostgreSQL"],
+    stack: ["Frontend Moderne", "Backend Robuste", "Base de Données"],
   },
 };
 
@@ -293,6 +298,7 @@ const Hero = () => {
         >
           Architecte Numérique{" "}
           <span className="font-bold text-[#bf2c23]">Indépendant</span>
+          <span className="font-bold text-[#bf2c23] animate-blink">...</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
@@ -336,7 +342,7 @@ const About = () => {
           </div>
         </FloatingPixel>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
           <div className="space-y-8 order-2 md:order-1 relative z-20">
             <div className="flex items-center gap-4">
               <span className="font-mono text-[#bf2c23] text-sm">{`> 01. LE MANIFESTE`}</span>
@@ -377,10 +383,9 @@ const About = () => {
               <p>
                 En tant qu'<strong>Architecte Numérique Indépendant</strong>, je
                 ne suis pas un "paquet de ressources" interchangeable. Je suis
-                un artisan qui choisit ses outils (Java Spring, Angular) et qui
-                s'engage sur le résultat. Je travaille en direct avec vous, sans
-                intermédiaires superflus, pour bâtir des applications qui
-                durent.
+                un artisan qui choisit ses outils et qui s'engage sur le
+                résultat. Je travaille en direct avec vous, sans intermédiaires
+                superflus, pour bâtir des applications qui durent.
               </p>
             </motion.div>
 
@@ -648,15 +653,6 @@ const AIArchitect = () => {
             Décrivez votre idée. Mon assistant IA générera instantanément une
             ébauche depuis mon serveur sécurisé.
           </p>
-          {/* ALERTE POUR PREVIEW MODE */}
-          <div className="bg-[#d4a373]/10 border border-[#d4a373] p-3 rounded mt-4 text-xs font-mono text-[#1f4045] inline-block">
-            <AlertTriangle
-              size={14}
-              className="inline mr-2 mb-1 text-[#d4a373]"
-            />
-            NOTE: Cette fonctionnalité nécessite que le serveur Vercel soit
-            déployé.
-          </div>
         </div>
 
         {/* Tools Switcher */}
@@ -981,23 +977,27 @@ const Contact = () => {
         </div>
 
         <a
-          href="mailto:contact@julesdupuis.fr"
+          href="mailto:julesdupspro@gmail.com"
           className="group inline-flex items-center gap-3 bg-[#bf2c23] text-[#fcfbf7] px-8 py-4 font-mono text-sm border-2 border-[#fcfbf7] transition-all shadow-[6px_6px_0px_0px_#d4a373] hover:shadow-[2px_2px_0px_0px_#d4a373] hover:translate-y-[4px] hover:translate-x-[4px] duration-200"
         >
           <Mail size={18} className="group-hover:animate-pulse" />{" "}
-          contact@julesdupuis.fr
+          julesdupspro@gmail.com
         </a>
 
         <div className="flex justify-center gap-8 mt-16 mb-16">
           <a
-            href="#"
-            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-colors p-2 border-2 border-transparent hover:border-[#bf2c23]"
+            href="https://github.com/JulesDups/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
             <Github />
           </a>
           <a
-            href="#"
-            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-colors p-2 border-2 border-transparent hover:border-[#bf2c23]"
+            href="https://www.linkedin.com/in/jules-dupuis/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
             <Linkedin />
           </a>
@@ -1054,7 +1054,7 @@ export default function PortfolioApp() {
             ● STATUS: DISPONIBLE
           </span>
           <a
-            href="mailto:contact@julesdupuis.fr"
+            href="mailto:julesdupspro@gmail.com"
             className="font-mono text-xs bg-[#1f4045] text-[#fcfbf7] px-4 py-2 hover:bg-[#bf2c23] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
           >
             ENGAGER
