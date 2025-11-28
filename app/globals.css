@@ -10,12 +10,47 @@ body {
   --background: #ffffff;
   --foreground: #171717;
 }
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --animate-dot-1: dot-1 1.5s steps(1, end) infinite;
+  --animate-dot-2: dot-2 1.5s steps(1, end) infinite;
+  --animate-dot-3: dot-3 1.5s steps(1, end) infinite;
+}
+
+@keyframes dot-1 {
+  0%,
+  24% {
+    opacity: 0;
+  }
+  25%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-2 {
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes dot-3 {
+  0%,
+  74% {
+    opacity: 0;
+  }
+  75%,
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

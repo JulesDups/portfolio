@@ -298,7 +298,11 @@ const Hero = () => {
         >
           Architecte Numérique{" "}
           <span className="font-bold text-[#bf2c23]">Indépendant</span>
-          <span className="font-bold text-[#bf2c23] animate-blink">...</span>
+          <span className="font-bold text-[#bf2c23]">
+            <span className="animate-dot-1">.</span>
+            <span className="animate-dot-2">.</span>
+            <span className="animate-dot-3">.</span>
+          </span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
