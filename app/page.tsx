@@ -1,6 +1,15 @@
 "use client";
+import { MobileMenu } from "@/components/MobileMenu";
+import { PixelSeparator } from "@/components/PixelSeparator";
+import { ReadingProgress } from "@/components/ReadingProgress";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import {
   ArrowRight,
   Calendar,
@@ -250,23 +259,50 @@ const Hero = () => {
   const { scrollY } = useScroll();
   const yText = useTransform(scrollY, [0, 500], [0, -150]);
 
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const gridX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const gridY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  function handleMouseMove({
+    clientX,
+    clientY,
+  }: {
+    clientX: number;
+    clientY: number;
+  }) {
+    mouseX.set(clientX * -0.05);
+    mouseY.set(clientY * -0.05);
+  }
+
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
-      <div
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background"
+    >
+      <motion.div
         className="absolute inset-0 z-0 opacity-5"
         style={{
           backgroundImage:
             "linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
+          x: gridX,
+          y: gridY,
         }}
-      ></div>
+      ></motion.div>
       <PixelDots />
 
       <FloatingPixel
         className="absolute left-[-20px] md:left-20 bottom-32 opacity-20 hidden md:block"
         duration={6}
       >
-        <PixelCathedral size={200} />
+        <motion.div
+          whileHover={{ scale: 1.1, rotate: 5 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <PixelCathedral size={200} />
+        </motion.div>
       </FloatingPixel>
 
       <motion.div
@@ -343,7 +379,10 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section className="py-24 bg-background text-foreground overflow-hidden relative">
+    <section
+      id="about"
+      className="py-24 bg-background text-foreground overflow-hidden relative"
+    >
       <div className="absolute left-0 top-1/4 w-2 h-8 bg-primary opacity-20"></div>
       <div
         className="absolute left-3 top-1/4 w-2 h-4 bg-foreground opacity-20"
@@ -356,9 +395,13 @@ const About = () => {
           duration={5}
           delay={1}
         >
-          <div className="bg-background p-2 rounded-full border border-primary/20 shadow-lg">
+          <motion.div
+            className="bg-background p-2 rounded-full border border-primary/20 shadow-lg"
+            whileHover={{ scale: 1.1, rotate: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             <PixelEtxe size={80} />
-          </div>
+          </motion.div>
         </FloatingPixel>
 
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
@@ -366,7 +409,7 @@ const About = () => {
             <div className="flex items-center gap-4">
               <span className="font-mono text-primary text-sm">{`> 01. LE MANIFESTE`}</span>
               <div
-                className="h-[2px] flex-grow bg-foreground/10"
+                className="h-[2px] grow bg-foreground/10"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg, #1f4045 50%, transparent 50%)",
@@ -451,7 +494,7 @@ const About = () => {
               }}
             ></div>
 
-            <div className="flex-grow flex items-center justify-center relative p-12">
+            <div className="grow flex items-center justify-center relative p-12">
               <div className="w-full h-full border-4 border-secondary/50 relative">
                 <div className="absolute top-0 left-1/4 w-1/2 h-full border-x-2 border-dashed border-foreground/30"></div>
                 <div className="absolute top-1/3 left-0 w-full h-1/3 border-y-2 border-dashed border-foreground/30"></div>
@@ -462,7 +505,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="absolute bottom-8 right-[-2rem] bg-primary text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
+            <div className="absolute bottom-8 -right-8 bg-primary text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
               <Terminal size={14} /> FREELANCE_STUDIO
             </div>
           </motion.div>
@@ -474,7 +517,7 @@ const About = () => {
 
 const Workshop = () => {
   return (
-    <section className="py-24 bg-card relative">
+    <section id="workshop" className="py-24 bg-card relative">
       <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#bf2c23,#bf2c23_4px,transparent_4px,transparent_8px)] opacity-30"></div>
 
       <div className="container mx-auto px-6 max-w-6xl">
@@ -535,7 +578,10 @@ const Workshop = () => {
 
 const Project = () => {
   return (
-    <section className="py-32 bg-foreground text-background relative overflow-hidden">
+    <section
+      id="projects"
+      className="py-32 bg-foreground text-background relative overflow-hidden"
+    >
       <div
         className="absolute inset-0 pointer-events-none opacity-10"
         style={{
@@ -549,7 +595,12 @@ const Project = () => {
         className="absolute top-10 right-10 z-0 opacity-40 rotate-12"
         duration={4}
       >
-        <PixelPala size={160} />
+        <motion.div
+          whileHover={{ scale: 1.1, rotate: 15 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <PixelPala size={160} />
+        </motion.div>
       </FloatingPixel>
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -669,7 +720,7 @@ const AIArchitect = () => {
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-size-[20px_20px]"></div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center mb-12">
@@ -715,7 +766,7 @@ const AIArchitect = () => {
           <div className="absolute top-0 left-0 w-full h-2 bg-foreground"></div>
           <PixelDots />
 
-          <label className="block font-mono text-xs font-bold text-foreground mb-2 uppercase flex items-center gap-2">
+          <label className="block font-mono text-xs font-bold text-foreground mb-2 uppercase items-center gap-2">
             {activeTool === "blueprint" ? (
               <Layers size={14} />
             ) : (
@@ -925,7 +976,10 @@ const Contact = () => {
   };
 
   return (
-    <section className="pt-24 pb-12 bg-foreground text-background border-t-8 border-primary relative">
+    <section
+      id="contact"
+      className="pt-24 pb-12 bg-foreground text-background border-t-8 border-primary relative"
+    >
       <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#fcfbf7,#fcfbf7_8px,transparent_8px,transparent_16px)] opacity-20"></div>
 
       <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
@@ -960,7 +1014,7 @@ const Contact = () => {
                   type="text"
                   value={emailInputs}
                   onChange={(e) => setEmailInputs(e.target.value)}
-                  className="flex-grow bg-foreground border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-background focus:border-primary outline-none"
+                  className="grow bg-foreground border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-background focus:border-primary outline-none"
                   placeholder="Mots-clés du projet..."
                 />
                 <button
@@ -1062,11 +1116,12 @@ export default function PortfolioApp() {
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white cursor-crosshair">
+      <ReadingProgress />
       <GrainOverlay />
 
       {/* Custom Cursor Follower Pixelisé */}
       <div
-        className="fixed w-3 h-3 bg-primary pointer-events-none z-[100] mix-blend-multiply opacity-0 md:opacity-80 transition-transform duration-75 ease-out shadow-[2px_2px_0px_0px_#1f4045]"
+        className="fixed w-3 h-3 bg-primary pointer-events-none z-100 mix-blend-multiply opacity-0 md:opacity-80 transition-transform duration-75 ease-out shadow-[2px_2px_0px_0px_#1f4045]"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
@@ -1091,16 +1146,23 @@ export default function PortfolioApp() {
             ENGAGER
           </a>
           <ThemeToggle />
+          <MobileMenu />
         </div>
       </nav>
 
       <main>
         <Hero />
+        <PixelSeparator />
         <About />
+        <PixelSeparator />
         <Workshop />
+        <PixelSeparator />
         <Project />
+        <PixelSeparator />
         <AIArchitect />
+        <PixelSeparator />
         <Philosophy />
+        <PixelSeparator />
         <Contact />
       </main>
     </div>
