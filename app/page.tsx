@@ -408,7 +408,7 @@ const About = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-3 gap-6 pt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8">
               {DATA.profile.stats.map((stat, idx) => (
                 <div
                   key={idx}
@@ -555,7 +555,7 @@ const Project = () => {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5 space-y-8">
-            <span className="font-mono text-primary bg-primary/20 text-sm border border-primary px-3 py-1">
+            <span className="inline-block font-mono text-primary bg-primary/20 text-sm border border-primary px-3 py-1 mb-2">
               PROJET SUR-MESURE
             </span>
             <h2 className="font-serif text-5xl font-bold leading-none text-background">
