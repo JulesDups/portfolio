@@ -1,4 +1,5 @@
 "use client";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { motion, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
@@ -126,19 +127,26 @@ const PixelPala = ({ size = 64 }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="7" y="11" width="2" height="4" fill="#d4a373" />
-    <rect x="5" y="3" width="6" height="8" fill="#d4a373" />
-    <rect x="6" y="2" width="4" height="1" fill="#d4a373" />
+    <rect x="7" y="11" width="2" height="4" fill="var(--secondary)" />
+    <rect x="5" y="3" width="6" height="8" fill="var(--secondary)" />
+    <rect x="6" y="2" width="4" height="1" fill="var(--secondary)" />
     <rect
       x="12"
       y="5"
       width="2"
       height="2"
-      fill="#fcfbf7"
-      stroke="#1f4045"
+      fill="var(--background)"
+      stroke="var(--foreground)"
       strokeWidth="0.5"
     />
-    <rect x="11" y="3" width="1" height="8" fill="#1f4045" opacity="0.2" />
+    <rect
+      x="11"
+      y="3"
+      width="1"
+      height="8"
+      fill="var(--foreground)"
+      opacity="0.2"
+    />
   </svg>
 );
 
@@ -150,13 +158,13 @@ const PixelEtxe = ({ size = 100 }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M10 2L2 9H18L10 2Z" fill="#bf2c23" />
-    <rect x="3" y="9" width="14" height="9" fill="#fcfbf7" />
-    <rect x="3" y="9" width="1" height="9" fill="#bf2c23" />
-    <rect x="16" y="9" width="1" height="9" fill="#bf2c23" />
-    <rect x="3" y="13" width="14" height="1" fill="#bf2c23" />
-    <rect x="9" y="9" width="2" height="9" fill="#bf2c23" />
-    <rect x="9" y="15" width="2" height="3" fill="#1f4045" />
+    <path d="M10 2L2 9H18L10 2Z" fill="var(--primary)" />
+    <rect x="3" y="9" width="14" height="9" fill="var(--background)" />
+    <rect x="3" y="9" width="1" height="9" fill="var(--primary)" />
+    <rect x="16" y="9" width="1" height="9" fill="var(--primary)" />
+    <rect x="3" y="13" width="14" height="1" fill="var(--primary)" />
+    <rect x="9" y="9" width="2" height="9" fill="var(--primary)" />
+    <rect x="9" y="15" width="2" height="3" fill="var(--foreground)" />
   </svg>
 );
 
@@ -168,30 +176,37 @@ const PixelCathedral = ({ size = 120 }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <rect x="4" y="14" width="16" height="10" fill="#1f4045" opacity="0.8" />
+    <rect
+      x="4"
+      y="14"
+      width="16"
+      height="10"
+      fill="var(--foreground)"
+      opacity="0.8"
+    />
     <path
       d="M10 24V18C10 16.8954 10.8954 16 12 16C13.1046 16 14 16.8954 14 18V24H10Z"
-      fill="#fcfbf7"
+      fill="var(--background)"
     />
-    <rect x="5" y="6" width="4" height="8" fill="#1f4045" />
-    <rect x="15" y="6" width="4" height="8" fill="#1f4045" />
-    <path d="M7 2L5 6H9L7 2Z" fill="#1f4045" />
-    <path d="M17 2L15 6H19L17 2Z" fill="#1f4045" />
-    <rect x="11" y="10" width="2" height="2" fill="#fcfbf7" />
+    <rect x="5" y="6" width="4" height="8" fill="var(--foreground)" />
+    <rect x="15" y="6" width="4" height="8" fill="var(--foreground)" />
+    <path d="M7 2L5 6H9L7 2Z" fill="var(--foreground)" />
+    <path d="M17 2L15 6H19L17 2Z" fill="var(--foreground)" />
+    <rect x="11" y="10" width="2" height="2" fill="var(--background)" />
   </svg>
 );
 
 const PixelDots = () => (
   <div className="flex gap-1 absolute top-4 right-4 opacity-50">
-    <div className="w-2 h-2 bg-[#1f4045]"></div>
-    <div className="w-2 h-2 bg-[#bf2c23]"></div>
-    <div className="w-2 h-2 bg-[#d4a373]"></div>
+    <div className="w-2 h-2 bg-foreground"></div>
+    <div className="w-2 h-2 bg-primary"></div>
+    <div className="w-2 h-2 bg-secondary"></div>
   </div>
 );
 
 const PixelBrackets = ({ className = "" }) => (
   <div
-    className={`font-mono font-bold text-[#bf2c23] tracking-tighter select-none ${className}`}
+    className={`font-mono font-bold text-primary tracking-tighter select-none ${className}`}
     style={{ imageRendering: "pixelated", fontSize: "1.5rem" }}
   >
     {`{ }`}
@@ -208,15 +223,15 @@ const PixelLauburu = () => (
       gap: "1px",
     }}
   >
-    <div className="col-span-2 row-span-2 col-start-3 row-start-1 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-5 row-start-2 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-7 row-start-3 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-6 row-start-5 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-5 row-start-7 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-3 row-start-6 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-1 row-start-5 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-2 row-start-3 bg-[#1f4045]"></div>
-    <div className="col-span-2 row-span-2 col-start-4 row-start-4 bg-[#bf2c23]"></div>
+    <div className="col-span-2 row-span-2 col-start-3 row-start-1 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-5 row-start-2 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-7 row-start-3 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-6 row-start-5 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-5 row-start-7 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-3 row-start-6 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-1 row-start-5 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-2 row-start-3 bg-foreground"></div>
+    <div className="col-span-2 row-span-2 col-start-4 row-start-4 bg-primary"></div>
   </div>
 );
 
@@ -236,12 +251,12 @@ const Hero = () => {
   const yText = useTransform(scrollY, [0, 500], [0, -150]);
 
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#fcfbf7]">
+    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background">
       <div
         className="absolute inset-0 z-0 opacity-5"
         style={{
           backgroundImage:
-            "linear-gradient(#1f4045 1px, transparent 1px), linear-gradient(90deg, #1f4045 1px, transparent 1px)",
+            "linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       ></div>
@@ -262,10 +277,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex items-center justify-center gap-3 text-[#d4a373] font-mono text-sm tracking-widest mb-4"
+          className="flex items-center justify-center gap-3 text-secondary font-mono text-sm tracking-widest mb-4"
         >
           <MapPin size={14} /> {DATA.profile.location.toUpperCase()}
-          <span className="text-[#bf2c23]">//</span>
+          <span className="text-primary">//</span>
           <span>MODE: FREELANCE_ACTIF</span>
         </motion.div>
 
@@ -275,7 +290,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-serif text-6xl md:text-8xl font-bold text-[#1f4045] mb-6 leading-[0.9]"
+            className="font-serif text-6xl md:text-8xl font-bold text-foreground mb-6 leading-[0.9]"
           >
             {DATA.profile.name}
           </motion.h1>
@@ -286,7 +301,7 @@ const Hero = () => {
           initial={{ width: 0 }}
           animate={{ width: "120px" }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="h-2 bg-[#bf2c23] mx-auto mb-8"
+          className="h-2 bg-primary mx-auto mb-8"
           style={{ clipPath: "polygon(0 0, 100% 0, 95% 100%, 5% 100%)" }}
         />
 
@@ -294,11 +309,11 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-sans text-xl md:text-3xl text-[#1f4045] font-light"
+          className="font-sans text-xl md:text-3xl text-foreground font-light"
         >
           Architecte Numérique{" "}
-          <span className="font-bold text-[#bf2c23]">Indépendant</span>
-          <span className="font-bold text-[#bf2c23]">
+          <span className="font-bold text-primary">Indépendant</span>
+          <span className="font-bold text-primary">
             <span className="animate-dot-1">.</span>
             <span className="animate-dot-2">.</span>
             <span className="animate-dot-3">.</span>
@@ -308,7 +323,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="font-mono text-sm text-[#1f4045]/60 mt-4"
+          className="font-mono text-sm text-foreground/60 mt-4"
         >
           {DATA.profile.subRole}
         </motion.p>
@@ -320,7 +335,7 @@ const Hero = () => {
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 z-20"
       >
-        <ChevronDown className="text-[#bf2c23] animate-bounce" size={32} />
+        <ChevronDown className="text-primary animate-bounce" size={32} />
       </motion.div>
     </section>
   );
@@ -328,10 +343,10 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section className="py-24 bg-[#fcfbf7] text-[#1f4045] overflow-hidden relative">
-      <div className="absolute left-0 top-1/4 w-2 h-8 bg-[#bf2c23] opacity-20"></div>
+    <section className="py-24 bg-background text-foreground overflow-hidden relative">
+      <div className="absolute left-0 top-1/4 w-2 h-8 bg-primary opacity-20"></div>
       <div
-        className="absolute left-3 top-1/4 w-2 h-4 bg-[#1f4045] opacity-20"
+        className="absolute left-3 top-1/4 w-2 h-4 bg-foreground opacity-20"
         style={{ marginTop: "32px" }}
       ></div>
 
@@ -341,7 +356,7 @@ const About = () => {
           duration={5}
           delay={1}
         >
-          <div className="bg-[#fcfbf7] p-2 rounded-full border border-[#bf2c23]/20 shadow-lg">
+          <div className="bg-background p-2 rounded-full border border-primary/20 shadow-lg">
             <PixelEtxe size={80} />
           </div>
         </FloatingPixel>
@@ -349,9 +364,9 @@ const About = () => {
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
           <div className="space-y-8 order-2 md:order-1 relative z-20">
             <div className="flex items-center gap-4">
-              <span className="font-mono text-[#bf2c23] text-sm">{`> 01. LE MANIFESTE`}</span>
+              <span className="font-mono text-primary text-sm">{`> 01. LE MANIFESTE`}</span>
               <div
-                className="h-[2px] flex-grow bg-[#1f4045]/10"
+                className="h-[2px] flex-grow bg-foreground/10"
                 style={{
                   backgroundImage:
                     "linear-gradient(90deg, #1f4045 50%, transparent 50%)",
@@ -367,9 +382,9 @@ const About = () => {
               className="font-serif text-4xl md:text-5xl leading-tight"
             >
               L'expertise ne se dilue pas dans{" "}
-              <span className="italic text-[#bf2c23] relative">
+              <span className="italic text-primary relative">
                 l'open-space.
-                <span className="absolute bottom-1 left-0 w-full h-1 bg-[#bf2c23]/20 -z-10"></span>
+                <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/20 -z-10"></span>
               </span>
             </motion.h3>
 
@@ -378,7 +393,7 @@ const About = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="font-sans text-lg text-[#1f4045]/80 leading-relaxed text-justify space-y-4 border-l-4 border-[#d4a373] pl-6"
+              className="font-sans text-lg text-foreground/80 leading-relaxed text-justify space-y-4 border-l-4 border-secondary pl-6"
             >
               <p>
                 J'ai quitté le monde du salariat classique pour une raison
@@ -397,20 +412,18 @@ const About = () => {
               {DATA.profile.stats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="text-center md:text-left p-4 bg-[#f4f1ea] border border-[#1f4045]/10 relative overflow-hidden group"
+                  className="text-center md:text-left p-4 bg-card border border-foreground/10 relative overflow-hidden group"
                 >
-                  <div className="absolute top-0 left-0 w-1 h-1 bg-[#bf2c23] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="absolute bottom-0 right-0 w-1 h-1 bg-[#1f4045] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute top-0 left-0 w-1 h-1 bg-primary opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute bottom-0 right-0 w-1 h-1 bg-foreground opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <div
                     className={`font-serif text-3xl font-bold ${
-                      stat.label === "Mode"
-                        ? "text-[#bf2c23]"
-                        : "text-[#d4a373]"
+                      stat.label === "Mode" ? "text-primary" : "text-secondary"
                     }`}
                   >
                     {stat.value}
                   </div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-[#1f4045]/70 mt-2">
+                  <div className="font-mono text-xs uppercase tracking-wider text-foreground/70 mt-2">
                     {stat.label}
                   </div>
                 </div>
@@ -423,26 +436,33 @@ const About = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative h-[500px] w-full order-1 md:order-2 bg-[#f4f1ea] border-2 border-[#1f4045]/20 overflow-hidden flex flex-col shadow-xl"
+            className="relative h-[500px] w-full order-1 md:order-2 bg-card border-2 border-foreground/20 overflow-hidden flex flex-col shadow-xl"
             style={{
               clipPath:
                 "polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%)",
             }}
           >
-            <div className="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(31,64,69,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(31,64,69,0.5)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage:
+                  "linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px)",
+                backgroundSize: "20px 20px",
+              }}
+            ></div>
 
             <div className="flex-grow flex items-center justify-center relative p-12">
-              <div className="w-full h-full border-4 border-[#d4a373]/50 relative">
-                <div className="absolute top-0 left-1/4 w-1/2 h-full border-x-2 border-dashed border-[#1f4045]/30"></div>
-                <div className="absolute top-1/3 left-0 w-full h-1/3 border-y-2 border-dashed border-[#1f4045]/30"></div>
+              <div className="w-full h-full border-4 border-secondary/50 relative">
+                <div className="absolute top-0 left-1/4 w-1/2 h-full border-x-2 border-dashed border-foreground/30"></div>
+                <div className="absolute top-1/3 left-0 w-full h-1/3 border-y-2 border-dashed border-foreground/30"></div>
                 <Code2
                   size={64}
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[#bf2c23] opacity-80"
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-primary opacity-80"
                 />
               </div>
             </div>
 
-            <div className="absolute bottom-8 right-[-2rem] bg-[#bf2c23] text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
+            <div className="absolute bottom-8 right-[-2rem] bg-primary text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
               <Terminal size={14} /> FREELANCE_STUDIO
             </div>
           </motion.div>
@@ -454,16 +474,16 @@ const About = () => {
 
 const Workshop = () => {
   return (
-    <section className="py-24 bg-[#f4f1ea] relative">
+    <section className="py-24 bg-card relative">
       <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#bf2c23,#bf2c23_4px,transparent_4px,transparent_8px)] opacity-30"></div>
 
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-16 text-center">
-          <span className="font-mono text-[#bf2c23] text-sm block mb-2">{`> 02. L'ATELIER PRIVÉ`}</span>
-          <h2 className="font-serif text-4xl text-[#1f4045]">
+          <span className="font-mono text-primary text-sm block mb-2">{`> 02. L'ATELIER PRIVÉ`}</span>
+          <h2 className="font-serif text-4xl text-foreground">
             Mes Outils de Prédilection
           </h2>
-          <p className="font-sans text-[#1f4045]/70 mt-4 max-w-lg mx-auto">
+          <p className="font-sans text-foreground/70 mt-4 max-w-lg mx-auto">
             En freelance, je choisis les technologies les plus fiables pour
             garantir pérennité et performance à vos projets.
           </p>
@@ -477,28 +497,28 @@ const Workshop = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2 }}
-              className="bg-[#fcfbf7] p-8 border border-[#1f4045]/20 shadow-sm hover:shadow-[4px_4px_0px_0px_#bf2c23] transition-all duration-300 group relative overflow-hidden"
+              className="bg-background p-8 border border-foreground/20 shadow-sm hover:shadow-[4px_4px_0px_0px_#bf2c23] transition-all duration-300 group relative overflow-hidden"
             >
               <PixelDots />
               <div
-                className="text-[#1f4045] mb-4 bg-[#d4a373]/20 w-12 h-12 flex items-center justify-center border border-[#1f4045]/40"
+                className="text-foreground mb-4 bg-secondary/20 w-12 h-12 flex items-center justify-center border border-foreground/40"
                 style={{ borderRadius: "4px" }}
               >
                 {group.icon}
               </div>
-              <h3 className="font-serif text-xl font-bold text-[#1f4045] mb-2">
+              <h3 className="font-serif text-xl font-bold text-foreground mb-2">
                 {group.category}
               </h3>
-              <p className="font-sans text-sm text-[#1f4045]/70 mb-6 italic border-b-2 border-dashed border-[#1f4045]/10 pb-4">
+              <p className="font-sans text-sm text-foreground/70 mb-6 italic border-b-2 border-dashed border-foreground/10 pb-4">
                 {group.desc}
               </p>
               <ul className="space-y-3">
                 {group.techs.map((tech, tIdx) => (
                   <li
                     key={tIdx}
-                    className="flex items-center font-mono text-sm text-[#1f4045] group/item"
+                    className="flex items-center font-mono text-sm text-foreground group/item"
                   >
-                    <span className="w-2 h-2 mr-3 bg-[#1f4045] opacity-0 group-hover/item:opacity-100 transition-opacity"></span>
+                    <span className="w-2 h-2 mr-3 bg-foreground opacity-0 group-hover/item:opacity-100 transition-opacity"></span>
                     <span className="opacity-80 group-hover/item:opacity-100 group-hover/item:font-bold transition-all">
                       {tech}
                     </span>
@@ -515,8 +535,15 @@ const Workshop = () => {
 
 const Project = () => {
   return (
-    <section className="py-32 bg-[#1f4045] text-[#fcfbf7] relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none opacity-10 bg-[linear-gradient(#fcfbf7_1px,transparent_1px),linear-gradient(90deg,#fcfbf7_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+    <section className="py-32 bg-foreground text-background relative overflow-hidden">
+      <div
+        className="absolute inset-0 pointer-events-none opacity-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(var(--background) 1px, transparent 1px), linear-gradient(90deg, var(--background) 1px, transparent 1px)",
+          backgroundSize: "50px 50px",
+        }}
+      ></div>
 
       <FloatingPixel
         className="absolute top-10 right-10 z-0 opacity-40 rotate-12"
@@ -528,23 +555,23 @@ const Project = () => {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           <div className="lg:col-span-5 space-y-8">
-            <span className="font-mono text-[#bf2c23] bg-[#bf2c23]/20 text-sm border border-[#bf2c23] px-3 py-1">
+            <span className="font-mono text-primary bg-primary/20 text-sm border border-primary px-3 py-1">
               PROJET SUR-MESURE
             </span>
-            <h2 className="font-serif text-5xl font-bold leading-none text-[#fcfbf7]">
+            <h2 className="font-serif text-5xl font-bold leading-none text-background">
               {DATA.project.title}
             </h2>
 
-            <p className="font-sans text-lg text-[#fcfbf7]/80 leading-relaxed border-l-2 border-[#d4a373] pl-4">
+            <p className="font-sans text-lg text-background/80 leading-relaxed border-l-2 border-secondary pl-4">
               {DATA.project.context}
             </p>
 
-            <div className="bg-[#fcfbf7]/5 p-6 border border-[#fcfbf7]/10 relative">
+            <div className="bg-background/5 p-6 border border-[#fcfbf7]/10 relative">
               <PixelDots />
-              <h4 className="font-serif text-[#d4a373] mb-2 flex items-center gap-2">
+              <h4 className="font-serif text-secondary mb-2 flex items-center gap-2">
                 <PenTool size={16} /> Le Défi Technique
               </h4>
-              <p className="text-sm font-sans font-mono text-[#fcfbf7]/70">
+              <p className="text-sm font-sans font-mono text-background/70">
                 {`> ${DATA.project.challenge}`}
               </p>
             </div>
@@ -553,7 +580,7 @@ const Project = () => {
               {DATA.project.stack.map((t, i) => (
                 <span
                   key={i}
-                  className="font-mono text-xs text-[#1f4045] bg-[#d4a373] px-3 py-1 border-b-2 border-[#bf2c23] font-bold"
+                  className="font-mono text-xs text-foreground bg-secondary px-3 py-1 border-b-2 border-primary font-bold"
                 >
                   {t.toUpperCase()}
                 </span>
@@ -566,21 +593,21 @@ const Project = () => {
               initial={{ y: 50, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="relative p-2 bg-[#1f4045]"
+              className="relative p-2 bg-foreground"
               style={{ boxShadow: "6px 6px 0px 0px #bf2c23" }}
             >
-              <div className="bg-[#fcfbf7] h-8 flex items-center px-4 gap-2 border-b-2 border-[#1f4045]">
-                <div className="w-3 h-3 bg-[#bf2c23]"></div>
-                <div className="w-3 h-3 bg-[#d4a373]"></div>
-                <div className="flex-grow text-right text-xs font-mono text-[#1f4045] opacity-50">
+              <div className="bg-background h-8 flex items-center px-4 gap-2 border-b-2 border-foreground">
+                <div className="w-3 h-3 bg-primary"></div>
+                <div className="w-3 h-3 bg-secondary"></div>
+                <div className="flex-grow text-right text-xs font-mono text-foreground opacity-50">
                   pelote-manager.exe
                 </div>
               </div>
 
-              <div className="aspect-video bg-[#f4f1ea] p-6 relative overflow-hidden group border-2 border-[#fcfbf7]">
-                <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-[#1f4045]/20 pb-4">
-                  <div className="w-32 h-6 bg-[#1f4045]/20 rounded-none"></div>
-                  <div className="w-20 h-8 bg-[#bf2c23] rounded-none text-white font-mono text-xs flex items-center justify-center">
+              <div className="aspect-video bg-card p-6 relative overflow-hidden group border-2 border-[#fcfbf7]">
+                <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-foreground/20 pb-4">
+                  <div className="w-32 h-6 bg-foreground/20 rounded-none"></div>
+                  <div className="w-20 h-8 bg-primary rounded-none text-white font-mono text-xs flex items-center justify-center">
                     TOURNOI+
                   </div>
                 </div>
@@ -589,15 +616,15 @@ const Project = () => {
                   {[...Array(4)].map((_, i) => (
                     <div
                       key={i}
-                      className="h-20 bg-[#fcfbf7] border-2 border-[#1f4045]/10 p-2 relative"
+                      className="h-20 bg-background border-2 border-foreground/10 p-2 relative"
                     >
-                      <div className="w-4 h-4 bg-[#d4a373] absolute top-2 right-2"></div>
+                      <div className="w-4 h-4 bg-secondary absolute top-2 right-2"></div>
                     </div>
                   ))}
                 </div>
 
-                <div className="absolute inset-0 bg-[#1f4045]/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="bg-[#bf2c23] text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-[#fcfbf7] hover:text-[#bf2c23] transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]">
+                <div className="absolute inset-0 bg-foreground/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]">
                     <Terminal size={16} /> VOIR LE CODE
                   </button>
                 </div>
@@ -641,19 +668,19 @@ const AIArchitect = () => {
   };
 
   return (
-    <section className="py-24 bg-[#fcfbf7] relative overflow-hidden">
+    <section className="py-24 bg-background relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center mb-12">
-          <span className="font-mono text-[#bf2c23] bg-[#bf2c23]/10 px-2 py-1 text-sm border border-[#bf2c23]/20 mb-4 inline-block">
-            <Sparkles size={12} className="inline mr-2 fill-[#bf2c23]" />
+          <span className="font-mono text-primary bg-primary/10 px-2 py-1 text-sm border border-primary/20 mb-4 inline-block">
+            <Sparkles size={12} className="inline mr-2 fill-primary" />
             BETA: BUREAU D'ÉTUDES VIRTUEL
           </span>
-          <h2 className="font-serif text-4xl text-[#1f4045]">
+          <h2 className="font-serif text-4xl text-foreground">
             L'Avant-Projet (IA)
           </h2>
-          <p className="text-[#1f4045]/70 mt-4 max-w-lg mx-auto">
+          <p className="text-foreground/70 mt-4 max-w-lg mx-auto">
             Décrivez votre idée. Mon assistant IA générera instantanément une
             ébauche depuis mon serveur sécurisé.
           </p>
@@ -665,8 +692,8 @@ const AIArchitect = () => {
             onClick={() => setActiveTool("blueprint")}
             className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
               activeTool === "blueprint"
-                ? "bg-[#1f4045] text-[#fcfbf7] border-[#1f4045]"
-                : "bg-transparent text-[#1f4045] border-[#1f4045]/20 hover:border-[#bf2c23]"
+                ? "bg-foreground text-background border-foreground"
+                : "bg-transparent text-foreground border-foreground/20 hover:border-primary"
             }`}
           >
             1. PLAN TECHNIQUE
@@ -675,8 +702,8 @@ const AIArchitect = () => {
             onClick={() => setActiveTool("roadmap")}
             className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
               activeTool === "roadmap"
-                ? "bg-[#1f4045] text-[#fcfbf7] border-[#1f4045]"
-                : "bg-transparent text-[#1f4045] border-[#1f4045]/20 hover:border-[#bf2c23]"
+                ? "bg-foreground text-background border-foreground"
+                : "bg-transparent text-foreground border-foreground/20 hover:border-primary"
             }`}
           >
             2. PLANNING CHANTIER
@@ -684,11 +711,11 @@ const AIArchitect = () => {
         </div>
 
         {/* Input Area */}
-        <div className="bg-[#f4f1ea] p-8 shadow-xl border-2 border-[#1f4045] relative max-w-2xl mx-auto transform -rotate-1 transition-transform hover:rotate-0">
-          <div className="absolute top-0 left-0 w-full h-2 bg-[#1f4045]"></div>
+        <div className="bg-card p-8 shadow-xl border-2 border-foreground relative max-w-2xl mx-auto transform -rotate-1 transition-transform hover:rotate-0">
+          <div className="absolute top-0 left-0 w-full h-2 bg-foreground"></div>
           <PixelDots />
 
-          <label className="block font-mono text-xs font-bold text-[#1f4045] mb-2 uppercase flex items-center gap-2">
+          <label className="block font-mono text-xs font-bold text-foreground mb-2 uppercase flex items-center gap-2">
             {activeTool === "blueprint" ? (
               <Layers size={14} />
             ) : (
@@ -699,7 +726,7 @@ const AIArchitect = () => {
               : "Périmètre du projet"}
           </label>
           <textarea
-            className="w-full bg-[#fcfbf7] border-2 border-[#1f4045]/20 p-4 font-mono text-sm text-[#1f4045] focus:outline-none focus:border-[#bf2c23] min-h-[100px] mb-4 resize-none"
+            className="w-full bg-background border-2 border-foreground/20 p-4 font-mono text-sm text-foreground focus:outline-none focus:border-primary min-h-[100px] mb-4 resize-none"
             placeholder={
               activeTool === "blueprint"
                 ? "Ex: Une marketplace pour artisans locaux..."
@@ -713,7 +740,7 @@ const AIArchitect = () => {
             <button
               onClick={handleGenerate}
               disabled={loading || !idea.trim()}
-              className="bg-[#1f4045] text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 hover:bg-[#bf2c23] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_#d4a373]"
+              className="bg-foreground text-background px-6 py-3 font-mono text-sm flex items-center gap-2 hover:bg-primary transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_#d4a373]"
             >
               {loading ? (
                 <span className="animate-pulse">Connexion au serveur...</span>
@@ -734,15 +761,15 @@ const AIArchitect = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-12 bg-[#1f4045] text-[#fcfbf7] p-8 border-4 border-[#d4a373] relative max-w-3xl mx-auto shadow-2xl"
+            className="mt-12 bg-foreground text-background p-8 border-4 border-secondary relative max-w-3xl mx-auto shadow-2xl"
           >
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#d4a373] text-[#1f4045] font-bold font-mono px-4 py-1 text-xs border border-[#1f4045]">
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-foreground font-bold font-mono px-4 py-1 text-xs border border-foreground">
               DOCUMENT TECHNIQUE
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="border-b md:border-b-0 md:border-r border-[#fcfbf7]/20 pb-8 md:pb-0 md:pr-8">
-                <h4 className="font-serif text-[#d4a373] mb-4 flex items-center gap-2 text-xl">
+                <h4 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
                   <Hammer size={18} /> Fondations (Backend)
                 </h4>
                 <p className="font-sans text-sm leading-relaxed opacity-90">
@@ -750,7 +777,7 @@ const AIArchitect = () => {
                 </p>
               </div>
               <div className="pl-0 md:pl-2">
-                <h4 className="font-serif text-[#d4a373] mb-4 flex items-center gap-2 text-xl">
+                <h4 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
                   <Layers size={18} /> Façade (Frontend)
                 </h4>
                 <p className="font-sans text-sm leading-relaxed opacity-90">
@@ -759,12 +786,12 @@ const AIArchitect = () => {
               </div>
             </div>
 
-            <div className="bg-[#bf2c23]/20 p-4 border border-[#bf2c23]/50 mb-6 flex gap-4 items-start">
-              <div className="bg-[#bf2c23] p-1 mt-1">
+            <div className="bg-primary/20 p-4 border border-primary/50 mb-6 flex gap-4 items-start">
+              <div className="bg-primary p-1 mt-1">
                 <Sparkles size={12} className="text-white" />
               </div>
               <div>
-                <h5 className="font-mono text-[#bf2c23] text-xs font-bold mb-1 uppercase">
+                <h5 className="font-mono text-primary text-xs font-bold mb-1 uppercase">
                   Point de Vigilance
                 </h5>
                 <p className="font-sans text-sm italic opacity-90">
@@ -774,7 +801,7 @@ const AIArchitect = () => {
             </div>
 
             <div className="text-center border-t border-[#fcfbf7]/10 pt-6">
-              <p className="font-serif text-lg text-[#d4a373]">
+              <p className="font-serif text-lg text-secondary">
                 "{blueprint.analogy}"
               </p>
             </div>
@@ -786,9 +813,9 @@ const AIArchitect = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mt-12 bg-[#f4f1ea] border-4 border-[#1f4045] relative max-w-3xl mx-auto shadow-[8px_8px_0px_0px_#1f4045]"
+            className="mt-12 bg-card border-4 border-foreground relative max-w-3xl mx-auto shadow-[8px_8px_0px_0px_#1f4045]"
           >
-            <div className="bg-[#1f4045] text-[#fcfbf7] px-4 py-2 font-mono text-sm flex justify-between items-center">
+            <div className="bg-foreground text-background px-4 py-2 font-mono text-sm flex justify-between items-center">
               <span>PLANNING_PREVISIONNEL.GAN</span>
               <Clock size={14} />
             </div>
@@ -797,14 +824,14 @@ const AIArchitect = () => {
               {roadmap.map((phase: any, idx: number) => (
                 <div
                   key={idx}
-                  className="relative pl-8 border-l-2 border-[#1f4045]/20 last:border-0 pb-2"
+                  className="relative pl-8 border-l-2 border-foreground/20 last:border-0 pb-2"
                 >
-                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-[#bf2c23] border-2 border-[#f4f1ea] rounded-full"></div>
+                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-primary border-2 border-[#f4f1ea] rounded-full"></div>
                   <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-serif text-[#1f4045] text-xl font-bold">
+                    <h4 className="font-serif text-foreground text-xl font-bold">
                       {phase.phase}
                     </h4>
-                    <span className="font-mono text-xs bg-[#1f4045]/10 px-2 py-1 text-[#1f4045]">
+                    <span className="font-mono text-xs bg-foreground/10 px-2 py-1 text-foreground">
                       {phase.duration}
                     </span>
                   </div>
@@ -812,9 +839,9 @@ const AIArchitect = () => {
                     {phase.tasks.map((task: any, tIdx: number) => (
                       <li
                         key={tIdx}
-                        className="flex items-center gap-2 font-sans text-sm text-[#1f4045]/80"
+                        className="flex items-center gap-2 font-sans text-sm text-foreground/80"
                       >
-                        <ArrowRight size={12} className="text-[#d4a373]" />{" "}
+                        <ArrowRight size={12} className="text-secondary" />{" "}
                         {task}
                       </li>
                     ))}
@@ -823,14 +850,14 @@ const AIArchitect = () => {
               ))}
             </div>
 
-            <div className="bg-[#1f4045]/5 p-4 text-center font-mono text-xs text-[#1f4045]/60 border-t border-[#1f4045]/10">
+            <div className="bg-foreground/5 p-4 text-center font-mono text-xs text-foreground/60 border-t border-foreground/10">
               * Estimation purement indicative générée par IA.
             </div>
           </motion.div>
         )}
 
         {error && (
-          <div className="mt-8 text-center text-[#bf2c23] font-mono text-sm bg-[#bf2c23]/10 p-4 border border-[#bf2c23]">
+          <div className="mt-8 text-center text-primary font-mono text-sm bg-primary/10 p-4 border border-primary">
             <strong>Erreur Backend :</strong> Impossible de joindre le bureau
             d'études (Route /api/gemini introuvable).
             <br />
@@ -845,7 +872,7 @@ const AIArchitect = () => {
 
 const Philosophy = () => {
   return (
-    <section className="py-24 bg-[#fcfbf7] text-center overflow-hidden">
+    <section className="py-24 bg-background text-center overflow-hidden">
       <div className="container mx-auto px-6 max-w-4xl relative">
         <PixelBrackets className="absolute top-0 left-0 opacity-20 text-6xl hidden md:block" />
         <PixelBrackets className="absolute bottom-0 right-0 opacity-20 text-6xl hidden md:block" />
@@ -853,19 +880,19 @@ const Philosophy = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="border-4 border-[#d4a373]/30 p-12 relative bg-[#f4f1ea]"
+          className="border-4 border-secondary/30 p-12 relative bg-card"
         >
-          <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#1f4045]"></div>
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#1f4045]"></div>
-          <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-[#1f4045]"></div>
-          <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#1f4045]"></div>
+          <div className="absolute -top-2 -left-2 w-4 h-4 bg-foreground"></div>
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-foreground"></div>
+          <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-foreground"></div>
+          <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-foreground"></div>
 
-          <Code2 size={48} className="mx-auto text-[#bf2c23] mb-6 opacity-80" />
+          <Code2 size={48} className="mx-auto text-primary mb-6 opacity-80" />
 
-          <h3 className="font-serif text-3xl text-[#1f4045] mb-6">
+          <h3 className="font-serif text-3xl text-foreground mb-6">
             "Du code propre pour des projets qui durent."
           </h3>
-          <p className="font-sans text-lg text-[#1f4045]/80 italic leading-loose font-medium">
+          <p className="font-sans text-lg text-foreground/80 italic leading-loose font-medium">
             Mon engagement de freelance : vous livrer une architecture
             logicielle aussi solide qu'une charpente en chêne et aussi
             fonctionnelle qu'une interface bien pensée. Sans les coûts cachés
@@ -898,7 +925,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="pt-24 pb-12 bg-[#1f4045] text-[#fcfbf7] border-t-8 border-[#bf2c23] relative">
+    <section className="pt-24 pb-12 bg-foreground text-background border-t-8 border-primary relative">
       <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#fcfbf7,#fcfbf7_8px,transparent_8px,transparent_16px)] opacity-20"></div>
 
       <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
@@ -906,15 +933,15 @@ const Contact = () => {
           Engagez votre <br />
           Architecte Indépendant
         </h2>
-        <p className="font-sans text-[#fcfbf7]/80 mb-12 text-lg max-w-2xl mx-auto">
+        <p className="font-sans text-background/80 mb-12 text-lg max-w-2xl mx-auto">
           Vous avez un projet complexe ? Vous cherchez une expertise directe,
           sans filtre ?<br />
           Discutons de votre vision, d'artisan à porteur de projet.
         </p>
 
         {/* EMAIL DRAFTER WIDGET */}
-        <div className="bg-[#fcfbf7]/5 border border-[#fcfbf7]/10 p-6 rounded-lg mb-12 text-left max-w-2xl mx-auto backdrop-blur-sm">
-          <div className="flex items-center gap-2 mb-4 text-[#d4a373]">
+        <div className="bg-background/5 border border-[#fcfbf7]/10 p-6 rounded-lg mb-12 text-left max-w-2xl mx-auto backdrop-blur-sm">
+          <div className="flex items-center gap-2 mb-4 text-secondary">
             <MessageSquare size={18} />
             <span className="font-mono text-sm font-bold uppercase">
               Assistant de Correspondance (IA)
@@ -923,7 +950,7 @@ const Contact = () => {
 
           {!draft ? (
             <>
-              <p className="text-sm text-[#fcfbf7]/60 mb-4">
+              <p className="text-sm text-background/60 mb-4">
                 Vous ne savez pas par où commencer ? Listez vos besoins (ex:
                 "Refonte site e-commerce, budget 5k, délai 2 mois"), je rédige
                 l'email pour vous.
@@ -933,13 +960,13 @@ const Contact = () => {
                   type="text"
                   value={emailInputs}
                   onChange={(e) => setEmailInputs(e.target.value)}
-                  className="flex-grow bg-[#1f4045] border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-[#fcfbf7] focus:border-[#bf2c23] outline-none"
+                  className="flex-grow bg-foreground border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-background focus:border-primary outline-none"
                   placeholder="Mots-clés du projet..."
                 />
                 <button
                   onClick={handleDraftEmail}
                   disabled={loadingEmail}
-                  className="bg-[#d4a373] text-[#1f4045] px-4 py-2 font-mono text-sm hover:bg-[#fcfbf7] transition-colors"
+                  className="bg-secondary text-foreground px-4 py-2 font-mono text-sm hover:bg-background transition-colors"
                 >
                   {loadingEmail ? "..." : "Rédiger"}
                 </button>
@@ -949,21 +976,21 @@ const Contact = () => {
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="bg-[#fcfbf7] text-[#1f4045] p-4 rounded font-mono text-xs relative"
+              className="bg-background text-foreground p-4 rounded font-mono text-xs relative"
             >
               <button
                 onClick={() => setDraft(null)}
-                className="absolute top-2 right-2 text-[#bf2c23] hover:underline"
+                className="absolute top-2 right-2 text-primary hover:underline"
               >
                 Fermer
               </button>
-              <div className="mb-2 font-bold border-b border-[#1f4045]/10 pb-2">
+              <div className="mb-2 font-bold border-b border-foreground/10 pb-2">
                 Objet : {draft.subject}
               </div>
               <div className="whitespace-pre-wrap leading-relaxed">
                 {draft.body}
               </div>
-              <div className="mt-4 pt-2 border-t border-[#1f4045]/10 flex justify-end">
+              <div className="mt-4 pt-2 border-t border-foreground/10 flex justify-end">
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(
@@ -971,7 +998,7 @@ const Contact = () => {
                     );
                     alert("Copié !");
                   }}
-                  className="flex items-center gap-2 text-[#bf2c23] hover:text-[#1f4045]"
+                  className="flex items-center gap-2 text-primary hover:text-foreground"
                 >
                   <ClipboardCopy size={14} /> Copier le texte
                 </button>
@@ -982,7 +1009,7 @@ const Contact = () => {
 
         <a
           href="mailto:julesdupspro@gmail.com"
-          className="group inline-flex items-center gap-3 bg-[#bf2c23] text-[#fcfbf7] px-8 py-4 font-mono text-sm border-2 border-[#fcfbf7] transition-all shadow-[6px_6px_0px_0px_#d4a373] hover:shadow-[2px_2px_0px_0px_#d4a373] hover:translate-y-[4px] hover:translate-x-[4px] duration-200"
+          className="group inline-flex items-center gap-3 bg-primary text-[#fcfbf7] px-8 py-4 font-mono text-sm border-2 border-[#fcfbf7] transition-all shadow-[6px_6px_0px_0px_#d4a373] hover:shadow-[2px_2px_0px_0px_#d4a373] hover:translate-y-[4px] hover:translate-x-[4px] duration-200"
         >
           <Mail size={18} className="group-hover:animate-pulse" />{" "}
           julesdupspro@gmail.com
@@ -993,7 +1020,7 @@ const Contact = () => {
             href="https://github.com/JulesDups/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
+            className="text-background hover:text-primary transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
             <Github />
           </a>
@@ -1001,7 +1028,7 @@ const Contact = () => {
             href="https://www.linkedin.com/in/jules-dupuis/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#fcfbf7] hover:text-[#bf2c23] transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
+            className="text-background hover:text-primary transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
             <Linkedin />
           </a>
@@ -1010,7 +1037,7 @@ const Contact = () => {
         <div className="border-t-2 border-dashed border-[#fcfbf7]/20 pt-12 flex flex-col items-center">
           <PixelLauburu />
 
-          <p className="font-mono text-xs text-[#fcfbf7]/60">
+          <p className="font-mono text-xs text-background/60">
             © 2025 Jules Dupuis • Architecte Numérique Indépendant • Fait au
             Pays Basque
           </p>
@@ -1034,12 +1061,12 @@ export default function PortfolioApp() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#fcfbf7] text-[#1f4045] font-sans selection:bg-[#bf2c23] selection:text-white cursor-crosshair">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white cursor-crosshair">
       <GrainOverlay />
 
       {/* Custom Cursor Follower Pixelisé */}
       <div
-        className="fixed w-3 h-3 bg-[#bf2c23] pointer-events-none z-[100] mix-blend-multiply opacity-0 md:opacity-80 transition-transform duration-75 ease-out shadow-[2px_2px_0px_0px_#1f4045]"
+        className="fixed w-3 h-3 bg-primary pointer-events-none z-[100] mix-blend-multiply opacity-0 md:opacity-80 transition-transform duration-75 ease-out shadow-[2px_2px_0px_0px_#1f4045]"
         style={{
           left: mousePosition.x,
           top: mousePosition.y,
@@ -1048,21 +1075,22 @@ export default function PortfolioApp() {
       ></div>
 
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-40 bg-[#fcfbf7]/90 backdrop-blur-md border-b-2 border-[#1f4045] px-6 py-4 flex justify-between items-center shadow-sm">
+      <nav className="fixed top-0 w-full z-40 bg-background/90 backdrop-blur-md border-b-2 border-foreground px-6 py-4 flex justify-between items-center shadow-sm">
         <span className="font-serif font-bold text-xl tracking-tighter flex items-center gap-2">
-          <span className="text-[#bf2c23] font-mono">{`{`}</span>JD.
-          <span className="text-[#bf2c23] font-mono">{`}`}</span>
+          <span className="text-primary font-mono">{`{`}</span>JD.
+          <span className="text-primary font-mono">{`}`}</span>
         </span>
         <div className="flex items-center gap-4">
-          <span className="font-mono text-xs text-[#bf2c23] hidden md:inline-block animate-pulse">
+          <span className="font-mono text-xs text-primary font-bold hidden md:inline-block animate-pulse">
             ● STATUS: DISPONIBLE
           </span>
           <a
             href="mailto:julesdupspro@gmail.com"
-            className="font-mono text-xs bg-[#1f4045] text-[#fcfbf7] px-4 py-2 hover:bg-[#bf2c23] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
+            className="font-mono text-xs bg-foreground text-background px-4 py-2 hover:bg-primary hover:text-[#fcfbf7] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
           >
             ENGAGER
           </a>
+          <ThemeToggle />
         </div>
       </nav>
 
