@@ -1,6 +1,7 @@
 "use client";
 import { MobileMenu } from "@/components/MobileMenu";
 import { PixelSeparator } from "@/components/PixelSeparator";
+import { Pricing } from "@/components/Pricing";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
@@ -1158,6 +1159,8 @@ export default function PortfolioApp() {
         <Workshop />
         <PixelSeparator />
         <Project />
+        <PixelSeparator />
+        <Pricing />
         <PixelSeparator />
         <AIArchitect />
         <PixelSeparator />
