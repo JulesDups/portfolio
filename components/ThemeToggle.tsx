@@ -12,6 +12,7 @@ export const ThemeToggle = () => {
       onClick={toggleTheme}
       className="relative w-10 h-14 bg-card border-2 border-foreground rounded-lg overflow-hidden group hover:-translate-y-1 transition-transform duration-300 shadow-[2px_2px_0px_0px_var(--foreground)]"
       title={isDark ? "Le Monde (Nuit)" : "Le Soleil (Jour)"}
+      aria-label="Changer le thème"
     >
       <div className="absolute inset-0 flex items-center justify-center">
         <motion.div

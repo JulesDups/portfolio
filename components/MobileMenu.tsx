@@ -62,13 +62,13 @@ export const MobileMenu = () => {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 bg-background/65 backdrop-blur-xl z-100 flex flex-col items-center justify-center"
+            className="fixed inset-0 bg-background/65 backdrop-blur-xl z-50 flex flex-col items-center justify-center"
           >
             <div className="absolute inset-0 opacity-5 pointer-events-none bg-[linear-gradient(var(--grid-color)_1px,transparent_1px),linear-gradient(90deg,var(--grid-color)_1px,transparent_1px)] bg-size-[40px_40px]"></div>
 
             <button
               onClick={toggleMenu}
-              className="absolute top-6 right-6 p-2 text-primary hover:bg-primary/10 rounded transition-colors z-100"
+              className="absolute top-6 right-6 p-2 text-primary hover:bg-primary/10 rounded transition-colors z-50"
               aria-label="Fermer le menu"
             >
               <X size={32} />

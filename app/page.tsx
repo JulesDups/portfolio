@@ -30,6 +30,7 @@ import {
   Sparkles,
   Terminal,
 } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 // --- DATA & CONFIGURATION ---
@@ -623,7 +624,7 @@ const Project = () => {
               <h4 className="font-serif text-secondary mb-2 flex items-center gap-2">
                 <PenTool size={16} /> Le Défi Technique
               </h4>
-              <p className="text-sm font-sans font-mono text-background/70">
+              <p className="text-sm font-mono text-background/70">
                 {`> ${DATA.project.challenge}`}
               </p>
             </div>
@@ -651,7 +652,7 @@ const Project = () => {
               <div className="bg-background h-8 flex items-center px-4 gap-2 border-b-2 border-foreground">
                 <div className="w-3 h-3 bg-primary"></div>
                 <div className="w-3 h-3 bg-secondary"></div>
-                <div className="flex-grow text-right text-xs font-mono text-foreground opacity-50">
+                <div className="grow text-right text-xs font-mono text-foreground opacity-50">
                   pelote-manager.exe
                 </div>
               </div>
@@ -676,9 +677,14 @@ const Project = () => {
                 </div>
 
                 <div className="absolute inset-0 bg-foreground/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]">
-                    <Terminal size={16} /> VOIR LE CODE
-                  </button>
+                  <a
+                    href="https://www.pelote-manager.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]"
+                  >
+                    <Terminal size={16} aria-hidden="true" /> VOIR LE CODE
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -767,17 +773,21 @@ const AIArchitect = () => {
           <div className="absolute top-0 left-0 w-full h-2 bg-foreground"></div>
           <PixelDots />
 
-          <label className="block font-mono text-xs font-bold text-foreground mb-2 uppercase items-center gap-2">
+          <label
+            htmlFor="ai-idea-input"
+            className="block font-mono text-xs font-bold text-foreground mb-2 uppercase items-center gap-2"
+          >
             {activeTool === "blueprint" ? (
-              <Layers size={14} />
+              <Layers size={14} aria-hidden="true" />
             ) : (
-              <Calendar size={14} />
+              <Calendar size={14} aria-hidden="true" />
             )}
             {activeTool === "blueprint"
               ? "Description du système"
               : "Périmètre du projet"}
           </label>
           <textarea
+            id="ai-idea-input"
             className="w-full bg-background border-2 border-foreground/20 p-4 font-mono text-sm text-foreground focus:outline-none focus:border-primary min-h-[100px] mb-4 resize-none"
             placeholder={
               activeTool === "blueprint"
@@ -1013,6 +1023,7 @@ const Contact = () => {
               <div className="flex gap-2">
                 <input
                   type="text"
+                  aria-label="Mots-clés du projet"
                   value={emailInputs}
                   onChange={(e) => setEmailInputs(e.target.value)}
                   className="grow bg-foreground border border-[#fcfbf7]/20 px-4 py-2 font-mono text-sm text-background focus:border-primary outline-none"
@@ -1075,17 +1086,19 @@ const Contact = () => {
             href="https://github.com/JulesDups/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Voir mon profil Github"
             className="text-background hover:text-primary transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
-            <Github />
+            <Github aria-hidden="true" />
           </a>
           <a
             href="https://www.linkedin.com/in/jules-dupuis/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Voir mon profil Linkedin"
             className="text-background hover:text-primary transition-all duration-300 p-2 opacity-80 hover:opacity-100 hover:scale-110"
           >
-            <Linkedin />
+            <Linkedin aria-hidden="true" />
           </a>
         </div>
 
@@ -1096,6 +1109,14 @@ const Contact = () => {
             © 2025 Jules Dupuis • Architecte Numérique Indépendant • Fait au
             Pays Basque
           </p>
+          <div className="mt-4 font-mono text-xs text-background/40">
+            <Link
+              href="/mentions-legales"
+              className="hover:text-primary transition-colors underline decoration-dotted"
+            >
+              Mentions Légales & CGV
+            </Link>
+          </div>
         </div>
       </div>
     </section>

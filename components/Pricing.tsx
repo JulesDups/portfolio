@@ -15,7 +15,7 @@ const PLANS = [
       "Formulaire de contact sécurisé",
     ],
     recurring: "Maintenance : 50€/mois",
-    icon: <Zap size={24} />,
+    icon: <Zap size={24} aria-hidden="true" />,
   },
   {
     name: "LA RÉSIDENCE",
@@ -29,7 +29,7 @@ const PLANS = [
       "Accessibilité AA (Inclusif & Légal)",
     ],
     recurring: "Maintenance : 80€/mois",
-    icon: <Hammer size={24} />,
+    icon: <Hammer size={24} aria-hidden="true" />,
     popular: true,
   },
   {
@@ -44,7 +44,7 @@ const PLANS = [
       "Haute Disponibilité & Scalabilité",
     ],
     recurring: "Maintenance : Sur mesure",
-    icon: <Shield size={24} />,
+    icon: <Shield size={24} aria-hidden="true" />,
   },
 ];
 
@@ -80,18 +80,37 @@ export const Pricing = () => {
           {PLANS.map((plan, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
+              initial="hidden"
+              whileInView="visible"
+              whileHover="hover"
               viewport={{ once: true }}
-              className={`relative bg-card p-8 border-2 flex flex-col h-full ${
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    delay: idx * 0.1,
+                    duration: 0.4,
+                    ease: "easeOut",
+                  },
+                },
+                hover: {
+                  y: -8,
+                  transition: {
+                    duration: 0.3,
+                    ease: "easeOut",
+                  },
+                },
+              }}
+              className={`relative bg-card p-8 border-2 flex flex-col h-full transition-shadow duration-300 ${
                 plan.popular
-                  ? "border-primary shadow-[8px_8px_0px_0px_#bf2c23]"
-                  : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]"
+                  ? "border-primary shadow-[8px_8px_0px_0px_#bf2c23] hover:shadow-[12px_12px_0px_0px_#bf2c23]"
+                  : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-primary text-background text-xs font-bold px-3 py-1 font-mono">
+                <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 font-mono">
                   RECOMMANDÉ
                 </div>
               )}
@@ -120,7 +139,7 @@ export const Pricing = () => {
                     <span className="text-primary text-xl">*</span>
                   )}
                 </div>
-                <p className="text-xs font-mono text-primary mt-2">
+                <p className="text-xs font-mono text-primary mt-2 font-bold">
                   {plan.type.toUpperCase()}
                 </p>
                 <p className="text-sm text-foreground/70 mt-4 italic">
@@ -130,13 +149,17 @@ export const Pricing = () => {
 
               <ul className="space-y-3 mb-8 grow">
                 {plan.features.map((feat, i) => (
-                  <li
+                  <motion.li
                     key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1, duration: 0.3 }}
+                    viewport={{ once: true }}
                     className="flex items-start gap-2 text-sm font-sans text-foreground/90"
                   >
                     <Check size={16} className="text-primary mt-1 shrink-0" />
                     <span>{feat}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
@@ -150,15 +173,19 @@ export const Pricing = () => {
                   </span>
                 </div>
 
-                <button
-                  className={`w-full py-3 font-mono text-sm border-2 transition-all cursor-pointer ${
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  className={`w-full py-3 font-mono text-sm border-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     plan.popular
                       ? "bg-primary text-white border-primary hover:bg-white hover:text-primary"
                       : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
                   }`}
+                  aria-label={`Demander le plan ${plan.name}`}
                 >
                   DEMANDER CE PLAN
-                </button>
+                </motion.button>
               </div>
             </motion.div>
           ))}
