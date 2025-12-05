@@ -48,7 +48,11 @@ const PLANS = [
   },
 ];
 
-export const Pricing = () => {
+export const Pricing = ({
+  onPlanSelect,
+}: {
+  onPlanSelect: (plan: string) => void;
+}) => {
   return (
     <section
       id="tarifs"
@@ -176,6 +180,7 @@ export const Pricing = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.95 }}
+                  onClick={() => onPlanSelect(plan.name)}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className={`w-full py-3 font-mono text-sm border-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     plan.popular

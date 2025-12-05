@@ -27,9 +27,13 @@ const PROMPTS = {
     ]`,
 
   email: (input: string) => `
-    Rédige un email de prise de contact professionnel court pour Jules Dupuis (Développeur Freelance) basé sur ces notes brutes : "${input}".
-    Le ton doit être courtois, direct et professionnel. Structure l'email avec un Objet et le Corps.
-    Format JSON strict : { "subject": "...", "body": "..." }`,
+    Tu agis en tant que client potentiel souhaitant contacter Jules Dupuis (Architecte Numérique / Freelance).
+    Ta tâche est de rédiger un email de premier contact basé sur ces éléments : "${input}". 
+    
+    Si une offre spécifique est mentionnée (Esquisse, Résidence, Citadelle), mentionne-la clairement comme base de travail.
+    Le ton doit être professionnel mais engageant, montrant un intérêt sérieux pour une collaboration.
+    
+    Format JSON strict : { "subject": "Objet percutant de l'email", "body": "Corps de l'email (sans signature, juste le texte)" }`,
 };
 
 export async function POST(req: NextRequest) {

@@ -967,10 +967,16 @@ const Philosophy = () => {
 };
 
 // CONTACT + EMAIL DRAFTER
-const Contact = () => {
+const Contact = ({ prefill }: { prefill?: string }) => {
   const [emailInputs, setEmailInputs] = useState("");
   const [draft, setDraft] = useState<any>(null);
   const [loadingEmail, setLoadingEmail] = useState(false);
+
+  useEffect(() => {
+    if (prefill) {
+      setEmailInputs(prefill);
+    }
+  }, [prefill]);
 
   const handleDraftEmail = async () => {
     if (!emailInputs.trim()) return;
@@ -1127,6 +1133,16 @@ const Contact = () => {
 
 export default function PortfolioApp() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [contactPrefill, setContactPrefill] = useState("");
+
+  const handlePlanSelection = (planName: string) => {
+    const message = `Projet web basé sur l'offre "${planName}". \nBudget estimé : ... \nDélai souhaité : ...`;
+    setContactPrefill(message);
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -1181,13 +1197,13 @@ export default function PortfolioApp() {
         <PixelSeparator />
         <Project />
         <PixelSeparator />
-        <Pricing />
+        <Pricing onPlanSelect={handlePlanSelection} />
         <PixelSeparator />
         <AIArchitect />
         <PixelSeparator />
         <Philosophy />
         <PixelSeparator />
-        <Contact />
+        <Contact prefill={contactPrefill} />
       </main>
     </div>
   );
