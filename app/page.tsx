@@ -521,7 +521,7 @@ const About = () => {
 const Workshop = () => {
   return (
     <section id="workshop" className="py-24 bg-card relative">
-      <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,#bf2c23,#bf2c23_4px,transparent_4px,transparent_8px)] opacity-30"></div>
+      <div className="absolute top-0 left-0 w-full h-2 bg-[repeating-linear-gradient(90deg,var(--primary),var(--primary)_4px,transparent_4px,transparent_8px)] opacity-30"></div>
 
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-16 text-center">
@@ -648,7 +648,7 @@ const Project = () => {
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
               className="relative p-2 bg-foreground"
-              style={{ boxShadow: "6px 6px 0px 0px #bf2c23" }}
+              style={{ boxShadow: "6px 6px 0px 0px var(--primary)" }}
             >
               <div className="bg-background h-8 flex items-center px-4 gap-2 border-b-2 border-foreground">
                 <div className="w-3 h-3 bg-primary"></div>
@@ -682,7 +682,7 @@ const Project = () => {
                     href="https://www.pelote-manager.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]"
+                    className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_var(--primary)] hover:translate-y-[2px] hover:translate-x-[2px]"
                   >
                     <Terminal size={16} aria-hidden="true" /> VOIR LE CODE
                   </a>
@@ -728,7 +728,7 @@ const AIArchitect = () => {
 
   return (
     <section className="py-24 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-size-[20px_20px]"></div>
+      <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(var(--primary-rgb),0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(var(--primary-rgb),0.2)_1px,transparent_1px)] bg-size-[20px_20px]"></div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <div className="text-center mb-12">
