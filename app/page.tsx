@@ -468,7 +468,7 @@ const About = () => {
                   >
                     {stat.value}
                   </div>
-                  <div className="font-mono text-xs uppercase tracking-wider text-foreground/70 mt-2">
+                  <div className="font-mono text-xs uppercase tracking-wider text-foreground mt-2">
                     {stat.label}
                   </div>
                 </div>
@@ -528,7 +528,7 @@ const Workshop = () => {
           <h2 className="font-serif text-4xl text-foreground">
             Mes Outils de Prédilection
           </h2>
-          <p className="font-sans text-foreground/70 mt-4 max-w-lg mx-auto">
+          <p className="font-sans text-foreground mt-4 max-w-lg mx-auto">
             En freelance, je choisis les technologies les plus fiables pour
             garantir pérennité et performance à vos projets.
           </p>
@@ -554,7 +554,7 @@ const Workshop = () => {
               <h3 className="font-serif text-xl font-bold text-foreground mb-2">
                 {group.category}
               </h3>
-              <p className="font-sans text-sm text-foreground/70 mb-6 italic border-b-2 border-dashed border-foreground/10 pb-4">
+              <p className="font-sans text-sm text-foreground mb-6 italic border-b-2 border-dashed border-foreground/10 pb-4">
                 {group.desc}
               </p>
               <ul className="space-y-3">
@@ -621,9 +621,9 @@ const Project = () => {
 
             <div className="bg-background/5 p-6 border border-[#fcfbf7]/10 relative">
               <PixelDots />
-              <h4 className="font-serif text-secondary mb-2 flex items-center gap-2">
+              <h3 className="font-serif text-secondary mb-2 flex items-center gap-2 text-lg font-bold">
                 <PenTool size={16} /> Le Défi Technique
-              </h4>
+              </h3>
               <p className="text-sm font-mono text-background/70">
                 {`> ${DATA.project.challenge}`}
               </p>
@@ -633,7 +633,7 @@ const Project = () => {
               {DATA.project.stack.map((t, i) => (
                 <span
                   key={i}
-                  className="font-mono text-xs text-foreground bg-secondary px-3 py-1 border-b-2 border-primary font-bold"
+                  className="font-mono text-xs text-[#1f4045] bg-secondary px-3 py-1 border-b-2 border-primary font-bold"
                 >
                   {t.toUpperCase()}
                 </span>
@@ -831,17 +831,17 @@ const AIArchitect = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="border-b md:border-b-0 md:border-r border-[#fcfbf7]/20 pb-8 md:pb-0 md:pr-8">
-                <h4 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
+                <h3 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
                   <Hammer size={18} /> Fondations (Backend)
-                </h4>
+                </h3>
                 <p className="font-sans text-sm leading-relaxed opacity-90">
                   {blueprint.foundations}
                 </p>
               </div>
               <div className="pl-0 md:pl-2">
-                <h4 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
+                <h3 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
                   <Layers size={18} /> Façade (Frontend)
-                </h4>
+                </h3>
                 <p className="font-sans text-sm leading-relaxed opacity-90">
                   {blueprint.facade}
                 </p>
@@ -890,9 +890,9 @@ const AIArchitect = () => {
                 >
                   <div className="absolute left-[-9px] top-0 w-4 h-4 bg-primary border-2 border-[#f4f1ea] rounded-full"></div>
                   <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-serif text-foreground text-xl font-bold">
+                    <h3 className="font-serif text-foreground text-xl font-bold">
                       {phase.phase}
-                    </h4>
+                    </h3>
                     <span className="font-mono text-xs bg-foreground/10 px-2 py-1 text-foreground">
                       {phase.duration}
                     </span>
@@ -1021,7 +1021,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
 
           {!draft ? (
             <>
-              <p className="text-sm text-background/60 mb-4">
+              <p className="text-sm text-background mb-4">
                 Vous ne savez pas par où commencer ? Listez vos besoins (ex:
                 "Refonte site e-commerce, budget 5k, délai 2 mois"), je rédige
                 l'email pour vous.
@@ -1111,7 +1111,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
         <div className="border-t-2 border-dashed border-[#fcfbf7]/20 pt-12 flex flex-col items-center">
           <PixelLauburu />
 
-          <p className="font-mono text-xs text-background/60">
+          <p className="font-mono text-xs text-background">
             © 2025 Jules Dupuis • Architecte Numérique Indépendant • Fait au
             Pays Basque
           </p>
