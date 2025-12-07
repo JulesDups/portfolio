@@ -24,7 +24,7 @@ export const ThemeToggle = () => {
           transition={{ duration: 0.6 }}
           className="absolute inset-0 flex items-center justify-center bg-[#fcfbf7]"
         >
-          <Sun className="text-primary" size={20} />
+          <Sun className="text-[#bf2c23]" size={20} />
           <span className="absolute bottom-1 text-[8px] font-mono text-[#1f4045] font-bold">
             XIX
           </span>

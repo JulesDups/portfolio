@@ -109,7 +109,7 @@ export const Pricing = ({
               }}
               className={`relative bg-card p-8 border-2 flex flex-col h-full transition-shadow duration-300 ${
                 plan.popular
-                  ? "border-primary shadow-[8px_8px_0px_0px_var(--primary)] hover:shadow-[12px_12px_0px_0px_var(--primary)]"
+                  ? "border-primary shadow-[8px_8px_0px_0px_#bf2c23] hover:shadow-[12px_12px_0px_0px_#bf2c23]"
                   : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
               }`}
             >

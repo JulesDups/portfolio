@@ -13,17 +13,15 @@ body {
   --secondary: #d4a373;
   --card: #f4f1ea;
   --grid-color: #1f4045;
-  --primary-rgb: 191, 44, 35;
 }
 
 .dark {
   --background: #1f4045;
   --foreground: #e6e4dc;
-  --primary: #ef5350;
+  --primary: #ff6b6b;
   --secondary: #d4a373;
   --card: #2a555c;
   --grid-color: #e6e4dc;
-  --primary-rgb: 239, 83, 80;
 }
 
 body {
