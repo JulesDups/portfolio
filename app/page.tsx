@@ -1080,11 +1080,11 @@ const Contact = ({ prefill }: { prefill?: string }) => {
         </div>
 
         <a
-          href="mailto:julesdupspro@gmail.com"
+          href="mailto:contact@julesdupuis.fr"
           className="group inline-flex items-center gap-3 bg-primary text-[#fcfbf7] px-8 py-4 font-mono text-sm border-2 border-[#fcfbf7] transition-all shadow-[6px_6px_0px_0px_#d4a373] hover:shadow-[2px_2px_0px_0px_#d4a373] hover:translate-y-[4px] hover:translate-x-[4px] duration-200"
         >
           <Mail size={18} className="group-hover:animate-pulse" />{" "}
-          julesdupspro@gmail.com
+          contact@julesdupuis.fr
         </a>
 
         <div className="flex justify-center gap-8 mt-16 mb-16">
@@ -1178,7 +1178,7 @@ export default function PortfolioApp() {
             ● STATUS: DISPONIBLE
           </span>
           <a
-            href="mailto:julesdupspro@gmail.com"
+            href="mailto:contact@julesdupuis.fr"
             className="font-mono text-xs bg-foreground text-background px-4 py-2 hover:bg-primary hover:text-[#fcfbf7] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
           >
             ENGAGER

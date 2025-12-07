@@ -31,7 +31,7 @@ export default function LegalPage() {
               <br />
               <strong>Adresse :</strong> Anglet, France
               <br />
-              <strong>Contact :</strong> julesdupspro@gmail.com
+              <strong>Contact :</strong> contact@julesdupuis.fr
             </p>
           </section>
 
