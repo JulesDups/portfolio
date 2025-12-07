@@ -218,7 +218,6 @@ const PixelDots = () => (
 const PixelBrackets = ({ className = "" }) => (
   <div
     className={`font-mono font-bold text-primary tracking-tighter select-none ${className}`}
-    aria-hidden="true"
     style={{ imageRendering: "pixelated", fontSize: "1.5rem" }}
   >
     {`{ }`}
@@ -1015,7 +1014,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
         <div className="bg-background/5 border border-[#fcfbf7]/10 p-6 rounded-lg mb-12 text-left max-w-2xl mx-auto backdrop-blur-sm">
           <div className="flex items-center gap-2 mb-4 text-secondary">
             <MessageSquare size={18} />
-            <span className="font-mono text-sm font-bold uppercase text-background">
+            <span className="font-mono text-sm font-bold uppercase">
               Assistant de Correspondance (IA)
             </span>
           </div>
@@ -1039,7 +1038,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
                 <button
                   onClick={handleDraftEmail}
                   disabled={loadingEmail}
-                  className="bg-secondary text-foreground dark:text-background px-4 py-2 font-mono text-sm hover:bg-background transition-colors"
+                  className="bg-secondary text-foreground px-4 py-2 font-mono text-sm hover:bg-background transition-colors"
                 >
                   {loadingEmail ? "..." : "Rédiger"}
                 </button>
@@ -1116,7 +1115,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
             © 2025 Jules Dupuis • Architecte Numérique Indépendant • Fait au
             Pays Basque
           </p>
-          <div className="mt-4 font-mono text-xs text-background/80">
+          <div className="mt-4 font-mono text-xs text-background/40">
             <Link
               href="/mentions-legales"
               className="hover:text-primary transition-colors underline decoration-dotted"
