@@ -12,7 +12,7 @@ export const ReadingProgress = () => {
 
   const progressPercentage = useTransform(
     scrollYProgress,
-    (v) => `${v * 100}%`
+    (v) => `${v * 100}%`,
   );
   const progressOpacity = useTransform(scrollYProgress, (v) => (v > 0 ? 1 : 0));
 

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier --write app components"
   },
   "dependencies": {
     "@vercel/og": "0.8.5",
@@ -24,6 +25,7 @@
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.6",
     "tailwindcss": "4.1.17",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "prettier": "3.7.4"
   }
 }

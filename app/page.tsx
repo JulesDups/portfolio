@@ -1066,7 +1066,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
                 <button
                   onClick={() => {
                     navigator.clipboard.writeText(
-                      `Objet: ${draft.subject}\n\n${draft.body}`
+                      `Objet: ${draft.subject}\n\n${draft.body}`,
                     );
                     alert("Copié !");
                   }}

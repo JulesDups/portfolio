@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
     if (!apiKey) {
       return new NextResponse(
         JSON.stringify({ error: "API Key not configured on server" }),
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
           contents: [{ parts: [{ text: promptText }] }],
           generationConfig: { responseMimeType: "application/json" },
         }),
-      }
+      },
     );
 
     const data = await response.json();
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
     console.error("Gemini Proxy Error:", error);
     return new NextResponse(
       JSON.stringify({ error: "Internal Server Error" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
