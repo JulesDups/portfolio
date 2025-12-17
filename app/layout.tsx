@@ -1,24 +1,12 @@
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Jules Dupuis | Architecte Numérique",
+  title: "Jules Dupuis | Architecte Numérique à Bayonne & au Pays Basque",
   description:
-    "Portfolio de Jules Dupuis, Développeur Freelance & Architecte Logiciel.",
-  // Ajout de l'Open Graph dynamique
+    "Jules Dupuis, Développeur Freelance & Architecte Logiciel au Pays Basque",
   openGraph: {
     title: "Jules Dupuis | Architecte Numérique",
     description:
