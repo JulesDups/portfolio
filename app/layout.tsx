@@ -33,6 +33,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+      </head>
       <body className="antialiased">
         <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
