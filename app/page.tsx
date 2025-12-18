@@ -448,8 +448,13 @@ const About = () => {
                 En tant qu'<strong>Architecte Numérique Indépendant</strong>, je
                 ne suis pas un "paquet de ressources" interchangeable. Je suis
                 un artisan qui choisit ses outils et qui s'engage sur le
-                résultat. Je travaille en direct avec vous, sans intermédiaires
-                superflus, pour bâtir des applications qui durent.
+                résultat. Je travaille en direct avec vous pour bâtir vos
+                projets de A à Z, ou j'interviens en renfort sur vos chantiers
+                techniques existants pour sécuriser vos délais.
+              </p>
+              <p className="text-sm font-mono text-primary/90 italic">
+                → Disponible en mode Studio (Projet complet) ou en mode Régie
+                (Renfort d'équipe expert).
               </p>
             </motion.div>
 

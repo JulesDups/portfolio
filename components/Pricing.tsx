@@ -1,8 +1,24 @@
 "use client";
 import { motion } from "framer-motion";
-import { Check, Hammer, Info, Shield, Zap } from "lucide-react";
+import { Check, Hammer, Info, Shield, Users, Zap } from "lucide-react";
 
 const PLANS = [
+  {
+    name: "LE RENFORT",
+    type: "Intervention Structurelle",
+    price: "450€",
+    frequency: "/ jour",
+    desc: "Votre chantier est en cours ? J'apporte mes outils et mon expérience pour renforcer votre équipe et sécuriser les délais.",
+    features: [
+      "Renfort Backend (Java Spring Boot 3+)",
+      "Expertise Frontend (Angular 14+ / RxJS)",
+      "Audit, Refonte, Migration (Dette technique)",
+      "Intégration Agile (Jira / Git / CI-CD)",
+    ],
+    recurring: "Disponibilité : Janvier 2026",
+    icon: <Users size={24} aria-hidden="true" />,
+    isTjm: true,
+  },
   {
     name: "L'ESQUISSE",
     type: "Site Vitrine One-Page",
@@ -10,7 +26,7 @@ const PLANS = [
     desc: "Une page unique, percutante, pour exister numériquement.",
     features: [
       "Design Sur-mesure (pas de template)",
-      "Développement Next.js (Rapide & SEO)",
+      "Développement avec Angular ou React (Rapide & SEO)",
       "Optimisé Mobile & Tablettes",
       "Formulaire de contact sécurisé",
     ],
@@ -80,7 +96,7 @@ export const Pricing = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start mb-16">
           {PLANS.map((plan, idx) => (
             <motion.div
               key={idx}
@@ -110,7 +126,9 @@ export const Pricing = ({
               className={`relative bg-card p-8 border-2 flex flex-col h-full transition-shadow duration-300 ${
                 plan.popular
                   ? "border-primary shadow-[8px_8px_0px_0px_#bf2c23] hover:shadow-[12px_12px_0px_0px_#bf2c23]"
-                  : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
+                  : plan.isTjm
+                    ? "border-secondary border-dashed shadow-[4px_4px_0px_0px_rgba(191,44,35,0.2)] hover:shadow-[8px_8px_0px_0px_rgba(191,44,35,0.3)]"
+                    : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
               }`}
             >
               {plan.popular && (
@@ -128,7 +146,7 @@ export const Pricing = ({
 
               <div className="mb-6 border-b border-dashed border-foreground/10 pb-6">
                 <div className="flex items-baseline gap-1">
-                  {plan.price !== "Sur Devis" && (
+                  {plan.price !== "Sur Devis" && !plan.isTjm && (
                     <span className="text-sm font-mono text-foreground/60">
                       dès
                     </span>
@@ -136,10 +154,17 @@ export const Pricing = ({
                   <span className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </span>
-                  <span className="text-sm font-sans text-foreground">
-                    {plan.price === "Sur Devis" ? "" : "€"}
-                  </span>
-                  {plan.price !== "Sur Devis" && (
+                  {plan.frequency && (
+                    <span className="text-lg font-mono text-foreground/70">
+                      {plan.frequency}
+                    </span>
+                  )}
+                  {!plan.frequency && (
+                    <span className="text-sm font-sans text-foreground">
+                      {plan.price === "Sur Devis" ? "" : "€"}
+                    </span>
+                  )}
+                  {plan.price !== "Sur Devis" && !plan.isTjm && (
                     <span className="text-primary text-xl">*</span>
                   )}
                 </div>
@@ -185,11 +210,13 @@ export const Pricing = ({
                   className={`w-full py-3 font-mono text-sm border-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     plan.popular
                       ? "bg-primary text-white border-primary hover:bg-white hover:text-primary"
-                      : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
+                      : plan.isTjm
+                        ? "bg-secondary text-white border-secondary hover:bg-white hover:text-secondary"
+                        : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
                   }`}
-                  aria-label={`Demander le plan ${plan.name}`}
+                  aria-label={`${plan.isTjm ? "Voir le profil" : "Demander le plan"} ${plan.name}`}
                 >
-                  DEMANDER CE PLAN
+                  {plan.isTjm ? "VOIR MON PROFIL TECH" : "DEMANDER CE PLAN"}
                 </motion.button>
               </div>
             </motion.div>
