@@ -426,9 +426,9 @@ const About = () => {
               viewport={{ once: true }}
               className="font-serif text-4xl md:text-5xl leading-tight"
             >
-              L'expertise ne se dilue pas dans{" "}
+              Redonnez du temps à{" "}
               <span className="italic text-primary relative">
-                l'open-space.
+                votre ambition.
                 <span className="absolute bottom-1 left-0 w-full h-1 bg-primary/20 -z-10"></span>
               </span>
             </motion.h3>
@@ -441,20 +441,26 @@ const About = () => {
               className="font-sans text-lg text-foreground/80 leading-relaxed text-justify space-y-4 border-l-4 border-secondary pl-6"
             >
               <p>
-                J'ai quitté le monde du salariat classique pour une raison
-                simple : la qualité exige de la concentration.
+                Libérez-vous des frictions numériques pour vous concentrer sur
+                l'essentiel : la croissance de votre business.
+              </p>
+              <p>
+                Votre temps est votre ressource la plus précieuse. Je crée des
+                outils personnalisés qui travaillent pour vous, et non
+                l'inverse. En transformant vos workflows complexes en solutions
+                fluides, je redonne à vos équipes{" "}
+                <strong>jusqu'à 4 fois plus de temps</strong> pour créer de la
+                valeur.
               </p>
               <p>
                 En tant qu'<strong>Architecte Numérique Indépendant</strong>, je
-                ne suis pas un "paquet de ressources" interchangeable. Je suis
-                un artisan qui choisit ses outils et qui s'engage sur le
-                résultat. Je travaille en direct avec vous pour bâtir vos
-                projets de A à Z, ou j'interviens en renfort sur vos chantiers
-                techniques existants pour sécuriser vos délais.
+                ne propose pas seulement du code, mais des solutions concrètes
+                qui résolvent vos problèmes métiers. Pas de jargon, juste des
+                résultats.
               </p>
               <p className="text-sm font-mono text-primary/90 italic">
-                → Disponible en mode Studio (Projet complet) ou en mode Régie
-                (Renfort d'équipe expert).
+                → Disponible pour bâtir vos projets de A à Z ou sécuriser vos
+                chantiers techniques existants.
               </p>
             </motion.div>
 
