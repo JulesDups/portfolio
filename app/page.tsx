@@ -12,14 +12,11 @@ import {
   useTransform,
 } from "framer-motion";
 import {
-  ArrowRight,
-  Calendar,
+  Check,
   ChevronDown,
   ClipboardCopy,
-  Clock,
   Code2,
   Github,
-  Hammer,
   Layers,
   Linkedin,
   Mail,
@@ -710,18 +707,18 @@ const Project = () => {
 
 const AIArchitect = () => {
   const [idea, setIdea] = useState("");
-  const [activeTool, setActiveTool] = useState("blueprint"); // blueprint | roadmap
+  const [activeTool, setActiveTool] = useState("estimate"); // estimate | brief
 
-  const [blueprint, setBlueprint] = useState<any>(null);
-  const [roadmap, setRoadmap] = useState<any>(null);
+  const [estimate, setEstimate] = useState<any>(null);
+  const [brief, setBrief] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const handleGenerate = async () => {
     if (!idea.trim()) return;
     setLoading(true);
-    setBlueprint(null);
-    setRoadmap(null);
+    setEstimate(null);
+    setBrief(null);
     setError(false);
 
     // Appel au Proxy Vercel
@@ -729,8 +726,8 @@ const AIArchitect = () => {
 
     setLoading(false);
     if (result) {
-      if (activeTool === "blueprint") setBlueprint(result);
-      if (activeTool === "roadmap") setRoadmap(result);
+      if (activeTool === "estimate") setEstimate(result);
+      if (activeTool === "brief") setBrief(result);
     } else {
       setError(true);
     }
@@ -758,24 +755,24 @@ const AIArchitect = () => {
         {/* Tools Switcher */}
         <div className="flex justify-center mb-8 gap-4">
           <button
-            onClick={() => setActiveTool("blueprint")}
+            onClick={() => setActiveTool("estimate")}
             className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
-              activeTool === "blueprint"
+              activeTool === "estimate"
                 ? "bg-foreground text-background border-foreground"
                 : "bg-transparent text-foreground border-foreground/20 hover:border-primary"
             }`}
           >
-            1. PLAN TECHNIQUE
+            💰 ESTIMATION & BUDGET
           </button>
           <button
-            onClick={() => setActiveTool("roadmap")}
+            onClick={() => setActiveTool("brief")}
             className={`px-6 py-2 font-mono text-sm border-2 transition-all ${
-              activeTool === "roadmap"
+              activeTool === "brief"
                 ? "bg-foreground text-background border-foreground"
                 : "bg-transparent text-foreground border-foreground/20 hover:border-primary"
             }`}
           >
-            2. PLANNING CHANTIER
+            📋 CAHIER DES CHARGES
           </button>
         </div>
 
@@ -788,22 +785,18 @@ const AIArchitect = () => {
             htmlFor="ai-idea-input"
             className="block font-mono text-xs font-bold text-foreground mb-2 uppercase items-center gap-2"
           >
-            {activeTool === "blueprint" ? (
-              <Layers size={14} aria-hidden="true" />
-            ) : (
-              <Calendar size={14} aria-hidden="true" />
-            )}
-            {activeTool === "blueprint"
-              ? "Description du système"
-              : "Périmètre du projet"}
+            {activeTool === "estimate" ? "💰" : "📋"}
+            {activeTool === "estimate"
+              ? "Description de votre projet"
+              : "Décrivez votre besoin en détail"}
           </label>
           <textarea
             id="ai-idea-input"
             className="w-full bg-background border-2 border-foreground/20 p-4 font-mono text-sm text-foreground focus:outline-none focus:border-primary min-h-[100px] mb-4 resize-none"
             placeholder={
-              activeTool === "blueprint"
-                ? "Ex: Une marketplace pour artisans locaux..."
-                : "Ex: Une application SaaS de gestion de stock..."
+              activeTool === "estimate"
+                ? "Ex: Site e-commerce pour vendre des bijoux artisanaux avec paiement en ligne et gestion des stocks"
+                : "Ex: Application mobile pour gérer les réservations de mon restaurant avec confirmation automatique par SMS"
             }
             value={idea}
             onChange={(e) => setIdea(e.target.value)}
@@ -820,122 +813,229 @@ const AIArchitect = () => {
               ) : (
                 <>
                   <Sparkles size={16} />{" "}
-                  {activeTool === "blueprint"
-                    ? "GÉNÉRER LE PLAN"
-                    : "CALCULER LE PLANNING"}
+                  {activeTool === "estimate"
+                    ? "OBTENIR L'ESTIMATION"
+                    : "GÉNÉRER LE BRIEF"}
                 </>
               )}
             </button>
           </div>
         </div>
 
-        {/* Result: BLUEPRINT */}
-        {blueprint && activeTool === "blueprint" && (
+        {/* Result: ESTIMATE */}
+        {estimate && activeTool === "estimate" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-12 bg-card border-4 border-primary p-8 relative max-w-3xl mx-auto shadow-[8px_8px_0px_0px_#bf2c23]"
+          >
+            {/* Header avec prix en gros */}
+            <div className="text-center mb-8 pb-6 border-b-2 border-dashed border-foreground/10">
+              <div className="text-sm font-mono text-foreground/60 mb-2">
+                {estimate.projectType} • Complexité : {estimate.complexity}
+              </div>
+              <div className="text-5xl font-bold text-primary mb-2">
+                {estimate.estimatedBudget}
+              </div>
+              <div className="text-sm font-mono text-foreground/60">
+                Durée estimée : {estimate.estimatedDuration}
+              </div>
+            </div>
+
+            {/* Offre recommandée */}
+            <div className="bg-secondary/20 border-l-4 border-secondary p-6 mb-6">
+              <h4 className="font-serif text-xl mb-2 text-foreground flex items-center gap-2">
+                <Sparkles size={18} className="text-secondary" />
+                Offre recommandée : {estimate.recommendedPlan}
+              </h4>
+            </div>
+
+            {/* Fonctionnalités clés */}
+            <div className="mb-8">
+              <h5 className="font-mono text-sm font-bold mb-4 text-foreground uppercase">
+                ✓ Fonctionnalités incluses :
+              </h5>
+              <ul className="space-y-3">
+                {estimate.keyFeatures.map((feat: string, i: number) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <Check className="text-primary mt-1 shrink-0" size={18} />
+                    <span className="text-foreground/90">{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center pt-6 border-t-2 border-dashed border-foreground/10">
+              <p className="mb-4 italic text-foreground/80">
+                {estimate.nextSteps}
+              </p>
+              <button
+                onClick={() => {
+                  const message = `Projet : ${estimate.projectType}\nOffre : ${estimate.recommendedPlan}\nBudget estimé : ${estimate.estimatedBudget}\nDurée : ${estimate.estimatedDuration}`;
+                  const contactSection = document.getElementById("contact");
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+                className="bg-primary text-white px-8 py-3 font-mono text-sm border-2 border-primary hover:bg-white hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#1f4045] hover:shadow-[2px_2px_0px_0px_#1f4045] hover:translate-y-[2px] hover:translate-x-[2px]"
+              >
+                DEMANDER UN DEVIS DÉTAILLÉ
+              </button>
+            </div>
+
+            <p className="text-[10px] font-mono text-foreground/40 mt-6 text-center uppercase tracking-widest">
+              ⚠ NOTE : CETTE ESTIMATION EST GÉNÉRÉE PAR UNE IA ET N&apos;A
+              AUCUNE VALEUR CONTRACTUELLE.
+            </p>
+          </motion.div>
+        )}
+
+        {/* Result: BRIEF */}
+        {brief && activeTool === "brief" && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mt-12 bg-foreground text-background p-8 border-4 border-secondary relative max-w-3xl mx-auto shadow-2xl"
           >
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-secondary text-foreground font-bold font-mono px-4 py-1 text-xs border border-foreground">
-              DOCUMENT TECHNIQUE
+              CAHIER DES CHARGES
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="border-b md:border-b-0 md:border-r border-[#fcfbf7]/20 pb-8 md:pb-0 md:pr-8">
-                <h3 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
-                  <Hammer size={18} /> Fondations (Backend)
-                </h3>
-                <p className="font-sans text-sm leading-relaxed opacity-90">
-                  {blueprint.foundations}
-                </p>
-              </div>
-              <div className="pl-0 md:pl-2">
-                <h3 className="font-serif text-secondary mb-4 flex items-center gap-2 text-xl">
-                  <Layers size={18} /> Façade (Frontend)
-                </h3>
-                <p className="font-sans text-sm leading-relaxed opacity-90">
-                  {blueprint.facade}
-                </p>
-              </div>
-            </div>
+            <h3 className="font-serif text-3xl mb-6">{brief.projectTitle}</h3>
 
-            <div className="bg-primary/20 p-4 border border-primary/50 mb-6 flex gap-4 items-start">
-              <div className="bg-primary p-1 mt-1">
-                <Sparkles size={12} className="text-white" />
-              </div>
+            <div className="space-y-6">
+              {/* Objectif */}
               <div>
-                <h5 className="font-mono text-primary text-xs font-bold mb-1 uppercase">
-                  Point de Vigilance
-                </h5>
-                <p className="font-sans text-sm italic opacity-90">
-                  {blueprint.risk}
+                <h4 className="font-mono text-secondary text-sm mb-2 font-bold uppercase">
+                  🎯 Objectif Métier
+                </h4>
+                <p className="text-background/90 leading-relaxed">
+                  {brief.coreObjective}
                 </p>
+              </div>
+
+              {/* Utilisateurs */}
+              <div>
+                <h4 className="font-mono text-secondary text-sm mb-3 font-bold uppercase">
+                  👥 Utilisateurs Cibles
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {brief.targetUsers.map((user: string, i: number) => (
+                    <span
+                      key={i}
+                      className="bg-secondary text-foreground px-3 py-1 text-sm font-mono"
+                    >
+                      {user}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Must-Have */}
+              <div>
+                <h4 className="font-mono text-secondary text-sm mb-3 font-bold uppercase">
+                  ✓ Fonctionnalités Essentielles (MVP)
+                </h4>
+                <ul className="space-y-2">
+                  {brief.mustHaveFeatures.map((feat: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <Check
+                        size={16}
+                        className="text-secondary mt-1 shrink-0"
+                      />
+                      <span className="text-background/90">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Nice-to-Have */}
+              <div>
+                <h4 className="font-mono text-secondary text-sm mb-3 font-bold uppercase">
+                  + Fonctionnalités Bonus (V2)
+                </h4>
+                <ul className="space-y-2 opacity-70">
+                  {brief.niceToHaveFeatures.map((feat: string, i: number) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="text-secondary">+</span>
+                      <span className="text-background/80">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Contraintes techniques */}
+              <div className="bg-background/10 p-4 border-l-4 border-secondary">
+                <h4 className="font-mono text-secondary text-xs mb-2 font-bold uppercase">
+                  Contraintes Techniques
+                </h4>
+                <p className="text-sm text-background/80">
+                  {brief.technicalConstraints}
+                </p>
+              </div>
+
+              {/* Scope */}
+              <div className="bg-primary/20 p-4 border border-primary/50">
+                <h4 className="font-mono text-primary text-xs mb-2 font-bold uppercase">
+                  Recommandation
+                </h4>
+                <p className="text-sm">{brief.estimatedScope}</p>
+              </div>
+
+              {/* CTA */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-background/20">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      JSON.stringify(brief, null, 2),
+                    );
+                    alert("Cahier des charges copié dans le presse-papier !");
+                  }}
+                  className="flex-1 bg-background text-foreground px-6 py-3 font-mono text-sm hover:bg-secondary transition-colors border-2 border-background"
+                >
+                  📋 COPIER LE BRIEF
+                </button>
+                <button
+                  onClick={() => {
+                    const message = `Projet : ${brief.projectTitle}\n\nJ'aimerais discuter de ce projet avec vous.`;
+                    const contactSection = document.getElementById("contact");
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: "smooth" });
+                    }
+                  }}
+                  className="flex-1 bg-primary text-white px-6 py-3 font-mono text-sm hover:bg-white hover:text-primary transition-colors border-2 border-primary"
+                >
+                  DEMANDER UN DEVIS
+                </button>
               </div>
             </div>
 
-            <div className="text-center border-t border-[#fcfbf7]/10 pt-6">
-              <p className="font-serif text-lg text-secondary">
-                "{blueprint.analogy}"
-              </p>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Result: ROADMAP */}
-        {roadmap && activeTool === "roadmap" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mt-12 bg-card border-4 border-foreground relative max-w-3xl mx-auto shadow-[8px_8px_0px_0px_#1f4045]"
-          >
-            <div className="bg-foreground text-background px-4 py-2 font-mono text-sm flex justify-between items-center">
-              <span>PLANNING_PREVISIONNEL.GAN</span>
-              <Clock size={14} />
-            </div>
-
-            <div className="p-8 space-y-6">
-              {roadmap.map((phase: any, idx: number) => (
-                <div
-                  key={idx}
-                  className="relative pl-8 border-l-2 border-foreground/20 last:border-0 pb-2"
-                >
-                  <div className="absolute left-[-9px] top-0 w-4 h-4 bg-primary border-2 border-[#f4f1ea] rounded-full"></div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-serif text-foreground text-xl font-bold">
-                      {phase.phase}
-                    </h3>
-                    <span className="font-mono text-xs bg-foreground/10 px-2 py-1 text-foreground">
-                      {phase.duration}
-                    </span>
-                  </div>
-                  <ul className="space-y-2">
-                    {phase.tasks.map((task: any, tIdx: number) => (
-                      <li
-                        key={tIdx}
-                        className="flex items-center gap-2 font-sans text-sm text-foreground/80"
-                      >
-                        <ArrowRight size={12} className="text-secondary" />{" "}
-                        {task}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-foreground/5 p-4 text-center font-mono text-xs text-foreground/60 border-t border-foreground/10">
-              * Estimation purement indicative générée par IA.
-            </div>
+            <p className="text-[10px] font-mono text-background/40 mt-8 text-center uppercase tracking-widest">
+              ⚠ NOTE : CE CAHIER DES CHARGES EST UNE ÉBAUCHE GÉNÉRÉE PAR IA. UN
+              AUDIT HUMAIN EST INDISPENSABLE.
+            </p>
           </motion.div>
         )}
 
         {error && (
-          <div className="mt-8 text-center text-primary font-mono text-sm bg-primary/10 p-4 border border-primary">
-            <strong>Erreur Backend :</strong> Impossible de joindre le bureau
-            d'études (Route /api/gemini introuvable).
-            <br />
-            Si vous êtes sur la Preview, c'est normal. Veuillez déployer le
-            projet sur Vercel.
+          <div className="mt-8 text-center text-primary font-mono text-sm bg-primary/10 p-6 border-2 border-primary shadow-[4px_4px_0px_0px_#bf2c23]">
+            <strong className="block mb-2 text-base uppercase font-serif">
+              ⚠ Erreur Technique : Accès au Serveur IA Impossible
+            </strong>
+            <div className="text-xs opacity-80 leading-relaxed text-left max-w-md mx-auto space-y-2">
+              <p>
+                1. <strong>Clé API manquante</strong> : Vérifiez que votre
+                fichier <code className="bg-primary/20 px-1">.env</code>{" "}
+                contient bien une{" "}
+                <code className="bg-primary/20 px-1">GEMINI_API_KEY</code>.
+              </p>
+              <p>
+                2. <strong>Build / Déploiement</strong> : Si vous êtes en
+                production, assurez-vous que les variables d&apos;environnement
+                sont configurées dans votre dashboard de déploiement.
+              </p>
+            </div>
           </div>
         )}
       </div>
@@ -1018,7 +1118,7 @@ const Contact = ({ prefill }: { prefill?: string }) => {
         <p className="font-sans text-background/80 mb-12 text-lg max-w-2xl mx-auto">
           Vous avez un projet complexe ? Vous cherchez une expertise directe,
           sans filtre ?<br />
-          Discutons de votre vision, d'artisan à porteur de projet.
+          Discutons de votre vision, d&apos;artisan à porteur de projet.
         </p>
 
         {/* EMAIL DRAFTER WIDGET */}
@@ -1034,8 +1134,8 @@ const Contact = ({ prefill }: { prefill?: string }) => {
             <>
               <p className="text-sm text-background mb-4">
                 Vous ne savez pas par où commencer ? Listez vos besoins (ex:
-                "Refonte site e-commerce, budget 5k, délai 2 mois"), je rédige
-                l'email pour vous.
+                &quot;Refonte site e-commerce, budget 5k, délai 2 mois&quot;),
+                je rédige l'email pour vous.
               </p>
               <div className="flex gap-2">
                 <input
