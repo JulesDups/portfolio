@@ -76,14 +76,29 @@ const DATA = {
       techs: ["CI/CD", "Conteneurisation", "Tests Automatisés", "Versioning"],
     },
   ],
-  project: {
-    title: "Pelote Manager",
-    context:
-      "Digitalisation complète de championnats de Pelote Basque (Gomme pleine).",
-    challenge:
-      "Complexité algorithmique pour la gestion des créneaux et règles de tournois.",
-    stack: ["Frontend Moderne", "Backend Robuste", "Base de Données"],
-  },
+  projects: [
+    {
+      id: "pelote-manager",
+      title: "Pelote Manager",
+      context:
+        "Digitalisation complète de championnats de Pelote Basque (Gomme pleine).",
+      challenge:
+        "Complexité algorithmique pour la gestion des créneaux et règles de tournois.",
+      stack: ["Frontend Moderne", "Backend Robuste", "Base de Données"],
+      url: "https://www.pelote-manager.com/",
+    },
+    {
+      id: "amor",
+      title: "AMO'R",
+      subtitle: "Assistance à Maîtrise d'Ouvrage & Rénovations",
+      context:
+        "Portfolio vitrine moderne pour services d'AMO au Pays Basque et Sud Landes.",
+      challenge:
+        "Scrollytelling fluide + Design basque authentique + Performance optimale.",
+      stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+      url: "https://www.amo-r.eu/",
+    },
+  ],
 };
 
 // --- API CLIENT (Le lien vers gemini.ts) ---
@@ -586,117 +601,188 @@ const Workshop = () => {
   );
 };
 
-const Project = () => {
+const Projects = () => {
   return (
     <section
       id="projects"
-      className="py-32 bg-foreground text-background relative overflow-hidden"
+      className="py-32 bg-background text-foreground relative overflow-hidden"
     >
-      <div
-        className="absolute inset-0 pointer-events-none opacity-10"
-        style={{
-          backgroundImage:
-            "linear-gradient(var(--background) 1px, transparent 1px), linear-gradient(90deg, var(--background) 1px, transparent 1px)",
-          backgroundSize: "50px 50px",
-        }}
-      ></div>
-
-      <FloatingPixel
-        className="absolute top-10 right-10 z-0 opacity-40 rotate-12"
-        duration={4}
-      >
-        <motion.div
-          whileHover={{ scale: 1.1, rotate: 15 }}
-          transition={{ type: "spring", stiffness: 300 }}
-        >
-          <PixelPala size={160} />
-        </motion.div>
-      </FloatingPixel>
-
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-5 space-y-8">
-            <span className="inline-block font-mono text-primary bg-primary/20 text-sm border border-primary px-3 py-1 mb-2">
-              PROJET SUR-MESURE
-            </span>
-            <h2 className="font-serif text-5xl font-bold leading-none text-background">
-              {DATA.project.title}
-            </h2>
+        {/* Header */}
+        <div className="mb-16 text-center">
+          <span className="font-mono text-primary text-sm block mb-2">{`> 03. RÉALISATIONS`}</span>
+          <h2 className="font-serif text-4xl md:text-5xl text-foreground font-bold">
+            Projets Sur-Mesure
+          </h2>
+          <p className="font-sans text-foreground/70 mt-4 max-w-lg mx-auto">
+            Chaque projet est une solution unique, pensée pour répondre à des
+            besoins métiers concrets.
+          </p>
+        </div>
 
-            <p className="font-sans text-lg text-background/80 leading-relaxed border-l-2 border-secondary pl-4">
-              {DATA.project.context}
-            </p>
+        {/* Projects Grid */}
+        <div className="space-y-32">
+          {DATA.projects.map((project: any, index: number) => {
+            return (
+              <motion.div
+                key={project.id}
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative bg-card text-foreground p-8 md:p-12 border-2 border-foreground/10 dark:border-foreground/20 shadow-xl"
+              >
+                <div
+                  className="absolute inset-0 pointer-events-none opacity-5"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(90deg, var(--foreground) 1px, transparent 1px)",
+                    backgroundSize: "40px 40px",
+                  }}
+                ></div>
 
-            <div className="bg-background/5 p-6 border border-[#fcfbf7]/10 relative">
-              <PixelDots />
-              <h3 className="font-serif text-secondary mb-2 flex items-center gap-2 text-lg font-bold">
-                <PenTool size={16} /> Le Défi Technique
-              </h3>
-              <p className="text-sm font-mono text-background/70">
-                {`> ${DATA.project.challenge}`}
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 pt-4">
-              {DATA.project.stack.map((t, i) => (
-                <span
-                  key={i}
-                  className="font-mono text-xs text-[#1f4045] bg-secondary px-3 py-1 border-b-2 border-primary font-bold"
+                {/* Floating Pixel Icon */}
+                <FloatingPixel
+                  className={`absolute ${
+                    index % 2 === 0 ? "top-8 right-8" : "top-8 left-8"
+                  } z-0 opacity-30 ${index % 2 === 0 ? "rotate-12" : "-rotate-12"}`}
+                  duration={4 + index}
                 >
-                  {t.toUpperCase()}
-                </span>
-              ))}
-            </div>
-          </div>
+                  <motion.div
+                    whileHover={{
+                      scale: 1.1,
+                      rotate: index % 2 === 0 ? 15 : -15,
+                    }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    {index % 2 === 0 ? (
+                      <PixelPala size={120} />
+                    ) : (
+                      <PixelEtxe size={100} />
+                    )}
+                  </motion.div>
+                </FloatingPixel>
 
-          <div className="lg:col-span-7">
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="relative p-2 bg-foreground"
-              style={{ boxShadow: "6px 6px 0px 0px #bf2c23" }}
-            >
-              <div className="bg-background h-8 flex items-center px-4 gap-2 border-b-2 border-foreground">
-                <div className="w-3 h-3 bg-primary"></div>
-                <div className="w-3 h-3 bg-secondary"></div>
-                <div className="grow text-right text-xs font-mono text-foreground opacity-50">
-                  pelote-manager.exe
-                </div>
-              </div>
+                <div
+                  className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 ${
+                    index % 2 === 0 ? "" : "lg:grid-flow-dense"
+                  }`}
+                >
+                  {/* Content */}
+                  <div
+                    className={`lg:col-span-5 space-y-6 ${
+                      index % 2 === 0 ? "" : "lg:col-start-8"
+                    }`}
+                  >
+                    <span className="inline-block font-mono text-primary bg-primary/10 dark:bg-primary/20 text-sm border border-primary/30 dark:border-primary/40 px-3 py-1">
+                      PROJET #{String(index + 1).padStart(2, "0")}
+                    </span>
 
-              <div className="aspect-video bg-card p-6 relative overflow-hidden group border-2 border-[#fcfbf7]">
-                <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-foreground/20 pb-4">
-                  <div className="w-32 h-6 bg-foreground/20 rounded-none"></div>
-                  <div className="w-20 h-8 bg-primary rounded-none text-white font-mono text-xs flex items-center justify-center">
-                    TOURNOI+
+                    <div>
+                      <h3 className="font-serif text-4xl md:text-5xl font-bold leading-none mb-2 text-foreground">
+                        {project.title}
+                      </h3>
+                      {project.subtitle && (
+                        <p className="font-sans text-sm text-foreground/60 italic">
+                          {project.subtitle}
+                        </p>
+                      )}
+                    </div>
+
+                    <p className="font-sans text-lg leading-relaxed border-l-2 border-primary pl-4 text-foreground/80">
+                      {project.context}
+                    </p>
+
+                    <div className="bg-foreground/5 dark:bg-foreground/10 p-6 border border-foreground/10 relative">
+                      <PixelDots />
+                      <h4 className="font-serif text-primary mb-2 flex items-center gap-2 text-lg font-bold">
+                        <PenTool size={16} /> Le Défi Technique
+                      </h4>
+                      <p className="text-sm font-mono text-foreground/70">
+                        {`> ${project.challenge}`}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      {project.stack.map((tech: string, i: number) => (
+                        <span
+                          key={i}
+                          className="font-mono text-xs px-3 py-1 border-b-2 font-bold bg-primary text-white border-primary-dark dark:border-primary"
+                        >
+                          {tech.toUpperCase()}
+                        </span>
+                      ))}
+                    </div>
+
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 font-mono text-sm px-6 py-3 border-2 transition-all bg-foreground text-background border-foreground hover:bg-primary hover:border-primary shadow-[4px_4px_0px_0px] shadow-primary hover:shadow-secondary hover:translate-y-[2px] hover:translate-x-[2px]"
+                    >
+                      <Terminal size={16} aria-hidden="true" /> VOIR LE PROJET
+                    </a>
+                  </div>
+
+                  {/* Visual Mockup */}
+                  <div
+                    className={`lg:col-span-7 ${
+                      index % 2 === 0 ? "" : "lg:col-start-1 lg:row-start-1"
+                    }`}
+                  >
+                    <div
+                      className="relative p-2 bg-foreground dark:bg-foreground/90"
+                      style={{
+                        boxShadow: "6px 6px 0px 0px var(--primary)",
+                      }}
+                    >
+                      <div className="bg-background h-8 flex items-center px-4 gap-2 border-b-2 border-foreground/20">
+                        <div className="w-3 h-3 bg-primary"></div>
+                        <div className="w-3 h-3 bg-secondary"></div>
+                        <div className="grow text-right text-xs font-mono text-foreground opacity-50">
+                          {project.id}.app
+                        </div>
+                      </div>
+
+                      <div className="aspect-video bg-card dark:bg-background p-6 relative overflow-hidden group border-2 border-foreground/10">
+                        <div className="flex justify-between items-center mb-8 border-b-2 border-dashed border-foreground/20 pb-4">
+                          <div className="w-32 h-6 bg-primary/20 rounded-none"></div>
+                          <div className="w-20 h-8 bg-foreground rounded-none text-background font-mono text-xs flex items-center justify-center">
+                            {project.id === "pelote-manager"
+                              ? "TOURNOI+"
+                              : "AMO'R"}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-4 gap-4">
+                          {[...Array(4)].map((_: any, i: number) => (
+                            <div
+                              key={i}
+                              className="h-20 border-2 p-2 relative bg-background dark:bg-card border-foreground/10"
+                            >
+                              <div className="w-4 h-4 bg-primary absolute top-2 right-2"></div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Overlay avec lien au hover - entièrement cliquable */}
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 bg-foreground/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                          <div className="bg-primary text-white px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-white hover:bg-white hover:text-primary transition-colors pointer-events-none">
+                            <Terminal size={16} /> VOIR LE SITE
+                          </div>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
-                <div className="grid grid-cols-4 gap-4 mb-8">
-                  {[...Array(4)].map((_, i) => (
-                    <div
-                      key={i}
-                      className="h-20 bg-background border-2 border-foreground/10 p-2 relative"
-                    >
-                      <div className="w-4 h-4 bg-secondary absolute top-2 right-2"></div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="absolute inset-0 bg-foreground/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href="https://www.pelote-manager.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-primary text-[#fcfbf7] px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-[#fcfbf7] hover:bg-background hover:text-primary transition-colors shadow-[4px_4px_0px_0px_#fcfbf7] hover:shadow-[2px_2px_0px_0px_#bf2c23] hover:translate-y-[2px] hover:translate-x-[2px]"
-                  >
-                    <Terminal size={16} aria-hidden="true" /> VOIR LE CODE
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -734,7 +820,7 @@ const AIArchitect = () => {
   };
 
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
+    <section className="py-24 bg-card relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-10 bg-[linear-gradient(rgba(191,44,35,0.2)_1px,transparent_1px),linear-gradient(90deg,rgba(191,44,35,0.2)_1px,transparent_1px)] bg-size-[20px_20px]"></div>
 
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
@@ -1306,7 +1392,7 @@ export default function PortfolioApp() {
         <PixelSeparator />
         <Workshop />
         <PixelSeparator />
-        <Project />
+        <Projects />
         <PixelSeparator />
         <Pricing onPlanSelect={handlePlanSelection} />
         <PixelSeparator />
