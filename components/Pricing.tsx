@@ -8,14 +8,14 @@ const PLANS = [
     type: "Sécurisation Technique",
     price: "450€",
     frequency: "/ jour",
-    desc: "Sécurisez vos chantiers critiques. J&rsquo;interviens pour débloquer vos dettes techniques et garantir vos mises en production.",
+    desc: "Sécurisez vos chantiers critiques. J'interviens pour débloquer vos dettes techniques et garantir vos mises en production.",
     features: [
       "Élimination des bugs critiques",
       "Sécurisation des délais de mise en production",
       "Audit & Refonte de code legacy",
       "Transmission de savoir-faire aux équipes",
     ],
-    recurring: "Disponibilité&nbsp;: Janvier 2026",
+    recurring: "Disponibilité : Janvier 2026",
     icon: <Users size={24} aria-hidden="true" />,
     isTjm: true,
   },
@@ -28,10 +28,10 @@ const PLANS = [
       "Conversion optimisée (Cible business)",
       "Performance fulgurante (Score SEO 100/100)",
       "Design unique & sur-mesure",
-      "Mobile first&nbsp;: Responsive & Accessible",
+      "Mobile first : Responsive & Accessible",
       "Expérience utilisateur sans friction",
     ],
-    recurring: "Maintenance&nbsp;: Sur mesure",
+    recurring: "Maintenance : Sur mesure",
     icon: <Zap size={24} aria-hidden="true" />,
   },
   {
@@ -41,11 +41,11 @@ const PLANS = [
     desc: "Digitalisez vos processus manuels. Une structure robuste pour automatiser vos tâches répétitives et libérer votre croissance.",
     features: [
       "Automatisation des workflows complexes",
-      "Gain de temps&nbsp;: jusqu&rsquo;à x4 sur les tâches",
+      "Gain de temps : jusqu'à x4 sur les tâches",
       "Gestion centralisée de vos données métier",
-      "Formation & Accompagnement à l&rsquo;outil",
+      "Formation & Accompagnement à l'outil",
     ],
-    recurring: "Maintenance&nbsp;: Sur mesure",
+    recurring: "Maintenance : Sur mesure",
     icon: <Hammer size={24} aria-hidden="true" />,
     popular: true,
   },
@@ -53,14 +53,14 @@ const PLANS = [
     name: "LA CITADELLE",
     type: "Centre de Contrôle (SaaS)",
     price: "Sur Devis",
-    desc: "L&rsquo;architecture ultime pour dominer votre marché. Transformez votre vision en plateforme capable de travailler pour vous 24/7.",
+    desc: "L'architecture ultime pour dominer votre marché. Transformez votre vision en plateforme capable de travailler pour vous 24/7.",
     features: [
       "Architecture stratégique (Scalabilité infinie)",
       "Plateforme multi-tenants / multi-rôles",
       "Tableaux de bord stratégiques & ROI",
       "Sécurité bancaire & Haute disponibilité",
     ],
-    recurring: "Maintenance&nbsp;: Sur mesure",
+    recurring: "Maintenance : Sur mesure",
     icon: <Shield size={24} aria-hidden="true" />,
   },
 ];
@@ -133,7 +133,7 @@ export const Pricing = ({
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 font-mono">
+                <div className="absolute top-0 right-0 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 font-mono">
                   RECOMMANDÉ
                 </div>
               )}
@@ -210,9 +210,9 @@ export const Pricing = ({
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   className={`w-full py-3 font-mono text-sm border-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     plan.popular
-                      ? "bg-primary text-white border-primary hover:bg-white hover:text-primary"
+                      ? "bg-primary text-primary-foreground border-primary hover:bg-white hover:text-primary"
                       : plan.isTjm
-                        ? "bg-secondary text-white border-secondary hover:bg-white hover:text-secondary"
+                        ? "bg-secondary text-secondary-foreground border-secondary hover:bg-white hover:text-secondary"
                         : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
                   }`}
                   aria-label={`${plan.isTjm ? "Voir le profil" : "Demander le plan"} ${plan.name}`}
@@ -232,10 +232,10 @@ export const Pricing = ({
               * Note de l'Architecte
             </h4>
             <p className="leading-relaxed">
-              Chaque projet est unique. Les tarifs &laquo;&nbsp;dès&nbsp;&raquo;
-              sont donnés à titre indicatif pour une surface fonctionnelle
-              standard. Un devis ferme et définitif sera établi uniquement après
-              étude détaillée de votre cahier des charges, afin de garantir une
+              Chaque projet est unique. Les tarifs &laquo; dès &raquo; sont
+              donnés à titre indicatif pour une surface fonctionnelle standard.
+              Un devis ferme et définitif sera établi uniquement après étude
+              détaillée de votre cahier des charges, afin de garantir une
               architecture adaptée à vos contraintes réelles.
             </p>
           </div>

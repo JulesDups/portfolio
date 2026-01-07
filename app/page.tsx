@@ -70,7 +70,7 @@ const DATA = {
       ],
     },
     {
-      category: "L&rsquo;Établi (DevOps & Outils)",
+      category: "L'Établi (DevOps & Outils)",
       icon: <Terminal size={20} />,
       desc: "Mon environnement de travail optimisé.",
       techs: ["CI/CD", "Conteneurisation", "Tests Automatisés", "Versioning"],
@@ -90,7 +90,7 @@ const DATA = {
     {
       id: "amor",
       title: "AMO'R",
-      subtitle: "Assistance à Maîtrise d&rsquo;Ouvrage & Rénovation",
+      subtitle: "Assistance à Maîtrise d'Ouvrage & Rénovation",
       context:
         "Portfolio vitrine moderne pour services d'AMO au Pays Basque et Sud Landes.",
       challenge:
@@ -454,25 +454,25 @@ const About = () => {
             >
               <p>
                 Libérez-vous des frictions numériques pour vous concentrer sur
-                l&rsquo;essentiel&nbsp;: la croissance de votre business.
+                l'essentiel : la croissance de votre business.
               </p>
               <p>
-                <strong>Site vitrine, e-commerce ou refonte&nbsp;?</strong> Je
+                <strong>Site vitrine, e-commerce ou refonte ?</strong> Je
                 transforme votre vision en une présence digitale qui convertit.
-                Chaque projet est pensé pour capter l&rsquo;attention, inspirer
+                Chaque projet est pensé pour capter l'attention, inspirer
                 confiance et générer des résultats mesurables dès le premier
                 jour.
               </p>
               <p>
                 Votre temps est votre ressource la plus précieuse. Je crée des
                 outils personnalisés qui travaillent pour vous, et non
-                l&rsquo;inverse. En transformant vos workflows complexes en
-                solutions fluides, je redonne à vos équipes{" "}
-                <strong>jusqu&rsquo;à 4 fois plus de temps</strong> pour créer
-                de la valeur.
+                l'inverse. En transformant vos workflows complexes en solutions
+                fluides, je redonne à vos équipes{" "}
+                <strong>jusqu'à 4 fois plus de temps</strong> pour créer de la
+                valeur.
               </p>
               <p>
-                En tant qu&rsquo;
+                En tant qu'
                 <strong>Architecte Numérique Indépendant</strong>, je ne propose
                 pas seulement du code, mais des solutions concrètes qui
                 résolvent vos problèmes métiers. Pas de jargon, juste des
@@ -538,7 +538,7 @@ const About = () => {
               </div>
             </div>
 
-            <div className="absolute bottom-8 -right-8 bg-primary text-white py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
+            <div className="absolute bottom-8 -right-8 bg-primary text-primary-foreground py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
               <Terminal size={14} /> FREELANCE_STUDIO
             </div>
           </motion.div>
@@ -780,7 +780,7 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="absolute inset-0 bg-foreground/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         >
-                          <div className="bg-primary text-white px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-white hover:bg-white hover:text-primary transition-colors pointer-events-none">
+                          <div className="bg-primary text-primary-foreground px-6 py-3 font-mono text-sm flex items-center gap-2 border-2 border-white hover:bg-white hover:text-primary transition-colors pointer-events-none">
                             <Terminal size={16} /> VOIR LE SITE
                           </div>
                         </a>
@@ -1157,13 +1157,13 @@ const Philosophy = () => {
           <Code2 size={48} className="mx-auto text-primary mb-6 opacity-80" />
 
           <h3 className="font-serif text-3xl text-foreground mb-6">
-            «&nbsp;Du code propre pour des projets qui durent.&nbsp;»
+            « Du code propre pour des projets qui durent. »
           </h3>
           <p className="font-sans text-lg text-foreground/80 italic leading-loose font-medium">
-            Mon engagement de freelance&nbsp;: vous livrer une architecture
-            logicielle aussi solide qu&rsquo;une charpente en chêne et aussi
-            fonctionnelle qu&rsquo;une interface bien pensée. Sans les coûts
-            cachés d&rsquo;une agence.
+            Mon engagement de freelance : vous livrer une architecture
+            logicielle aussi solide qu'une charpente en chêne et aussi
+            fonctionnelle qu'une interface bien pensée. Sans les coûts cachés
+            d'une agence.
           </p>
         </motion.div>
       </div>
@@ -1210,10 +1210,10 @@ const Contact = ({ prefill }: { prefill?: string }) => {
           Architecte Indépendant
         </h2>
         <p className="font-sans text-background/80 mb-12 text-lg max-w-2xl mx-auto">
-          Vous avez un projet complexe&nbsp;? Vous cherchez une expertise
-          directe, sans filtre&nbsp;?
+          Vous avez un projet complexe ? Vous cherchez une expertise directe,
+          sans filtre ?
           <br />
-          Discutons de votre vision, d&rsquo;artisan à porteur de projet.
+          Discutons de votre vision, d'artisan à porteur de projet.
         </p>
 
         {/* EMAIL DRAFTER WIDGET */}
@@ -1228,9 +1228,9 @@ const Contact = ({ prefill }: { prefill?: string }) => {
           {!draft ? (
             <>
               <p className="text-sm text-background mb-4">
-                Vous ne savez pas par où commencer&nbsp;? Listez vos besoins
-                (ex&nbsp;: &quot;Refonte site e-commerce, budget 5k, délai 2
-                mois&quot;), je rédige l&rsquo;email pour vous.
+                Vous ne savez pas par où commencer ? Listez vos besoins (ex :
+                &quot;Refonte site e-commerce, budget 5k, délai 2 mois&quot;),
+                je rédige l'email pour vous.
               </p>
               <div className="flex gap-2">
                 <input

@@ -24,14 +24,14 @@ export default function LegalPage() {
               01. Éditeur du site
             </h2>
             <p>
-              <strong>Éditeur&nbsp;:</strong> Jules Dupuis
+              <strong>Éditeur :</strong> Jules Dupuis
               <br />
-              <strong>Statut&nbsp;:</strong> Micro-entrepreneur (Immatriculation
+              <strong>Statut :</strong> Micro-entrepreneur (Immatriculation
               en cours)
               <br />
-              <strong>Adresse&nbsp;:</strong> Anglet, France
+              <strong>Adresse :</strong> Anglet, France
               <br />
-              <strong>Contact&nbsp;:</strong> contact@julesdupuis.fr
+              <strong>Contact :</strong> contact@julesdupuis.fr
             </p>
           </section>
 
@@ -42,13 +42,13 @@ export default function LegalPage() {
             </h2>
             <ul className="space-y-2">
               <li>
-                <strong>Frontend&nbsp;:</strong> Vercel Inc. (USA)
+                <strong>Frontend :</strong> Vercel Inc. (USA)
               </li>
               <li>
-                <strong>Backend&nbsp;:</strong> Koyeb (France)
+                <strong>Backend :</strong> Koyeb (France)
               </li>
               <li>
-                <strong>Base de Données&nbsp;:</strong> Neon Inc. (USA)
+                <strong>Base de Données :</strong> Neon Inc. (USA)
               </li>
             </ul>
           </section>
@@ -60,21 +60,21 @@ export default function LegalPage() {
             </h2>
             <div className="space-y-4">
               <p>
-                <strong>Le Produit Fini («&nbsp;Le Build&nbsp;»)&nbsp;:</strong>
+                <strong>Le Produit Fini (« Le Build ») :</strong>
                 <br />
                 Le Prestataire cède au Client la pleine propriété du produit
                 fini (fichiers compilés, interface utilisateur, contenus
                 spécifiques) lors du paiement intégral de la facture finale.
               </p>
               <p>
-                <strong>Les Outils («&nbsp;Le Template&nbsp;»)&nbsp;:</strong>
+                <strong>Les Outils (« Le Template ») :</strong>
                 <br />
                 Le Prestataire conserve la propriété intellectuelle exclusive de
                 ses méthodes, bibliothèques de code génériques et templates de
-                développement. Une licence d&rsquo;utilisation non-exclusive et
-                illimitée est accordée au Client pour l&rsquo;exploitation de ce
+                développement. Une licence d'utilisation non-exclusive et
+                illimitée est accordée au Client pour l'exploitation de ce
                 projet uniquement. La revente ou la duplication du code source
-                structurel pour d&rsquo;autres projets est interdite sans accord
+                structurel pour d'autres projets est interdite sans accord
                 écrit.
               </p>
             </div>
@@ -82,7 +82,7 @@ export default function LegalPage() {
         </div>
 
         <div className="mt-16 pt-8 border-t border-foreground/10 text-center font-mono text-xs text-foreground/50">
-          Dernière mise à jour&nbsp;: {new Date().toLocaleDateString()}
+          Dernière mise à jour : {new Date().toLocaleDateString()}
         </div>
       </div>
     </div>

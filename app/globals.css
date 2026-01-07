@@ -8,20 +8,24 @@ body {
 
 :root {
   --background: #fcfbf7;
-  --foreground: #1f4045;
+  --foreground: #1a3338;
   --primary: #bf2c23;
-  --secondary: #d4a373;
+  --secondary: #855b2f;
   --card: #f4f1ea;
-  --grid-color: #1f4045;
+  --grid-color: #1a3338;
+  --primary-foreground: #fcfbf7;
+  --secondary-foreground: #fcfbf7;
 }
 
 .dark {
   --background: #1f4045;
   --foreground: #e6e4dc;
-  --primary: #bf2c23;
+  --primary: #e84a3f;
   --secondary: #d4a373;
   --card: #2a555c;
   --grid-color: #e6e4dc;
+  --primary-foreground: #1f4045;
+  --secondary-foreground: #1f4045;
 }
 
 body {
@@ -39,6 +43,8 @@ body {
   --color-secondary: var(--secondary);
   --color-card: var(--card);
   --color-grid: var(--grid-color);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --animate-dot-1: dot-1 1.5s steps(1, end) infinite;

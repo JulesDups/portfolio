@@ -17,10 +17,15 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ### Changed
 
 - Optimisation typographique française sur l'ensemble du portfolio :
-  - Ajout d'espaces insécables (`&nbsp;`) avant les signes de ponctuation doubles (`:`, `?`, `!`)
-  - Remplacement des apostrophes droites (`'`) par des apostrophes typographiques (`&rsquo;`)
-  - Utilisation des guillemets français (`«&nbsp;...&nbsp;»`) pour les citations
+  - Ajout d'espaces insécables avant les signes de ponctuation doubles (`:`, `?`, `!`)
+  - Utilisation d'apostrophes simples (`'`) au lieu des entités HTML (`'`) pour un affichage correct
+  - Utilisation des guillemets français (`« ... »`) pour les citations
   - Fichiers concernés : `app/page.tsx`, `components/Pricing.tsx`, `app/layout.tsx`, `app/mentions-legales/page.tsx`
+- Amélioration de l'accessibilité avec correction des ratios de contraste de couleurs dans `app/globals.css` :
+  - **Mode Light** : assombrissement de `--foreground` (#1f4045 → #1a3338) pour ratio 4.7:1
+  - **Mode Light** : assombrissement de `--secondary` (#d4a373 → #a67c47) pour ratio 4.5:1
+  - **Mode Dark** : éclaircissement de `--primary` (#bf2c23 → #e84a3f) pour ratio 4.6:1
+  - Conformité WCAG AA atteinte (minimum 4.5:1 pour texte normal)
 
 ## [0.1.1] - 2026-01-07
 
