@@ -4,9 +4,35 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.julesdupuis.fr"),
   title: "Jules Dupuis | Architecte Numérique à Bayonne & au Pays Basque",
   description:
-    "Jules Dupuis, Développeur Freelance & Architecte Logiciel au Pays Basque",
+    "Jules Dupuis, Développeur Freelance & Architecte Logiciel au Pays Basque. Sites vitrines, applications web et accompagnement digital pour les acteurs locaux.",
+  keywords: [
+    "développeur freelance",
+    "architecte logiciel",
+    "Pays Basque",
+    "Bayonne",
+    "site vitrine",
+    "application web",
+    "saas",
+    "jules dupuis",
+    "jules dupuis portfolio",
+    "Next.js",
+    "React",
+  ],
+  authors: [{ name: "Jules Dupuis" }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     title: "Jules Dupuis | Architecte Numérique",
     description:
@@ -23,6 +49,13 @@ export const metadata: Metadata = {
     ],
     locale: "fr_FR",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jules Dupuis | Architecte Numérique",
+    description:
+      "Développeur Freelance & Architecte Logiciel au Pays Basque. Sites vitrines & Apps.",
+    images: ["/api/og"],
   },
 };
 

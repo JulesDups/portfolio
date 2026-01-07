@@ -7,6 +7,13 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
+### Added
+
+- Configuration `robots.txt` via `app/robots.ts` pour le référencement
+- Génération dynamique `sitemap.xml` via `app/sitemap.ts`
+- Métadonnées Twitter Card pour le partage social
+- Keywords et robots directives pour un SEO optimisé
+
 ## [0.1.1] - 2026-01-07
 
 ### Changed
