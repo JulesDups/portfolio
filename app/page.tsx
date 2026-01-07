@@ -90,7 +90,7 @@ const DATA = {
     {
       id: "amor",
       title: "AMO'R",
-      subtitle: "Assistance à Maîtrise d'Ouvrage & Rénovations",
+      subtitle: "Assistance à Maîtrise d'Ouvrage & Rénovation",
       context:
         "Portfolio vitrine moderne pour services d'AMO au Pays Basque et Sud Landes.",
       challenge:
