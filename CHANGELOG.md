@@ -14,6 +14,14 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 - Métadonnées Twitter Card pour le partage social
 - Keywords et robots directives pour un SEO optimisé
 
+### Changed
+
+- Optimisation typographique française sur l'ensemble du portfolio :
+  - Ajout d'espaces insécables (`&nbsp;`) avant les signes de ponctuation doubles (`:`, `?`, `!`)
+  - Remplacement des apostrophes droites (`'`) par des apostrophes typographiques (`&rsquo;`)
+  - Utilisation des guillemets français (`«&nbsp;...&nbsp;»`) pour les citations
+  - Fichiers concernés : `app/page.tsx`, `components/Pricing.tsx`, `app/layout.tsx`, `app/mentions-legales/page.tsx`
+
 ## [0.1.1] - 2026-01-07
 
 ### Changed

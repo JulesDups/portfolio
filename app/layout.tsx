@@ -7,19 +7,60 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.julesdupuis.fr"),
   title: "Jules Dupuis | Architecte Numérique à Bayonne & au Pays Basque",
   description:
-    "Jules Dupuis, Développeur Freelance & Architecte Logiciel au Pays Basque. Sites vitrines, applications web et accompagnement digital pour les acteurs locaux.",
+    "Développeur Web Freelance au Pays Basque (Bayonne, Biarritz, Anglet). Création de sites vitrines, e-commerce, logiciels de gestion sur-mesure et refonte de sites existants. Devis gratuit.",
   keywords: [
-    "développeur freelance",
-    "architecte logiciel",
-    "Pays Basque",
+    // Recherches principales - Développeur
+    "développeur web pays basque",
+    "développeur freelance bayonne",
+    "développeur freelance biarritz",
+    "développeur web anglet",
+    "développeur web côte basque",
+    "développeur indépendant pays basque",
+
+    // Services - Site Web & Vitrine
+    "création site web pays basque",
+    "création site internet bayonne",
+    "création site web biarritz",
+    "site vitrine pays basque",
+    "site vitrine bayonne",
+    "site vitrine biarritz",
+    "refonte site web",
+    "refonte site internet",
+
+    // Services - E-commerce
+    "création site e-commerce pays basque",
+    "boutique en ligne pays basque",
+    "site marchand bayonne",
+
+    // Services - Applications & SaaS
+    "logiciel de gestion sur mesure",
+    "application de gestion",
+    "logiciel métier",
+    "saas de gestion",
+    "outil de gestion personnalisé",
+    "digitalisation entreprise",
+
+    // Services - Accompagnement
+    "accompagnement digital",
+    "conseil web",
+    "audit site web",
+    "maintenance site web",
+    "migration technologique",
+
+    // Localisation précise
     "Bayonne",
-    "site vitrine",
-    "application web",
-    "saas",
-    "jules dupuis",
-    "jules dupuis portfolio",
-    "Next.js",
-    "React",
+    "Biarritz",
+    "Anglet",
+    "Pays Basque",
+    "64",
+    "Côte Basque",
+    "Sud Landes",
+
+    // Identité
+    "Jules Dupuis",
+    "architecte logiciel",
+    "architecte numérique",
+    "freelance",
   ],
   authors: [{ name: "Jules Dupuis" }],
   robots: {
@@ -34,11 +75,11 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Jules Dupuis | Architecte Numérique",
+    title: "Développeur Web Freelance Pays Basque | Sites Vitrines & SaaS",
     description:
       "Des fondations solides pour les acteurs locaux. Sites vitrines & Apps.",
     url: "https://www.julesdupuis.fr",
-    siteName: "Portfolio Jules Dupuis",
+    siteName: "Jules Dupuis - Développeur Web Freelance",
     images: [
       {
         url: "/api/og",
@@ -52,9 +93,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jules Dupuis | Architecte Numérique",
+    title: "Développeur Web Freelance Pays Basque | Bayonne Biarritz",
     description:
-      "Développeur Freelance & Architecte Logiciel au Pays Basque. Sites vitrines & Apps.",
+      "Sites vitrines, e-commerce & logiciels de gestion sur-mesure au Pays Basque. Devis gratuit.",
     images: ["/api/og"],
   },
 };

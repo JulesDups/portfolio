@@ -8,29 +8,30 @@ const PLANS = [
     type: "Sécurisation Technique",
     price: "450€",
     frequency: "/ jour",
-    desc: "Sécurisez vos chantiers critiques. J'interviens pour débloquer vos dettes techniques et garantir vos mises en production.",
+    desc: "Sécurisez vos chantiers critiques. J&rsquo;interviens pour débloquer vos dettes techniques et garantir vos mises en production.",
     features: [
       "Élimination des bugs critiques",
       "Sécurisation des délais de mise en production",
       "Audit & Refonte de code legacy",
       "Transmission de savoir-faire aux équipes",
     ],
-    recurring: "Disponibilité : Janvier 2026",
+    recurring: "Disponibilité&nbsp;: Janvier 2026",
     icon: <Users size={24} aria-hidden="true" />,
     isTjm: true,
   },
   {
     name: "L'ESQUISSE",
     type: "Conversion & Visibilité",
-    price: "1 500",
+    price: "1 250",
     desc: "Ne perdez plus un seul prospect. Une solution de visibilité ultra-rapide pour capturer votre audience dès les premières secondes.",
     features: [
       "Conversion optimisée (Cible business)",
       "Performance fulgurante (Score SEO 100/100)",
       "Design unique & sur-mesure",
+      "Mobile first&nbsp;: Responsive & Accessible",
       "Expérience utilisateur sans friction",
     ],
-    recurring: "Maintenance : Sur mesure",
+    recurring: "Maintenance&nbsp;: Sur mesure",
     icon: <Zap size={24} aria-hidden="true" />,
   },
   {
@@ -40,11 +41,11 @@ const PLANS = [
     desc: "Digitalisez vos processus manuels. Une structure robuste pour automatiser vos tâches répétitives et libérer votre croissance.",
     features: [
       "Automatisation des workflows complexes",
-      "Gain de temps : jusqu'à x4 sur les tâches",
+      "Gain de temps&nbsp;: jusqu&rsquo;à x4 sur les tâches",
       "Gestion centralisée de vos données métier",
-      "Formation & Accompagnement à l'outil",
+      "Formation & Accompagnement à l&rsquo;outil",
     ],
-    recurring: "Maintenance : Sur mesure",
+    recurring: "Maintenance&nbsp;: Sur mesure",
     icon: <Hammer size={24} aria-hidden="true" />,
     popular: true,
   },
@@ -52,14 +53,14 @@ const PLANS = [
     name: "LA CITADELLE",
     type: "Centre de Contrôle (SaaS)",
     price: "Sur Devis",
-    desc: "L'architecture ultime pour dominer votre marché. Transformez votre vision en plateforme capable de travailler pour vous 24/7.",
+    desc: "L&rsquo;architecture ultime pour dominer votre marché. Transformez votre vision en plateforme capable de travailler pour vous 24/7.",
     features: [
       "Architecture stratégique (Scalabilité infinie)",
       "Plateforme multi-tenants / multi-rôles",
       "Tableaux de bord stratégiques & ROI",
       "Sécurité bancaire & Haute disponibilité",
     ],
-    recurring: "Maintenance : Sur mesure",
+    recurring: "Maintenance&nbsp;: Sur mesure",
     icon: <Shield size={24} aria-hidden="true" />,
   },
 ];
@@ -231,11 +232,11 @@ export const Pricing = ({
               * Note de l'Architecte
             </h4>
             <p className="leading-relaxed">
-              Chaque projet est unique. Les tarifs "dès" sont donnés à titre
-              indicatif pour une surface fonctionnelle standard. Un devis ferme
-              et définitif sera établi uniquement après étude détaillée de votre
-              cahier des charges, afin de garantir une architecture adaptée à
-              vos contraintes réelles.
+              Chaque projet est unique. Les tarifs &laquo;&nbsp;dès&nbsp;&raquo;
+              sont donnés à titre indicatif pour une surface fonctionnelle
+              standard. Un devis ferme et définitif sera établi uniquement après
+              étude détaillée de votre cahier des charges, afin de garantir une
+              architecture adaptée à vos contraintes réelles.
             </p>
           </div>
         </div>
