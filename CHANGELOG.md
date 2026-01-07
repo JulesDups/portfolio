@@ -7,8 +7,17 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
 ## [Non publié]
 
+## [0.1.1] - 2026-01-07
+
 ### Changed
 
+- Mise à jour majeure de la section "À propos" ("Le Manifeste")
+- Refonte complète de la section Tarifs avec les nouvelles offres :
+  - **LE PILOTAGE** (Sécurisation Technique / TJM)
+  - **L'ESQUISSE** (Site Vitrine)
+  - **LA RÉSIDENCE** (Productivité Métier)
+  - **LA CITADELLE** (SaaS / Sur Mesure)
+- Mise à jour de la liste des projets avec "Pelote Manager" et "AMO'R"
 - Amélioration de la section Projets avec des détails supplémentaires sur les défis techniques
 - Refactoring des données de projet pour une meilleure maintenabilité
 
@@ -43,13 +52,9 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ### Changed
 
 - Remplacement du modèle IA par `gemini-3-flash-preview`
-- Amélioration de l'UX du formulaire de contact (version minimaliste)
-- Optimisation des couleurs pour meilleure visibilité (titres email/téléphone)
 
 ### Fixed
 
-- Correction de l'affichage de l'image `illustration-architecture.jpg`
-- Résolution des problèmes de contraste sur fond beige
 - Correction de l'affichage des badges techniques en mode sombre
 
 ## [0.0.2] - 2025-12-31
@@ -118,4 +123,4 @@ et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 ---
 
 <!-- Format: YYYY-MM-DD -->
-<!-- Dernière mise à jour: 2026-01-06 -->
+<!-- Dernière mise à jour: 2026-01-07 -->
