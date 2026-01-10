@@ -35,74 +35,75 @@ import { useEffect, useState } from "react";
 const DATA = {
   profile: {
     name: "Jules Dupuis",
-    role: "Architecte Numérique Indépendant",
-    subRole: "Freelance | Développeur Web",
+    role: "Partenaire Numérique",
+    subRole: "Expert Web pour les Artisans & Indépendants",
     location: "Anglet, Pays Basque",
     stats: [
-      { label: "Années Angular", value: "04" },
-      { label: "Années Java", value: "03" },
-      { label: "Mode", value: "100% Freelance" },
+      { label: "Années d'expérience", value: "07" },
+      { label: "Projets livrés", value: "30+" },
+      { label: "Satisfaction", value: "100%" },
     ],
   },
   stack: [
     {
-      category: "Gros Œuvre (Backend)",
+      category: "Sérénité (Fiabilité)",
       icon: <Server size={20} />,
-      desc: "Fondations solides & scalables, posées loin du bruit.",
+      desc: "Des fondations solides pour un site qui ne tombe jamais en panne.",
       techs: [
-        "Architecture Hexagonale",
-        "API REST",
-        "Base de Données SQL",
-        "Sécurité & Auth",
-        "Microservices",
+        "Sécurité Maximale",
+        "Sauvegardes Auto",
+        "Hébergement Rapide",
+        "Nom de Domaine",
+        "Mises à jour",
       ],
     },
     {
-      category: "Façade (Frontend)",
+      category: "Visibilité (Design)",
       icon: <Layers size={20} />,
-      desc: "Interfaces réactives, assemblées avec précision.",
+      desc: "Une image professionnelle qui rassure vos futurs clients.",
       techs: [
-        "Composants Réactifs",
-        "TypeScript",
-        "Animations",
-        "Responsive Design",
-        "Gestion d'État",
+        "Sur-mesure",
+        "Compatible Mobile",
+        "Référencement (SEO)",
+        "Design Moderne",
+        "Expérience Fluide",
       ],
     },
     {
-      category: "L'Établi (DevOps & Outils)",
+      category: "L'Atelier (Outils)",
       icon: <Terminal size={20} />,
-      desc: "Mon environnement de travail optimisé.",
-      techs: ["CI/CD", "Conteneurisation", "Tests Automatisés", "Versioning"],
+      desc: "Vos outils de gestion accessibles partout.",
+      techs: [
+        "Devis & Factures",
+        "Gestion Clients",
+        "Planning",
+        "Statistiques",
+      ],
     },
   ],
   projects: [
     {
-      id: "pelote-manager",
-      title: "Pelote Manager",
-      context:
-        "Digitalisation complète de championnats de Pelote Basque (Gomme pleine).",
-      challenge:
-        "Complexité algorithmique pour la gestion des créneaux et règles de tournois.",
-      stack: ["Frontend Moderne", "Backend Robuste", "Base de Données"],
-      url: "https://www.pelote-manager.com/",
-    },
-    {
       id: "amor",
       title: "AMO'R",
       subtitle: "Assistance à Maîtrise d'Ouvrage & Rénovation",
-      context:
-        "Portfolio vitrine moderne pour services d'AMO au Pays Basque et Sud Landes.",
+      context: "Site vitrine pour une entreprise de rénovation locale.",
       challenge:
-        "Scrollytelling fluide + Design basque authentique + Performance optimale.",
-      stack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4"],
+        "Être visible sur Google et présenter les services clairement.",
+      stack: ["Site Vitrine", "Design Premium", "Référencement"],
       url: "https://www.amo-r.eu/",
+    },
+    {
+      id: "pelote-manager",
+      title: "Pelote Manager",
+      context: "Digitalisation complète d'un championnat de Pelote Basque.",
+      challenge:
+        "Remplacer les fichiers Excel par un outil simple pour les organisateurs.",
+      stack: ["Outil de Gestion", "Planning Auto", "Résultats en Direct"],
+      url: "https://www.pelote-manager.com/",
     },
   ],
 };
 
-// --- API CLIENT (Le lien vers gemini.ts) ---
-// C'est ici que la connexion se fait. '/api/gemini' correspond au fichier api/gemini.ts
 const callAIProxy = async (action: string, input: string) => {
   try {
     const response = await fetch("/api/gemini", {
@@ -292,6 +293,7 @@ const Hero = () => {
 
   return (
     <section
+      id="hero"
       onMouseMove={handleMouseMove}
       className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-background"
     >
@@ -359,23 +361,26 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-sans text-xl md:text-3xl text-foreground font-light"
+          className="font-sans text-xl md:text-3xl text-foreground font-light mb-2"
         >
-          Architecte Numérique{" "}
-          <span className="font-bold text-primary">Indépendant</span>
+          Développez votre activité,{" "}
+          <span className="font-bold text-primary">je gère la technique</span>
           <span className="font-bold text-primary">
-            <span className="animate-dot-1">.</span>
-            <span className="animate-dot-2">.</span>
-            <span className="animate-dot-3">.</span>
+            <span>.</span>
           </span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="font-mono text-sm text-foreground/60 mt-4"
+          className="font-mono text-sm text-foreground/60 mt-4 max-w-2xl mx-auto"
         >
-          {DATA.profile.subRole}
+          Du <span className="font-bold text-foreground/80">site vitrine</span>{" "}
+          qui rassure vos prospects à l'
+          <span className="font-bold text-foreground/80">application</span> qui
+          gère vos chantiers.
+          <br />
+          Des solutions pro, sans jargon et sans abonnement caché.
         </motion.p>
       </motion.div>
 
@@ -453,34 +458,41 @@ const About = () => {
               className="font-sans text-lg text-foreground/80 leading-relaxed text-justify space-y-4 border-l-4 border-secondary pl-6"
             >
               <p>
-                Libérez-vous des frictions numériques pour vous concentrer sur
-                l'essentiel : la croissance de votre business.
+                Aujourd'hui,{" "}
+                <strong className="text-[1.15em]">
+                  ne pas être sur internet, c'est perdre des clients
+                </strong>
+                . Mais entre les agences hors de prix et les outils compliqués,
+                difficile de s'y retrouver.
               </p>
               <p>
-                <strong>Site vitrine, e-commerce ou refonte ?</strong> Je
-                transforme votre vision en une présence digitale qui convertit.
-                Chaque projet est pensé pour capter l'attention, inspirer
-                confiance et générer des résultats mesurables dès le premier
-                jour.
+                C'est là que j'interviens. Je ne suis pas là pour vous parler de
+                code ou de serveurs, mais pour vous apporter des{" "}
+                <strong className="text-[1.15em]">solutions concrètes</strong>.
               </p>
               <p>
-                Votre temps est votre ressource la plus précieuse. Je crée des
-                outils personnalisés qui travaillent pour vous, et non
-                l'inverse. En transformant vos workflows complexes en solutions
-                fluides, je redonne à vos équipes{" "}
-                <strong>jusqu'à 4 fois plus de temps</strong> pour créer de la
-                valeur.
+                <strong className="text-[1.15em]">
+                  Vous voulez être trouvé sur Google ?
+                </strong>{" "}
+                Je crée votre site vitrine.
+                <br />
+                <strong className="text-[1.15em]">
+                  Vous voulez moins de papiers ?
+                </strong>{" "}
+                Je crée vos outils de gestion.
               </p>
               <p>
-                En tant qu'
-                <strong>Architecte Numérique Indépendant</strong>, je ne propose
-                pas seulement du code, mais des solutions concrètes qui
-                résolvent vos problèmes métiers. Pas de jargon, juste des
-                résultats.
+                Je suis votre partenaire numérique de proximité. On discute de
+                votre métier, de vos besoins, et je m'occupe de tout le reste.
               </p>
+              <br />
+              <strong className="text-[1.15em]">
+                {" "}
+                Simple. Efficace. Transparent.
+              </strong>
               <p className="text-sm font-mono text-primary/90 italic">
-                → Disponible pour bâtir vos projets de A à Z ou sécuriser vos
-                chantiers techniques existants.
+                → Formation incluse pour que vous gardiez le contrôle sur votre
+                outil.
               </p>
             </motion.div>
 
@@ -539,7 +551,7 @@ const About = () => {
             </div>
 
             <div className="absolute bottom-8 -right-8 bg-primary text-primary-foreground py-2 px-8 font-mono text-sm shadow-lg transform -rotate-90 origin-bottom-right flex items-center gap-2">
-              <Terminal size={14} /> FREELANCE_STUDIO
+              <Terminal size={14} /> PARTENAIRE_LOCAL
             </div>
           </motion.div>
         </div>
@@ -555,13 +567,13 @@ const Workshop = () => {
 
       <div className="container mx-auto px-6 max-w-6xl">
         <div className="mb-16 text-center">
-          <span className="font-mono text-primary text-sm block mb-2">{`> 02. L'ATELIER PRIVÉ`}</span>
+          <span className="font-mono text-primary text-sm block mb-2">{`> 02. LA BOÎTE À OUTILS`}</span>
           <h2 className="font-serif text-4xl text-foreground">
-            Mes Outils de Prédilection
+            Tout ce qu'il faut pour réussir
           </h2>
           <p className="font-sans text-foreground mt-4 max-w-lg mx-auto">
-            En freelance, je choisis les technologies les plus fiables pour
-            garantir pérennité et performance à vos projets.
+            Je sélectionne pour vous les meilleures technologies. Celles qui
+            sont rapides, sûres et qui ne vous lâcheront pas.
           </p>
         </div>
 
@@ -620,11 +632,11 @@ const Projects = () => {
         <div className="mb-16 text-center">
           <span className="font-mono text-primary text-sm block mb-2">{`> 03. RÉALISATIONS`}</span>
           <h2 className="font-serif text-4xl md:text-5xl text-foreground font-bold">
-            Projets Sur-Mesure
+            Ils me font confiance
           </h2>
           <p className="font-sans text-foreground/70 mt-4 max-w-lg mx-auto">
-            Chaque projet est une solution unique, pensée pour répondre à des
-            besoins métiers concrets.
+            Des exemples concrets de sites et d'outils crées pour des
+            professionnels comme vous.
           </p>
         </div>
 
@@ -704,7 +716,7 @@ const Projects = () => {
                     <div className="bg-foreground/5 dark:bg-foreground/10 p-6 border border-foreground/10 relative">
                       <PixelDots />
                       <h4 className="font-serif text-primary mb-2 flex items-center gap-2 text-lg font-bold">
-                        <PenTool size={16} /> Le Défi Technique
+                        <PenTool size={16} /> Le Besoin
                       </h4>
                       <p className="text-sm font-mono text-foreground/70">
                         {`> ${project.challenge}`}
@@ -1084,7 +1096,6 @@ const AIArchitect = () => {
                     navigator.clipboard.writeText(
                       JSON.stringify(brief, null, 2),
                     );
-                    alert("Cahier des charges copié dans le presse-papier !");
                   }}
                   className="flex-1 bg-background text-foreground px-6 py-3 font-mono text-sm hover:bg-secondary transition-colors border-2 border-background"
                 >
@@ -1375,20 +1386,77 @@ export default function PortfolioApp() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-40 bg-background/90 backdrop-blur-md border-b-2 border-foreground px-6 py-4 flex justify-between items-center shadow-sm">
-        <span className="font-serif font-bold text-xl tracking-tighter flex items-center gap-2">
-          <span className="text-primary font-mono">{`{`}</span>JD.
-          <span className="text-primary font-mono">{`}`}</span>
-        </span>
+        <div className="flex items-center gap-8">
+          <button
+            onClick={() => {
+              const heroSection = document.getElementById("hero");
+              if (heroSection) {
+                heroSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="font-serif font-bold text-xl tracking-tighter flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform"
+          >
+            <span className="text-primary font-mono">{`{`}</span>JD.
+            <span className="text-primary font-mono">{`}`}</span>
+          </button>
+
+          {/* Menu Desktop */}
+          <ul className="hidden md:flex items-center gap-6 font-mono text-sm">
+            <li>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("tarifs")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="hover:text-primary transition-colors hover:underline underline-offset-4 decoration-primary"
+              >
+                Prestations
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("projects")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="hover:text-primary transition-colors hover:underline underline-offset-4 decoration-primary"
+              >
+                Réalisations
+              </button>
+            </li>
+
+            <li>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="hover:text-primary transition-colors hover:underline underline-offset-4 decoration-primary"
+              >
+                Contact
+              </button>
+            </li>
+          </ul>
+        </div>
+
         <div className="flex items-center gap-4">
           <span className="font-mono text-xs text-primary font-bold hidden md:inline-block animate-pulse">
             ● STATUS: DISPONIBLE
           </span>
-          <a
-            href="mailto:contact@julesdupuis.fr"
+          <button
+            onClick={() => {
+              const contactSection = document.getElementById("contact");
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="font-mono text-xs bg-foreground text-background px-4 py-2 hover:bg-primary hover:text-[#fcfbf7] transition-colors shadow-[3px_3px_0px_0px_#d4a373] hover:shadow-[1px_1px_0px_0px_#d4a373] hover:translate-y-[2px] active:translate-y-[3px]"
           >
             ENGAGER
-          </a>
+          </button>
           <ThemeToggle />
           <MobileMenu />
         </div>
@@ -1401,9 +1469,9 @@ export default function PortfolioApp() {
         <PixelSeparator />
         <Workshop />
         <PixelSeparator />
-        <Projects />
-        <PixelSeparator />
         <Pricing onPlanSelect={handlePlanSelection} />
+        <PixelSeparator />
+        <Projects />
         <PixelSeparator />
         <AIArchitect />
         <PixelSeparator />

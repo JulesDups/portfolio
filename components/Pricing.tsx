@@ -1,67 +1,69 @@
 "use client";
 import { motion } from "framer-motion";
-import { Check, Hammer, Info, Shield, Users, Zap } from "lucide-react";
+import { Check, Hammer, Info, Terminal, Users, Zap } from "lucide-react";
 
 const PLANS = [
   {
-    name: "LE PILOTAGE",
-    type: "Sécurisation Technique",
-    price: "450€",
-    frequency: "/ jour",
-    desc: "Sécurisez vos chantiers critiques. J'interviens pour débloquer vos dettes techniques et garantir vos mises en production.",
+    name: "L'ESSENTIEL",
+    type: "Présence Vitrine",
+    price: "850€",
+    desc: "Soyez enfin visible. Un site clair et professionnel pour rassurer vos clients et présenter votre activité.",
     features: [
-      "Élimination des bugs critiques",
-      "Sécurisation des délais de mise en production",
-      "Audit & Refonte de code legacy",
-      "Transmission de savoir-faire aux équipes",
+      "Site vitrine (3 à 5 pages)",
+      "Présentation de vos services",
+      "Formulaire de contact simple",
+      "Mentions légales incluses",
+      "Sécurisé (HTTPS) & Rapide",
     ],
-    recurring: "Disponibilité : Janvier 2026",
+    recurring: "Frais annuels : Hébergement + Nom de domaine",
     icon: <Users size={24} aria-hidden="true" />,
-    isTjm: true,
   },
   {
-    name: "L'ESQUISSE",
-    type: "Conversion & Visibilité",
-    price: "1 250",
-    desc: "Ne perdez plus un seul prospect. Une solution de visibilité ultra-rapide pour capturer votre audience dès les premières secondes.",
+    name: "L'ARTISAN",
+    type: "Génération de Contacts",
+    price: "1 600€",
+    desc: "Transformez vos visiteurs en clients. Un site optimisé pour Google qui met en valeur votre savoir-faire.",
     features: [
-      "Conversion optimisée (Cible business)",
-      "Performance fulgurante (Score SEO 100/100)",
-      "Design unique & sur-mesure",
-      "Mobile first : Responsive & Accessible",
-      "Expérience utilisateur sans friction",
+      "Tout du pack Essentiel",
+      "Optimisation Google (SEO Local)",
+      "Mise en avant de vos réalisations",
+      "Appels à l'action stratégiques",
+      "Lien vers vos avis clients",
     ],
-    recurring: "Maintenance : Sur mesure",
+    recurring: "Frais annuels : Hébergement + Nom de domaine",
     icon: <Zap size={24} aria-hidden="true" />,
-  },
-  {
-    name: "LA RÉSIDENCE",
-    type: "Productivité Métier",
-    price: "3 000",
-    desc: "Digitalisez vos processus manuels. Une structure robuste pour automatiser vos tâches répétitives et libérer votre croissance.",
-    features: [
-      "Automatisation des workflows complexes",
-      "Gain de temps : jusqu'à x4 sur les tâches",
-      "Gestion centralisée de vos données métier",
-      "Formation & Accompagnement à l'outil",
-    ],
-    recurring: "Maintenance : Sur mesure",
-    icon: <Hammer size={24} aria-hidden="true" />,
     popular: true,
   },
   {
-    name: "LA CITADELLE",
-    type: "Centre de Contrôle (SaaS)",
+    name: "L'ATELIER",
+    type: "Outil de Gestion",
     price: "Sur Devis",
-    desc: "L'architecture ultime pour dominer votre marché. Transformez votre vision en plateforme capable de travailler pour vous 24/7.",
+    desc: "Gagnez du temps administratif. Un outil simple pour remplacer vos fichiers Excel et vos papiers.",
     features: [
-      "Architecture stratégique (Scalabilité infinie)",
-      "Plateforme multi-tenants / multi-rôles",
-      "Tableaux de bord stratégiques & ROI",
-      "Sécurité bancaire & Haute disponibilité",
+      "Gestion clients & chantiers",
+      "Suivi de devis simplifié",
+      "Planning partagé",
+      "Accessible sur votre téléphone",
+      "Pas d'abonnement mensuel caché",
     ],
     recurring: "Maintenance : Sur mesure",
-    icon: <Shield size={24} aria-hidden="true" />,
+    icon: <Hammer size={24} aria-hidden="true" />,
+  },
+  {
+    name: "RENFORT TECH",
+    type: "Expertise Freelance",
+    price: "450€ /j",
+    desc: "Pour les agences et DSI. Une expertise technique pointue pour renforcer vos équipes sur des projets complexes.",
+    features: [
+      "Stack : Next.js / React / TS",
+      "Audit & Code Review",
+      "Migrations technologiques",
+      "Développement de features",
+      "Mentoring développeurs juniors",
+    ],
+    recurring: "Disponibilité : Sur demande",
+    icon: <Terminal size={24} aria-hidden="true" />,
+    buttonText: "VOIR MON PROFIL",
   },
 ];
 
@@ -87,13 +89,13 @@ export const Pricing = ({
 
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <div className="text-center mb-16">
-          <span className="font-mono text-primary text-sm mb-2 block">{`> 03. PERMIS DE CONSTRUIRE`}</span>
+          <span className="font-mono text-primary text-sm mb-2 block">{`> 03. VOTRE SOLUTION`}</span>
           <h2 className="font-serif text-4xl text-foreground">
-            Investissez dans du Solide
+            Des offres claires, sans surprise
           </h2>
           <p className="font-sans text-foreground/70 mt-4 max-w-lg mx-auto">
-            Pas de coûts cachés. Un forfait pour la construction (le code), et
-            un abonnement clair pour le syndic (la maintenance).
+            Pas de jargon technique, pas de coûts cachés. Je m'occupe de la
+            technique pour que vous puissiez vous concentrer sur votre métier.
           </p>
         </div>
 
@@ -127,9 +129,7 @@ export const Pricing = ({
               className={`relative bg-card p-8 border-2 flex flex-col h-full transition-shadow duration-300 ${
                 plan.popular
                   ? "border-primary shadow-[8px_8px_0px_0px_#bf2c23] hover:shadow-[12px_12px_0px_0px_#bf2c23]"
-                  : plan.isTjm
-                    ? "border-secondary border-dashed shadow-[4px_4px_0px_0px_rgba(191,44,35,0.2)] hover:shadow-[8px_8px_0px_0px_rgba(191,44,35,0.3)]"
-                    : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
+                  : "border-foreground/20 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]"
               }`}
             >
               {plan.popular && (
@@ -147,7 +147,7 @@ export const Pricing = ({
 
               <div className="mb-6 border-b border-dashed border-foreground/10 pb-6">
                 <div className="flex items-baseline gap-1">
-                  {plan.price !== "Sur Devis" && !plan.isTjm && (
+                  {plan.price !== "Sur Devis" && (
                     <span className="text-sm font-mono text-foreground/60">
                       dès
                     </span>
@@ -155,17 +155,10 @@ export const Pricing = ({
                   <span className="text-4xl font-bold text-foreground">
                     {plan.price}
                   </span>
-                  {plan.frequency && (
-                    <span className="text-lg font-mono text-foreground/70">
-                      {plan.frequency}
-                    </span>
-                  )}
-                  {!plan.frequency && (
-                    <span className="text-sm font-sans text-foreground">
-                      {plan.price === "Sur Devis" ? "" : "€"}
-                    </span>
-                  )}
-                  {plan.price !== "Sur Devis" && !plan.isTjm && (
+                  <span className="text-sm font-sans text-foreground">
+                    {plan.price === "Sur Devis" ? "" : ""}
+                  </span>
+                  {plan.price !== "Sur Devis" && (
                     <span className="text-primary text-xl">*</span>
                   )}
                 </div>
@@ -211,13 +204,11 @@ export const Pricing = ({
                   className={`w-full py-3 font-mono text-sm border-2 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
                     plan.popular
                       ? "bg-primary text-primary-foreground border-primary hover:bg-white hover:text-primary"
-                      : plan.isTjm
-                        ? "bg-secondary text-secondary-foreground border-secondary hover:bg-white hover:text-secondary"
-                        : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
+                      : "bg-transparent text-foreground border-foreground hover:bg-foreground hover:text-background"
                   }`}
-                  aria-label={`${plan.isTjm ? "Voir le profil" : "Demander le plan"} ${plan.name}`}
+                  aria-label={`Demander le plan ${plan.name}`}
                 >
-                  {plan.isTjm ? "VOIR MON PROFIL TECH" : "DEMANDER CE PLAN"}
+                  {(plan as any).buttonText || "DEMANDER CE PLAN"}
                 </motion.button>
               </div>
             </motion.div>
@@ -229,14 +220,13 @@ export const Pricing = ({
           <Info size={24} className="text-secondary shrink-0 mt-1" />
           <div>
             <h4 className="font-bold font-serif text-foreground mb-1">
-              * Note de l'Architecte
+              * Note de transparence
             </h4>
             <p className="leading-relaxed">
-              Chaque projet est unique. Les tarifs &laquo; dès &raquo; sont
-              donnés à titre indicatif pour une surface fonctionnelle standard.
-              Un devis ferme et définitif sera établi uniquement après étude
-              détaillée de votre cahier des charges, afin de garantir une
-              architecture adaptée à vos contraintes réelles.
+              Le web regorge d'offres complexes. Ici, tout appartient à votre
+              entreprise dès la livraison. Pas d'abonnement mensuel obligatoire
+              (hors hébergement basique). Je vous forme à l'utilisation de votre
+              outil pour que vous soyez <strong>100% autonome</strong>.
             </p>
           </div>
         </div>

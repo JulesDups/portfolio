@@ -5,7 +5,29 @@ Tous les changements notables de ce projet seront documentés dans ce fichier.
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/),
 et ce projet adhère au [Semantic Versioning](https://semver.org/lang/fr/).
 
-## [Non publié]
+## [0.2.0] - 2026-01-10
+
+### Rebranding (Client First)
+
+- **Positionnement** : Passage de "Architecte Numérique" à "**Partenaire Numérique**"
+- **Réécriture Complète** : Adoption d'un ton simple, accessible et orienté bénéfices clients (fin du jargon technique en façade)
+- **Nouvelles Offres** :
+  - **L'ESSENTIEL** (850€) : Site vitrine simple
+  - **L'ARTISAN** (1 600€) : Site optimisé SEO & Conversion (Recommandé)
+  - **L'ATELIER** (Sur Devis) : Outils de gestion sur-mesure
+  - **RENFORT TECH** (450€/j) : Maintien de l'offre freelance pour les agences
+- **UX/UI** :
+  - Modification du Hero pour porter le nouveau message ("Je gère la technique")
+  - Mise à jour des prompts IA (`api/gemini`) pour s'aligner sur les nouvelles offres
+  - Bouton "ENGAGER" redirige maintenant vers le formulaire de contact (scroll smooth)
+  - Logo cliquable pour retour en haut de page (scroll smooth)
+  - Ajustement typographique (taille des textes en gras augmentée dans "À propos")
+  - **Navigation** :
+    - Ajout du menu Desktop (Réalisations, Prestations, Contact)
+    - Correction du bug d'affichage du menu Mobile (React Portal)
+    - Amélioration de l'ergonomie mobile (espacement agrandi)
+
+## [0.1.2] - 2026-01-09
 
 ### Added
 

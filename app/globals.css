@@ -47,9 +47,6 @@ body {
   --color-secondary-foreground: var(--secondary-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --animate-dot-1: dot-1 1.5s steps(1, end) infinite;
-  --animate-dot-2: dot-2 1.5s steps(1, end) infinite;
-  --animate-dot-3: dot-3 1.5s steps(1, end) infinite;
 }
 
 @keyframes dot-1 {
